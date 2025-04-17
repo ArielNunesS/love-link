@@ -1,11 +1,11 @@
 "use client"
 
+import React from "react";
 import Link from "next/link";
 
 export default function HomePage() {
     return (
-    <main className="min-h-screen">
-        <div className="absolute inset-0 z-0">
+    <main className="min-h-screen z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#09091d]">
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="relative z-10 container mx-auto px-4 top flex flex-col md:flex-row items-center justify-between gap-8">
@@ -29,7 +29,6 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
-        </div>
         </div>
     </main>
     )
