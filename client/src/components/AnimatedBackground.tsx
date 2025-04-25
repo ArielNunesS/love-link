@@ -62,21 +62,21 @@ export default function AnimatedBackground() {
             this.points = []
 
             // Configurações baseadas no índice para criar variedade
-            this.speed = 0.5 + Math.random() * 0.5
-            this.amplitude = 20 + Math.random() * 30
+            this.speed = 0.4 + Math.random() * 0.5
+            this.amplitude = 20 + Math.random() * 50
 
             // Cores em tons de rosa com diferentes opacidades
             const opacity = 0.05 + Math.random() * 0.2
             this.color = `rgba(244, 114, 182, ${opacity})`
 
-             // Espessura da linha            
+             // Espessura da linha
             this.lineWidth = 1 + Math.random() * 1.5
             
             // Posição vertical da curva
             const baseY = (index + 1) * (canvas.height / 9)
 
             // Criar pontos ao longo da curva
-            const segments = 10
+            const segments = 2
             for(let i = 0; i <= segments; i++) {
                 const x = (canvas.width * i) / segments
                 const y = baseY + Math.sin(i / 2) * this.amplitude
@@ -109,7 +109,7 @@ export default function AnimatedBackground() {
         update() {
             for(let i = 0; i < this.points.length; i++) {
                 const point = this.points[i]
-                point.y = point.originalY + Math.sin(Date.now() * 0.001 * this.speed + i * 0.5) * this.amplitude * 0.2
+                point.y = point.originalY + Math.sin(Date.now() * 0.001 * this.speed + i * 0.5) * this.amplitude * 1
             }
         }
     }
