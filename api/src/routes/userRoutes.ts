@@ -9,6 +9,23 @@ export default function userRoutes() {
         res.json(users);
     });
 
+    router.get(`/:id`, async(req, res) => {
+
+        try{
+            const { id } = req.params;
+            const userDoc = await User.findById(id);
+        
+
+        if(!userDoc) {
+            res.status(404).json({ error: "User Not Found"});
+        }
+
+        res.json(userDoc);
+    } catch(err) {
+        res.status(500).json({ error: "Error when searching for user", err});
+    }
+    });
+
     router.post('/register', async(req, res) => {
         
         const { username, email } = req.body;
@@ -20,9 +37,9 @@ export default function userRoutes() {
             });
             res.json(userDoc);
 
-        } catch (e){
-            console.error(e);
-            res.status(400).json(e);
+        } catch (err) {
+            console.error(err);
+            res.status(400).json(err);
         }
     });
 

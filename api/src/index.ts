@@ -7,6 +7,6 @@ connectDB().then(() => {
     app.listen(PORT, () => {
     console.log(`Server running on port http://localhost:${PORT}`)
    }) 
-}).catch((error) => {
-    console.error("Failed to connect to the DB, error:", error);
+}).catch((err) => {
+    console.error("Failed to connect to the DB, error:", err);
 });

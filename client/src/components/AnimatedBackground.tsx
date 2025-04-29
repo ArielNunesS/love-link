@@ -7,6 +7,15 @@ export default function AnimatedBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
+        const updateHeight = () => {
+            if(canvasRef.current) {
+                canvasRef.current.style.height = `${document.body.scrollHeight}px`;
+            }
+        };
+
+        updateHeight();
+        window.addEventListener("resize", updateHeight)
+
         const canvas = canvasRef.current
         if(!canvas) return
 
@@ -41,12 +50,14 @@ export default function AnimatedBackground() {
         render()
 
         return () => {
+            window.addEventListener("resize", updateHeight);
             window.removeEventListener("resize", resizeCanvas)
             window.cancelAnimationFrame(animationFrameId)
         }
     }, [])
 
-    return <canvas ref={canvasRef} className="absolute inset-0 z-1" style={{ opacity: 0.6 }} /> 
+    return <canvas ref={canvasRef}
+    className="absolute top-0 left-0 w-full inset-0 z-1" style={{ opacity: 0.6 }} /> 
 }
 
     class Curve {
