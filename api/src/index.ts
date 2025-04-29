@@ -1,5 +1,6 @@
 import app from "./app.ts"
 import { connectDB } from "./config/db_config.ts";
+import "dotenv/config";
 
 const PORT = "4000"
 
