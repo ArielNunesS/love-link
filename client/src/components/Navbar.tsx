@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react";
 import Link from "next/link";
 import { Heart } from "lucide-react";
@@ -16,6 +14,9 @@ export default function Navbar(){
             </Link>
     
             <div className="flex items-center gap-8">
+                <Link href="/" className="text-2xl font-bold text-white">
+                    ola
+                </Link>
                 <Link href="/exemplos" className="text-2xl font-bold text-white">
                     Exemplos
                 </Link>
@@ -23,10 +24,7 @@ export default function Navbar(){
                 <Link href="/como-funciona" className="text-2xl font-bold text-white">
                     Como Funciona
                 </Link>
-
-                <Link href="/precos" className="text-2xl font-bold text-white">
-                    Preços
-                </Link>
+                
             </div>
         </nav>
     </header>

@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react";
 import Link from "next/link";
 import { Heart, Calendar, Clock, Camera, Gift, Music } from "lucide-react";
@@ -21,9 +19,8 @@ export default function HomePage() {
                     com seu parceiro em um endereço único.
                     </p>
                   
-
-                  <Link href="/criar" className="inline-block rounded-full bg-rose-500 hover:bg-rose-700 text-white font-medium
-                  px-8 py-4 text-lg transition-all duration-300 shadow-lg hover:shadow-rose-500/30">
+                  <Link href="/criar" className="inline-block rounded-full bg-rose-500 hover:bg-rose-600 text-white font-medium
+                  px-8 py-4 text-lg shadow-lg shadow-rose-500/40 transition-all duration-300 hover:shadow-rose-500/30">
                     Criar seu LoveLink
                   </Link>
                 </div>
@@ -40,7 +37,7 @@ export default function HomePage() {
                             <div className="relative bg-gradient-to-br from-purple-900/80 via-[#1a1a2e] to-rose-900/50 pt-8 pb-4
                             min-h-[600px] overflow-hidden">
                                 <div className="px-4 py-2 flex items-center justify-between">
-                                    <div className="text-white/80 text-xs">21:45</div>
+                                    <div className="text-white/80 text-xs cursor-default">21:45</div>
                                     <div className="flex items-center gap-1">
                                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
                                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
@@ -63,8 +60,8 @@ export default function HomePage() {
                                           <Heart className="w-8 h-8 text-white"/>
                                       </div>
                                       <div>
-                                          <h3 className="text-white font-bold text-lg">João e Maria</h3>
-                                          <p className="text-rose-300 text-sm">Nosso amor com um clique</p>
+                                          <h3 className="text-white font-bold text-lg cursor-default">João e Maria</h3>
+                                          <p className="text-rose-300 text-sm cursor-default">Nosso amor com um clique</p>
                                       </div>
                                     </div>
 
@@ -72,25 +69,25 @@ export default function HomePage() {
                                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-4">
                                       <div className="flex items-center gap-2 mb-2">
                                         <Calendar className="w-4 h-4 text-rose-400"/>
-                                        <h4 className="text-white font-medium">Tempo Juntos</h4>
+                                        <h4 className="text-white font-medium cursor-default">Tempo Juntos</h4>
                                       </div>
                                       <div className="grid grid-cols-3 gap-2 text-center">
                                         <div className="bg-white/5 rounded-lg p-2">
                                           <p className="text-rose-400 font-bold text-xl">2</p>
-                                          <p className="text-white/70 text-xs">Anos</p>
+                                          <p className="text-white/70 text-xs cursor-default">Anos</p>
                                         </div>
                                         <div className="bg-white/5 rounded-lg p-2">
-                                          <p className="text-rose-400 font-bold text-xl">7</p>
-                                          <p className="text-white/70 text-xs">Meses</p>
+                                          <p className="text-rose-400 font-bold text-xl cursor-default">7</p>
+                                          <p className="text-white/70 text-xs cursor-default">Meses</p>
                                         </div>
                                         <div className="bg-white/5 rounded-lg p-2">
-                                          <p className="text-rose-400 font-bold text-xl">15</p>
-                                          <p className="text-white/70 text-xs">Dias</p>
+                                          <p className="text-rose-400 font-bold text-xl cursor-default">15</p>
+                                          <p className="text-white/70 text-xs cursor-default">Dias</p>
                                         </div>
                                       </div>
                                       <div className="mt-2 flex items-center justify-center gap-2">
                                         <Clock className="w-3 h-3 text-rose-300"/>
-                                        <p className="text-white/60 text-xs">3h 24m 12s</p>
+                                        <p className="text-white/60 text-xs cursor-default">3h 24m 12s</p>
                                       </div>
                                     </div>
 
@@ -98,35 +95,39 @@ export default function HomePage() {
                                     <div className="grid grid-cols-2 gap-3 mb-4">
                                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
                                           <Camera className="w-5 h-5 text-rose-400"/>
-                                          <span className="text-white text-sm">Fotos</span>
+                                          <span className="text-white text-sm cursor-default">Fotos</span>
                                       </div>
                                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
                                           <Gift className="w-5 h-5 text-rose-400"/>
-                                          <span className="text-white text-sm">Datas</span>
+                                          <span className="text-white text-sm cursor-default">Datas</span>
                                       </div>
                                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
                                           <Music className="w-5 h-5 text-rose-400"/>
-                                          <span className="text-white text-sm">Música</span>
+                                          <span className="text-white text-sm cursor-default">Música</span>
                                       </div>
                                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
                                           <Heart className="w-5 h-5 text-rose-400"/>
-                                          <span className="text-white text-sm">História</span>
+                                          <span className="text-white text-sm cursor-default">História</span>
                                       </div>
                                     </div>
 
                                     {/* Button */}
-                                    <button className="w-full bg-gradient-to-r from-rose-400 to-rose-600 text-white py-3
-                                    rounded-xl font-medium shadow-lg shadow-rose-500/20">
-                                        Ver Nossa História
-                                    </button>
+
+                                    <div className="relative w-full group rounded-xl border-container">
+                                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-rose-300 to-rose-600 animate-border-move opacity-70 blur-sm group-hover:opacity-100 transition"/>
+                                        <Link href={"/criar"} className="relative z-10 w-full bg-rose-500 hover:bg-rose-600 text-white py-3 
+                                          rounded-xl font-medium shadow-lg shadow-rose-500/40 text-center block">
+                                          Ver Nossa História
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         {/* Decorative Elements */}
-                        <div className="absolute -top-6 -right-6 w-24 h-24 text-rose-400/30 animate-pulse">
+                        <div className="absolute -top-6 -right-6 w-24 h-24 text-rose-500/40 animate-pulse">
                           <Heart className="w-full h-full fill-rose-400/20"/>
                         </div>
-                        <div className="absolute -bottom-4 -left-4 w-16 h-16 text-rose-400/30">
+                        <div className="absolute -bottom-4 -left-4 w-16 h-16 text-rose-500/40">
                           <Heart className="w-full h-full fill-rose-400/20"/>
                         </div>
                     </div>
