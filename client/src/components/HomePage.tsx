@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Heart, Calendar, Clock, Camera, Gift, Music } from "lucide-react";
+import { Heart, Calendar, Clock, Camera, Gift, Music, Mail } from "lucide-react";
 
 export default function HomePage() {
     return (
@@ -57,7 +57,7 @@ export default function HomePage() {
                                     <div className="flex items-center gap-4 mb-6">
                                       <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rose-400 to-purple-500
                                       flex items-center justify-center">
-                                          <Heart className="w-8 h-8 text-white"/>
+                                          <Mail className="w-8 h-8 text-white"/>
                                       </div>
                                       <div>
                                           <h3 className="text-white font-bold text-lg cursor-default">João e Maria</h3>
@@ -94,20 +94,12 @@ export default function HomePage() {
                                     {/* Features */}
                                     <div className="grid grid-cols-2 gap-3 mb-4">
                                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
-                                          <Camera className="w-5 h-5 text-rose-400"/>
+                                          <Camera className="w-5 h-8 text-rose-400"/>
                                           <span className="text-white text-sm cursor-default">Fotos</span>
-                                      </div>
-                                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
-                                          <Gift className="w-5 h-5 text-rose-400"/>
-                                          <span className="text-white text-sm cursor-default">Datas</span>
                                       </div>
                                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
                                           <Music className="w-5 h-5 text-rose-400"/>
                                           <span className="text-white text-sm cursor-default">Música</span>
-                                      </div>
-                                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
-                                          <Heart className="w-5 h-5 text-rose-400"/>
-                                          <span className="text-white text-sm cursor-default">História</span>
                                       </div>
                                     </div>
 
@@ -115,7 +107,7 @@ export default function HomePage() {
 
                                     <div className="relative w-full group rounded-xl border-container">
                                       <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-rose-300 to-rose-600 animate-border-move opacity-70 blur-sm group-hover:opacity-100 transition"/>
-                                        <Link href={"/criar"} className="relative z-10 w-full bg-rose-500 hover:bg-rose-600 text-white py-3 
+                                        <Link href={"/criar"} className="relative z-10 w-full bg-rose-500 hover:bg-rose-600 text-white py-3 mt-15 
                                           rounded-xl font-medium shadow-lg shadow-rose-500/40 text-center block">
                                           Ver Nossa História
                                         </Link>

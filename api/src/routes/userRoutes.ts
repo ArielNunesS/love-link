@@ -26,7 +26,7 @@ export default function userRoutes() {
     }
     });
 
-    router.post('/register', async(req, res) => {
+    router.post('/registrar', async(req, res) => {
         
         const { username, email } = req.body;
 
