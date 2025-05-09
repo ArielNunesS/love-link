@@ -1,5 +1,5 @@
 import React from "react";
-import { Fira_Sans } from "next/font/google";
+import { Fira_Sans, Dancing_Script } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -7,6 +7,13 @@ const firaSans = Fira_Sans({
   variable: "--font-fira-sans",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing-script",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -20,7 +27,7 @@ export default function RootLayout({
     children: React.ReactNode
   }) {
     return (
-      <html lang="pt-BR">
+      <html lang="pt-BR" className={`${firaSans.variable} ${dancingScript.variable} antialiased`}>
         <body className={`${firaSans.variable} antialiased`}>
           {children}
         </body>
