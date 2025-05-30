@@ -1,27 +1,118 @@
 "use client"
 
+import React from "react";
 import { useState } from "react";
 import Card from "../../components/Card";
+import { FieldValues, Form, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function CriarPage() {
-    const [ name, setName ] = useState<string>("");
-    const [ mensagem, setMensagem ] = useState<string>("");
-    const [ anos, setAnos ] = useState<number>(0);
+const cardSchema = z.object({
+    name: z.string(),
+    email: z.string().email(),
+    title: z.string(),
+    message: z.string(),
+    date: z.date().refine(
+        date => date.getFullYear() >= 1900 && date.getFullYear() <= 2100, {
+        message: "O ano deve estar entre 1900 e 2100",
+    }),
+    image: z.instanceof(File)
+})
+
+type cardSchema = z.infer<typeof cardSchema>;
+
+export default function CreatePage() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting }, 
+        reset,
+        watch,
+    } = useForm<cardSchema>({
+        resolver: zodResolver(cardSchema),
+    });
+
+
+    const onSubmit = async (data: cardSchema) => {
+        const date = data.date;
+        const now = new Date();
+        const diff = now.getTime() - date.getTime();
+
+        const years = now.getFullYear() - date.getFullYear();
+
+
+
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        reset();
+    }
+    
+    
 
     return (
+    <>
         <main className="min-h-screen flex items-center justify-end bg-[#09091d] px-4">
-            <form>
-                <input type="name" placeholder="Nome do Casal"/>
-                <input type="title" placeholder="Titulo da Mensagem" maxLength={15}/>
-                <input type="email" placeholder="Email para receber o site"/>
-                <input type="date" />
-                <input type="file" placeholder="Photos" className="custom-file-label" />
-            </form>
-            <Card
-                name={"let"}
-                title={"çklas"}
-                message={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-                years={2}
+             <form className="flex flex-col gap-y-5" onSubmit={handleSubmit(onSubmit)}>
+                <input 
+                    { ...register("name", {
+                        required: "Por favor insira um nome",
+                    })}
+                    type="name"
+                    placeholder="Nome do Casal"
+                    className="p-5"
+                    maxLength={10}
+                />
+                <input
+                    { ...register("email", {
+                        required: "É necessário inserir um email para receber o produto",
+                    })}
+                    type="email"
+                    placeholder="Email para receber o site"
+                    className="bg-gray-500"
+                />
+                <input
+                    { ...register("title", {
+                        required: "Por favor atribua um título (ex: João e Maria)",
+                        maxLength: 25,
+                    })}
+                    type="title"
+                    placeholder="Titulo da Mensagem"
+                />
+                <input 
+                    {...register("message", {
+                        required: "Por favor escreva uma mensagem para seu parceiro/a",
+                        maxLength: 680
+                    })}
+                    type="text"
+                    placeholder="Mensagem"
+                />
+                <input 
+                {...register("date", {
+                    required: "Informe a data de início do relacionamento",
+                    valueAsDate: true,
+                })}
+                    type="date"
+                    placeholder="Data de Início"
+                />
+                <input 
+                {...register("image", {
+                    required: false,
+                })}
+                    type="image"
+                    placeholder="Fotos"
+                    className="custom-file-label"
+                />
+                <button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="cursor-pointer ml-10 mt-10 disabled:bg-gray-400">Gerar QR Code
+                </button>
+             </form>
+
+             <Card
+                name={watch("name")}
+                title={watch("title")}
+                message={watch("message")}
+                years={watch("date")}
                 months={7}
                 days={15}
                 hours={3}
@@ -29,5 +120,6 @@ export default function CriarPage() {
                 seconds={12}
                 photos={[]} />
         </main>
+    </>
     );
 }

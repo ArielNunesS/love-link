@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { Calendar, Heart, Clock, Music, Camera, Mail, MailOpen } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import {z} from "zod";
 
 interface CardProps {
   name: string;
@@ -19,7 +21,7 @@ interface CardProps {
 }
 
 export default function Card(props: CardProps){
-  const [ showMessage, setShowMessage ] = useState(false);
+  const [ showMessage, setShowMessage ] = useState<boolean>(false);
 
   if(showMessage) {
     return (
@@ -53,25 +55,25 @@ export default function Card(props: CardProps){
               {/* Profile Section */}
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rose-400 to-purple-500
-                flex items-center justify-center">
+                flex items-center justify-center max-h-17">
                   <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
                     <MailOpen/>
                   </button>
                   </div>
-                  <p className="text-lg" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
+                  <p className="text-xl font-semibold" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
               </div>
               <div className="max-w-xs wrap-break-word">
-                    <p className="text-xs">{props.message}</p>
-                  </div>
+                    <p className="text-xs font-normal">{props.message}</p>
+                </div>
             </div>
           </div>
         </div>
               {/* Decorative Elements */}
-              <div className="absolute -top-6 -right-6 w-24 h-24 text-rose-500/40 animate-pulse">
-                <Heart className="w-full h-full fill-rose-400/20"/>
+              <div className="absolute -top-10 -right-10 w-24 h-24 text-rose-500/40 animate-pulse">
+                <Heart className="w-full h-full fill-rose-500/30"/>
               </div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 text-rose-500/40">
-                <Heart className="w-full h-full fill-rose-400/20"/>
+              <div className="absolute bottom-2 -left-7 w-16 h-16 text-rose-500/40">
+                <Heart className="w-full h-full animate-ping fill-rose-500/30"/>
               </div>
           </div>
       </div>
@@ -159,11 +161,11 @@ export default function Card(props: CardProps){
           </div>
         </div>
               {/* Decorative Elements */}
-              <div className="absolute -top-6 -right-6 w-24 h-24 text-rose-500/40 animate-pulse">
-                <Heart className="w-full h-full fill-rose-400/20"/>
+              <div className="absolute -top-10 -right-10 w-24 h-24 text-rose-500/40 animate-pulse">
+                <Heart className="w-full h-full fill-rose-500/30"/>
               </div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 text-rose-500/40">
-                <Heart className="w-full h-full fill-rose-400/20"/>
+              <div className="absolute bottom-2 -left-7 w-16 h-16 text-rose-500/40">
+                <Heart className="w-full h-full animate-ping fill-rose-500/30"/>
               </div>
       </div>
           </div>
