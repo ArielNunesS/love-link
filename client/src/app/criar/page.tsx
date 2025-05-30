@@ -15,9 +15,12 @@ const cardSchema = z.object({
     date: z.date().refine(
         date => date.getFullYear() >= 1900 && date.getFullYear() <= 2100, {
         message: "O ano deve estar entre 1900 e 2100",
-    }),
+    }).transform((date) => date.getFullYear()),
     image: z.instanceof(File)
 })
+
+type MySchemaIn = z.input<typeof cardSchema>;
+type MySchemaOut = z.output<typeof cardSchema>;
 
 type cardSchema = z.infer<typeof cardSchema>;
 
@@ -32,22 +35,11 @@ export default function CreatePage() {
         resolver: zodResolver(cardSchema),
     });
 
-
     const onSubmit = async (data: cardSchema) => {
-        const date = data.date;
-        const now = new Date();
-        const diff = now.getTime() - date.getTime();
-
-        const years = now.getFullYear() - date.getFullYear();
-
-
-
         await new Promise((resolve) => setTimeout(resolve, 2000));
         reset();
     }
     
-    
-
     return (
     <>
         <main className="min-h-screen flex items-center justify-end bg-[#09091d] px-4">
