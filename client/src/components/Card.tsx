@@ -14,10 +14,7 @@ interface CardProps {
   years: number;
   months: number;
   days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  photos: string[],
+  image: string[],
 }
 
 export default function Card(props: CardProps){
@@ -139,10 +136,6 @@ export default function Card(props: CardProps){
                     <p className="text-rose-400 font-bold text-xl cursor-default">{props.days}</p>
                     <p className="text-white/70 text-xs cursor-default">days</p>
                   </div>
-                </div>
-                <div className="mt-2 flex items-center jusify-center gap-2">
-                  <Clock className="w-3 h-3 text-rose-300"/>
-                  <p className="text-white/60 text-xs cursor-default">{props.hours}h {props.minutes}m {props.seconds}s</p>
                 </div>
               </div>
 

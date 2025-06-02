@@ -85,10 +85,6 @@ export default function HomePage() {
                                           <p className="text-white/70 text-xs cursor-default">Dias</p>
                                         </div>
                                       </div>
-                                      <div className="mt-2 flex items-center justify-center gap-2">
-                                        <Clock className="w-3 h-3 text-rose-300"/>
-                                        <p className="text-white/60 text-xs cursor-default">3h 24m 12s</p>
-                                      </div>
                                     </div>
 
                                     {/* Features */}
