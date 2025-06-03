@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Card from "../../components/Card";
 import { Form, useForm } from "react-hook-form";
-import { date, z } from "zod";
+import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
 
@@ -12,7 +12,7 @@ const cardSchema = z.object({
     email: z.string().email(),
     title: z.string(),
     message: z.string(),
-    date: z.date(),
+    startDate: z.date(),
     image: z.any().refine((fileList) => fileList instanceof FileList && fileList.length === 1, {
         message: "Envie uma imagem",
     })
@@ -21,7 +21,7 @@ const cardSchema = z.object({
 type TcardSchema = z.input<typeof cardSchema>;
 
 export default function CreatePage() {
-    const [dateFormatted, setDateFormatted ] = useState("");
+    const [dateFormatted, setDateFormatted ] = useState<Date | null>(null)
 
     const {
         register,
@@ -36,8 +36,9 @@ export default function CreatePage() {
     console.log(errors);
 
     const onSubmit = async (data: TcardSchema) => {
-        const dt = DateTime.fromJSDate(data.date);
-        const dtFormated = dt.toLocaleString(DateTime.DATE_SHORT);
+        const dt = DateTime.fromJSDate(data.startDate);
+        const dtFormated = new Date(dt.toLocaleString(DateTime.DATE_SHORT));
+
         setDateFormatted(dtFormated);
 
         console.log(dtFormated);
@@ -85,7 +86,7 @@ export default function CreatePage() {
                     placeholder="Mensagem"
                 />
                 <input 
-                {...register("date", {
+                {...register("startDate", {
                     required: "Informe a data de início do relacionamento",
                     valueAsDate: true,
                 })}
@@ -111,9 +112,10 @@ export default function CreatePage() {
                 name={watch("name")}
                 title={watch("title")}
                 message={watch("message")}
-                years={99999}
-                months={99999}
-                days={99999}
+                startDate={watch("startDate")}
+                // years={dateFormatted}
+                // months={dateFormatted}
+                // days={dateFormatted}
                 image={[]} />
         </main>
     </>

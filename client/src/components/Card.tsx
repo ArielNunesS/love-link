@@ -5,20 +5,27 @@ import Link from "next/link";
 import { Calendar, Heart, Clock, Music, Camera, Mail, MailOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { DateTime } from "luxon";
 import {z} from "zod";
 
 interface CardProps {
   name: string;
   title: string;
   message: string;
-  years: number;
-  months: number;
-  days: number;
+  startDate: Date;
   image: string[],
 }
 
 export default function Card(props: CardProps){
   const [ showMessage, setShowMessage ] = useState<boolean>(false);
+  const now = DateTime.now();
+  const start = DateTime.fromJSDate(props.startDate);
+
+  const diff = now.diff(start, ["years", "months", "days"]).toObject();
+
+  const years = Math.floor(diff.years ?? 0);
+  const months = Math.floor(diff.months ?? 0);
+  const days = Math.floor(diff.days ?? 0);
 
   if(showMessage) {
     return (
@@ -125,15 +132,15 @@ export default function Card(props: CardProps){
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="bg-white/5 rounded-lg p-2">
-                    <p className="text-rose-400 font-bold text-xl">{props.years}</p>
+                    <p className="text-rose-400 font-bold text-xl">{years}</p>
                     <p className="text-white/70 text-xs cursor-default">years</p>
                   </div>
                   <div className="bg-white/5 rounded-lg p-2">
-                    <p className="text-rose-400 font-bold text-xl cursor-default">{props.months}</p>
+                    <p className="text-rose-400 font-bold text-xl cursor-default">{months}</p>
                     <p className="text-white/70 text-xs cursor-default">months</p>
                   </div>
                   <div className="bg-white/5 rounded-lg p-2">
-                    <p className="text-rose-400 font-bold text-xl cursor-default">{props.days}</p>
+                    <p className="text-rose-400 font-bold text-xl cursor-default">{days}</p>
                     <p className="text-white/70 text-xs cursor-default">days</p>
                   </div>
                 </div>
