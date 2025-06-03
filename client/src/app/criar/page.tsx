@@ -1,9 +1,8 @@
 "use client"
 
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Card from "../../components/Card";
-import { FieldValues, Form, useForm } from "react-hook-form";
+import { Form, useForm } from "react-hook-form";
 import { date, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
@@ -14,12 +13,16 @@ const cardSchema = z.object({
     title: z.string(),
     message: z.string(),
     date: z.date(),
-    image: z.instanceof(File)
+    image: z.any().refine((fileList) => fileList instanceof FileList && fileList.length === 1, {
+        message: "Envie uma imagem",
+    })
 })
 
 type TcardSchema = z.input<typeof cardSchema>;
 
 export default function CreatePage() {
+    const [dateFormatted, setDateFormatted ] = useState("");
+
     const {
         register,
         handleSubmit,
@@ -30,24 +33,19 @@ export default function CreatePage() {
         resolver: zodResolver(cardSchema),
     });
 
-    // const [ dateParts, setDateParts ] = useState({
-    //     year: 0,
-    //     month: 0,
-    //     day: 0,
-    // })
+    console.log(errors);
 
     const onSubmit = async (data: TcardSchema) => {
         const dt = DateTime.fromJSDate(data.date);
+        const dtFormated = dt.toLocaleString(DateTime.DATE_SHORT);
+        setDateFormatted(dtFormated);
 
-        const year = dt.year;
-        const month = dt.month;
-        const day = dt.day;
-
-        console.log({ year, month, day});
+        console.log(dtFormated);
+        console.log("submit funcionando");
 
         await new Promise((resolve) => setTimeout(resolve, 2000));
         reset();
-    }
+    };
     
     return (
     <>
@@ -109,14 +107,13 @@ export default function CreatePage() {
                 </button>
             </form>
 
-
              <Card
                 name={watch("name")}
                 title={watch("title")}
                 message={watch("message")}
-                years={5}
-                months={5}
-                days={5}
+                years={99999}
+                months={99999}
+                days={99999}
                 image={[]} />
         </main>
     </>
