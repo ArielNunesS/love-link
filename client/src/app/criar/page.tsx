@@ -12,7 +12,9 @@ const cardSchema = z.object({
     email: z.string().email(),
     title: z.string(),
     message: z.string(),
-    startDate: z.date(),
+    startDate: z.date().max(new Date(), {
+        message: "A data não pode ser uma data futura",
+    }),
     image: z.any().refine((fileList) => fileList instanceof FileList && fileList.length === 1, {
         message: "Envie uma imagem",
     })
@@ -53,57 +55,66 @@ export default function CreatePage() {
         <main className="min-h-screen flex items-center justify-end bg-[#09091d] px-4">
             <form className="flex flex-col gap-y-5" onSubmit={handleSubmit(onSubmit)}>
                 <input 
-                    { ...register("name", {
-                        required: "Por favor insira um nome",
-                    })}
                     type="text"
                     placeholder="Nome do Casal"
                     className="p-5"
                     maxLength={10}
+
+                    { ...register("name", {
+                        required: "Por favor insira um nome",
+                    })}
                 />
                 <input
-                    { ...register("email", {
-                        required: "É necessário inserir um email para receber o produto",
-                    })}
                     type="email"
                     placeholder="Email para receber o site"
                     className="bg-gray-500"
+
+                    { ...register("email", {
+                        required: "É necessário inserir um email para receber o produto",
+                    })}
                 />
                 <input
+                    type="text"
+                    placeholder="Titulo da Mensagem"
+
                     { ...register("title", {
                         required: "Por favor atribua um título (ex: João e Maria)",
                         maxLength: 25,
                     })}
-                    type="text"
-                    placeholder="Titulo da Mensagem"
                 />
                 <input 
+                    type="text"
+                    placeholder="Mensagem"
+
                     {...register("message", {
                         required: "Por favor escreva uma mensagem para seu parceiro/a",
                         maxLength: 680
                     })}
-                    type="text"
-                    placeholder="Mensagem"
                 />
                 <input 
+                    type="date"
+                    placeholder="Data de Início"
+                    max={new Date().toISOString().split("T")[0]}
+
                 {...register("startDate", {
                     required: "Informe a data de início do relacionamento",
                     valueAsDate: true,
                 })}
-                    type="date"
-                    placeholder="Data de Início"
+
                 />
                 <input 
-                {...register("image", {
-                    required: false,
-                })}
                     type="file"
                     placeholder="Fotos"
                     className="custom-file-label"
+
+                {...register("image", {
+                    required: false,
+                })}
+
                 />
                 <button
-                    disabled={isSubmitting}
                     type="submit"
+                    disabled={isSubmitting}
                     className="cursor-pointer ml-10 mt-10 disabled:bg-gray-400">Gerar QR Code
                 </button>
             </form>
