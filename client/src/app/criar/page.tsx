@@ -7,6 +7,14 @@ import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
 
+const MAX_FILE_SIZE = 2000000
+const ACCEPTED_IMAGE_TYPES = [
+    'image/jpeg',
+    'image/jpg',
+    'image/png',
+    'image/webp',
+]
+
 const cardSchema = z.object({
     name: z.string(),
     email: z.string().email(),
@@ -15,9 +23,11 @@ const cardSchema = z.object({
     startDate: z.date().max(new Date(), {
         message: "A data não pode ser uma data futura",
     }),
-    image: z.any().refine((fileList) => fileList instanceof FileList && fileList.length === 1, {
-        message: "Envie uma imagem",
-    })
+    image: z.any().refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), {
+        message: "Somente arquivos .jpg, .jpeg, .png & .webp são aceitos",
+    }).refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, {
+        message: "A imagem deve conter no máximo 2 MB",
+    }).optional()
 })
 
 type TcardSchema = z.input<typeof cardSchema>;
@@ -76,10 +86,10 @@ export default function CreatePage() {
                 <input
                     type="text"
                     placeholder="Titulo da Mensagem"
+                    maxLength={13}
 
                     { ...register("title", {
                         required: "Por favor atribua um título (ex: João e Maria)",
-                        maxLength: 25,
                     })}
                 />
                 <input 
