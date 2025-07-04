@@ -9,7 +9,7 @@ import { DateTime } from "luxon";
 import {z} from "zod";
 
 interface CardProps {
-  name: string;
+  name: string,
   title: string;
   message: string;
   startDate: Date;
@@ -67,7 +67,7 @@ export default function Card(props: CardProps){
                   <p className="text-xl font-semibold" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
               </div>
               <div className="max-w-xs wrap-break-word">
-                    <p className="text-xs font-normal">{props.message}</p>
+                    <p className="text-xs font-normal whitespace-pre-wrap">{props.message}</p>
                 </div>
             </div>
           </div>

@@ -7,6 +7,9 @@ import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
 
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+const MAX_LINES = 15;
+
 const cardSchema = z.object({
     name: z.string(),
     email: z.string().email(),
@@ -15,8 +18,10 @@ const cardSchema = z.object({
     startDate: z.date().max(new Date(), {
         message: "A data não pode ser uma data futura",
     }),
-    image: z.any().refine((fileList) => fileList instanceof FileList && fileList.length === 1, {
-        message: "Envie uma imagem",
+    image: z.instanceof(File, {
+        message: "Por favor envie um arquivo com formato válido",
+    }) .refine((image) => ACCEPTED_IMAGE_TYPES.includes(image.type), {
+        message: "Por favor envie um arquivo com formato válido"
     })
 })
 
@@ -31,9 +36,26 @@ export default function CreatePage() {
         formState: { errors, isSubmitting }, 
         reset,
         watch,
+        setValue,
+        getValues,
     } = useForm<TcardSchema>({
         resolver: zodResolver(cardSchema),
     });
+
+    const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const message = watch("message")
+        const value = e.target.value;
+        const lines = value.split('\n').length;
+
+        if(lines >= MAX_LINES) {
+            console.log("barbecue")
+            e.preventDefault();
+            // setValue('message', 'a'); // funcionando - reseta o texto e deixa somente o 'a'
+        } else {
+            console.log("burguer")
+            e.target.value = getValues('message')
+        }
+    } 
 
     console.log(errors);
 
@@ -53,44 +75,61 @@ export default function CreatePage() {
     return (
     <>
         <main className="min-h-screen flex items-center justify-end bg-[#09091d] px-4">
-            <form className="flex flex-col gap-y-5" onSubmit={handleSubmit(onSubmit)}>
-                <input 
-                    type="text"
-                    placeholder="Nome do Casal"
-                    className="p-5"
-                    maxLength={10}
+            <form className="flex flex-col gap-y-5 w-170" onSubmit={handleSubmit(onSubmit)}>
 
-                    { ...register("name", {
-                        required: "Por favor insira um nome",
-                    })}
-                />
-                <input
-                    type="email"
-                    placeholder="Email para receber o site"
-                    className="bg-gray-500"
+                <label className="block p-0 gap-0 mt-20px">Nome:</label>
+                    <div className="p-[3px] rounded-lg bg-gradient-to-r from-rose-400 to-rose-900">
+                        <input 
+                            type="text"
+                            className="w-full p-5 bg-[#09091d] rounded-lg outline-none"
+                            maxLength={15}
+                            placeholder="Nome do Casal"
+                            { ...register("name", {
+                                required: "Por favor insira um nome",
+                            })}
+                        />
+                    </div>
 
-                    { ...register("email", {
-                        required: "É necessário inserir um email para receber o produto",
-                    })}
-                />
-                <input
-                    type="text"
-                    placeholder="Titulo da Mensagem"
+                <label className="block p-0 gap-0 mt-20px">Email:</label>
+                    <div className="p-[3px] rounded-lg bg-gradient-to-r from-rose-400 to-rose-900">     
+                        <input
+                            type="email"
+                            placeholder="seuemail@gmail.com"
+                            className="w-full p-5 bg-[#09091d] rounded-lg outline-none"
 
-                    { ...register("title", {
-                        required: "Por favor atribua um título (ex: João e Maria)",
-                        maxLength: 25,
-                    })}
-                />
-                <input 
-                    type="text"
-                    placeholder="Mensagem"
+                            { ...register("email", {
+                                required: "É necessário inserir um email para receber o produto",
+                            })}
+                        />
+                    </div>
 
-                    {...register("message", {
-                        required: "Por favor escreva uma mensagem para seu parceiro/a",
-                        maxLength: 680
-                    })}
-                />
+                <label className="block p-0 gap-0 mt-20px">Titulo da Mensagem:</label>
+                    <div className="p-[3px] rounded-lg bg-gradient-to-r from-rose-400 to-rose-900">
+                        <input
+                            type="text"
+                            placeholder="Feliz 3 Meses"
+                            className="w-full p-5 bg-[#09091d] rounded-lg outline-none"
+                            maxLength={13}
+
+                            { ...register("title", {
+                                required: "Por favor atribua um título (ex: João e Maria)",
+                            })}
+                        />
+                    </div>
+                <label className="block p-0 gap-0 mt-20px">Mensagem:</label>
+                    <div className="p-[3px] w-fit rounded-lg bg-gradient-to-r from-rose-400 to-rose-900">
+                        <textarea 
+                            placeholder="Oi meu amor, queria dizer..."
+                            className="w-108 h-80 justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap"
+                            maxLength={680}
+
+                            {...register("message", {
+                                required: "Por favor escreva uma mensagem para seu parceiro/a",
+                                onChange: handleMessageChange
+                            })}
+                        />
+                    </div>
+
                 <input 
                     type="date"
                     placeholder="Data de Início"
