@@ -7,8 +7,18 @@ import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
 
+<<<<<<< HEAD
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 const MAX_LINES = 15;
+=======
+const MAX_FILE_SIZE = 2000000
+const ACCEPTED_IMAGE_TYPES = [
+    'image/jpeg',
+    'image/jpg',
+    'image/png',
+    'image/webp',
+]
+>>>>>>> 5cea7e50033913daf06414ac1863d64f557e6aa3
 
 const cardSchema = z.object({
     name: z.string(),
@@ -18,11 +28,19 @@ const cardSchema = z.object({
     startDate: z.date().max(new Date(), {
         message: "A data não pode ser uma data futura",
     }),
+<<<<<<< HEAD
     image: z.instanceof(File, {
         message: "Por favor envie um arquivo com formato válido",
     }) .refine((image) => ACCEPTED_IMAGE_TYPES.includes(image.type), {
         message: "Por favor envie um arquivo com formato válido"
     })
+=======
+    image: z.any().refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), {
+        message: "Somente arquivos .jpg, .jpeg, .png & .webp são aceitos",
+    }).refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, {
+        message: "A imagem deve conter no máximo 2 MB",
+    }).optional()
+>>>>>>> 5cea7e50033913daf06414ac1863d64f557e6aa3
 })
 
 type TcardSchema = z.input<typeof cardSchema>;
@@ -90,6 +108,7 @@ export default function CreatePage() {
                         />
                     </div>
 
+<<<<<<< HEAD
                 <label className="block p-0 gap-0 mt-20px">Email:</label>
                     <div className="p-[3px] rounded-lg bg-gradient-to-r from-rose-400 to-rose-900">     
                         <input
@@ -129,6 +148,24 @@ export default function CreatePage() {
                             })}
                         />
                     </div>
+=======
+                    { ...register("email", {
+                        required: "É necessário inserir um email para receber o produto",
+                    })}
+                />
+                <input
+                    type="text"
+                    placeholder="Titulo da Mensagem"
+                    maxLength={13}
+
+                    { ...register("title", {
+                        required: "Por favor atribua um título (ex: João e Maria)",
+                    })}
+                />
+                <input 
+                    type="text"
+                    placeholder="Mensagem"
+>>>>>>> 5cea7e50033913daf06414ac1863d64f557e6aa3
 
                 <input 
                     type="date"
