@@ -13,7 +13,7 @@ interface CardProps {
   title: string;
   message: string;
   startDate: Date;
-  image: string[],
+  image: File,
 }
 
 export default function Card(props: CardProps){
@@ -67,7 +67,7 @@ export default function Card(props: CardProps){
                   <p className="text-xl font-semibold" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
               </div>
               <div className="max-w-xs wrap-break-word">
-                    <p className="text-xs font-normal whitespace-pre-wrap">{props.message}</p>
+                    <p className="text-xs p-3 font-normal whitespace-pre-wrap">{props.message}</p>
                 </div>
             </div>
           </div>
@@ -133,15 +133,15 @@ export default function Card(props: CardProps){
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="bg-white/5 rounded-lg p-2">
                     <p className="text-rose-400 font-bold text-xl">{years}</p>
-                    <p className="text-white/70 text-xs cursor-default">years</p>
+                    <p className="text-white/70 text-xs cursor-default">anos</p>
                   </div>
                   <div className="bg-white/5 rounded-lg p-2">
                     <p className="text-rose-400 font-bold text-xl cursor-default">{months}</p>
-                    <p className="text-white/70 text-xs cursor-default">months</p>
+                    <p className="text-white/70 text-xs cursor-default">meses</p>
                   </div>
                   <div className="bg-white/5 rounded-lg p-2">
                     <p className="text-rose-400 font-bold text-xl cursor-default">{days}</p>
-                    <p className="text-white/70 text-xs cursor-default">days</p>
+                    <p className="text-white/70 text-xs cursor-default">dias</p>
                   </div>
                 </div>
               </div>
@@ -150,7 +150,7 @@ export default function Card(props: CardProps){
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
                     <Camera className="w-5 h-8 text-rose-400"/>
-                    <span className="text-white text-sm cursor-default">photos</span>
+                    <span className="text-white text-sm cursor-default">Fotos</span>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
                     <Music className="w-5 h-5 text-rose-400"/>

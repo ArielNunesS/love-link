@@ -41,6 +41,23 @@ body {
   animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+::-webkit-scrollbar {
+  z-index: 99999;
+  background-color: rgb(255, 255, 255);
+  width: 5px;
+  border-radius: 100vh;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #a50036;
+  border-radius: 100vh;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100vh;
+  background-color: #f3798d;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
