@@ -13,7 +13,7 @@ interface CardProps {
   title: string;
   message: string;
   startDate: Date;
-  image: string[],
+  image: File,
 }
 
 export default function Card(props: CardProps){
