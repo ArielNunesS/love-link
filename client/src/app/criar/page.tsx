@@ -6,9 +6,9 @@ import { Form, useForm } from "react-hook-form";
 import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
-import PinkArrow from "../../components/PinkArrow";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+const MAX_FILE_SIZE = 3000000;
 const MAX_LINES = 15;
 
 const cardSchema = z.object({
@@ -19,11 +19,19 @@ const cardSchema = z.object({
     startDate: z.date().max(new Date(), {
         message: "A data não pode ser uma data futura",
     }),
-    image: z.instanceof(File, {
-        message: "Por favor envie um arquivo com formato válido",
-    }) .refine((image) => ACCEPTED_IMAGE_TYPES.includes(image.type), {
-        message: "Por favor envie um arquivo com formato válido"
-    })
+    image: z.any().refine(
+        (files) => {
+            if(!files || files.length === 0) return true;
+            const file = files[0];
+            return ACCEPTED_IMAGE_TYPES.includes(file.type)
+        }, "Somente formatos .jpg, .jpeg, .png e .webp são aceitos.")
+        .refine((files) => {
+            if(!files || files.length === 0) return true;
+            const file = files[0];
+            return file.size <= MAX_FILE_SIZE;
+        }, "O tamanho da imagem da imagem é de 3 MB")
+            // ACCEPTED_IMAGE_TYPES.includes(images?.[0]?.type), {
+        // message: "Somente formatos .jpg, .jpeg, .png e .webp são aceitos."
 })
 
 type TcardSchema = z.input<typeof cardSchema>;
@@ -162,7 +170,6 @@ export default function CreatePage() {
                         <input 
                             type="file"
                             className="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer bg-[#09091d] rounded-lg outline-none"
-
                             {...register("image", {
                                 required: false,
                             })}
