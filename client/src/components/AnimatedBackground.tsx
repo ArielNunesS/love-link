@@ -75,7 +75,7 @@ export default function AnimatedBackground() {
             this.amplitude = 20 + Math.random() * 50
 
             // Cores em tons de rosa com diferentes opacidades
-            const opacity = 0.05 + Math.random() * 0.2
+            const opacity = 0.06 + Math.random() * 0.2
             this.color = `rgba(244, 114, 182, ${opacity})`
 
              // Espessura da linha
