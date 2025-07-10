@@ -5,7 +5,7 @@ import { Heart } from "lucide-react";
 
 export default function BackgroundLines() {
     return (
-             <div className="absolute inset-0 z-1">
+             <div className="fixed inset-0 z-1">
                <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#0a0a20]"></div>
    
                {/* Linhas curvas decorativas */}

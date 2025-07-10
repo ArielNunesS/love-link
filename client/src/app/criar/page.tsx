@@ -6,6 +6,10 @@ import { Form, useForm } from "react-hook-form";
 import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
+import { Link, Heart } from "lucide-react";
+import Navbar from "../../components/Navbar";
+import AnimatedBackground from "../../components/AnimatedBackground";
+import BackgroundLines from "../../components/BackgroundLines";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 const MAX_FILE_SIZE = 3000000;
@@ -85,7 +89,9 @@ export default function CreatePage() {
     
     return (
     <>
-        <main className="w-screen min-h-screen flex items-center justify-end px-5 bg-[#09091d] ">
+        <main className="w-screen min-h-screen flex items-center justify-end z-20 px-5 bg-[#09091d] ">
+
+            <Navbar/>
             <form className="grid grid-cols-2 ml-70 gap-x-40 w-200 mt-10 bg-[#09091d]" onSubmit={handleSubmit(onSubmit)}>
 
             <div className="col-span-0">
@@ -203,9 +209,10 @@ export default function CreatePage() {
                     // months={dateFormatted}
                     // days={dateFormatted}
                     image={watch("image")}
-                />
+                />                                  
             </div>
         </main>
     </>
+
     );
 }

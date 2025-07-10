@@ -10,8 +10,9 @@ export default function HomePage() {
             <div className="relative z-10 container mx-auto px-4 top flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="md:w-1/2 text-left">
                   <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                      <span className="text-rose-400"> Eternize </span>
-                              cada momento do seu
+                      <span className="text-rose-400">
+                            Eternize </span>
+                            cada momento do seu
                       <span className="tex-rose-400"> AMOR </span>
                   </h1>
                     <p className="text-lg md:text-xl text-white/80 mb-8">

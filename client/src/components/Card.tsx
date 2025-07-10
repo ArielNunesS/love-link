@@ -88,7 +88,7 @@ export default function Card(props: CardProps){
       <div className="relative mx-auto max-w-[340px]">
           <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-800">
               {/* Notch */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-7 bg-gray-900 rounded-b-xl z-10"></div>
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-7 bg-gray-900 rounded-b-xl"></div>
               
               {/* Screen */}
               <div className="relative bg-gradient-to-br from-purple-900/80 via-[#1a1a2e] to-rose-900/50 pt-8 pb-4 min-h-[600px] overflow-hidden">
@@ -148,13 +148,9 @@ export default function Card(props: CardProps){
 
               {/* Features */}
               <div className="grid grid-cols-2 gap-3 mb-4">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
-                    <Camera className="w-5 h-8 text-rose-400"/>
-                    <span className="text-white text-sm cursor-default">photos</span>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center gap-2">
-                    <Music className="w-5 h-5 text-rose-400"/>
-                    <span className="text-white text-sm cursor-default">Música</span>
+                <div className="bg-white/10 justify-center backdrop-blur-sm rounded-xl w-73.5 h-50 p-5 flex items-center gap-2">
+                    <Camera className="w-15 h-15 text-rose-400"/>
+                    <span className="ml-2 font-semibold text-lg">Sua Foto Aqui</span>
                 </div>
               </div>
             </div>
