@@ -1,14 +1,14 @@
 "use client"
 
 import React, { useState } from "react";
-import Card from "../../components/Card";
+import Card from "../../src/components/Card";
 import { Form, useForm } from "react-hook-form";
 import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
 import { Link, Heart } from "lucide-react";
-import Navbar from "../../components/Navbar";
-import BackgroundLines from "../../components/BackgroundLines";
+import Navbar from "../../src/components/Navbar";
+import BackgroundLines from "../../src/components/BackgroundLines";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 const MAX_FILE_SIZE = 3000000;
@@ -200,12 +200,10 @@ export default function CreatePage() {
             <div className="md:w-1/2 md:mt-0"> 
                 <Card
                     name={watch("name")}
+                    email={""}
                     title={watch("title")}
                     message={watch("message")}
                     startDate={watch("startDate")}
-                    // years={dateFormatted}
-                    // months={dateFormatted}
-                    // days={dateFormatted}
                     image={watch("image")}
                 />                                  
             </div>

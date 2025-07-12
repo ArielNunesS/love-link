@@ -21,7 +21,7 @@ export default function HomePage() {
                     com seu parceiro em um endereço único.
                     </p>
                   
-                  <Link href="/criar" className="inline-block rounded-full bg-rose-500 hover:bg-rose-600 text-white font-medium
+                  <Link href="/create" className="inline-block rounded-full bg-rose-500 hover:bg-rose-600 text-white font-medium
                   px-8 py-4 text-lg shadow-lg shadow-rose-500/40 transition-all duration-300 hover:shadow-rose-500/70">
                     Criar seu LoveLink
                   </Link>
@@ -41,7 +41,7 @@ export default function HomePage() {
 
                                     <div className="relative w-130 group rounded-xl border-container">
                                     <div className="absolute mt-12 h-10 inset-0 rounded-xl bg-gradient-to-r from-rose-300 to-rose-600 animate-border-move opacity-70 blur-md group-hover:opacity-100 transition"/>
-                                        <Link href={"/criar"} className="relative z-10 w-full bg-rose-500 hover:bg-rose-600 text-white py-3 mt-15 
+                                        <Link href={"/create"} className="relative z-10 w-full bg-rose-500 hover:bg-rose-600 text-white py-3 mt-15 
                                           rounded-xl font-medium shadow-lg shadow-rose-500/40 text-center block">
                                           FAZER MEU LOVELINK AGORA MESMO
                                         </Link>
