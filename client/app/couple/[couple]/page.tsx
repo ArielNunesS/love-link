@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 interface CouplePageProps {
     params: {
-        couple: String;
+        couple: string;
     }
 }
 
