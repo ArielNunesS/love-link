@@ -2,13 +2,11 @@ import Card from "../../../src/components/Card";
 import { notFound } from "next/navigation";
 
 interface CouplePageProps {
-    params: {
-        couple: string;
-    }
+    couple: string;
 }
 
-export default async function CouplePage({ params }: CouplePageProps) {
-    const coupleId = params.couple;
+export default async function CouplePage({ params }: { params: Promise<{ couple: string }> }) {
+    const coupleId = await params;
     let coupleData = null;
 
     try {
