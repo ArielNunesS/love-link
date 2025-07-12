@@ -32,6 +32,7 @@ export default function HomePage() {
                 <div className="flex flex-wrap justify-center">
                     <Card
                           name="joao e maria"
+                          email=""
                           title="joao e maria"
                           message="klaskdals"
                           startDate={new Date(55555555)}
