@@ -10,7 +10,7 @@ import {z} from "zod";
 
 interface CardProps {
   name: string,
-  email: String,
+  email: string,
   title: string;
   message: string;
   startDate: Date;
