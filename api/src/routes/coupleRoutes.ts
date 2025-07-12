@@ -28,12 +28,12 @@ export default function coupleRoutes() {
         const { name, email, title, message, startDate, image } = req.body;
 
         const newCouple = new Couple({
-            name,
-            email,
-            title,
-            message,
-            startDate,
-            image,
+            name: name,
+            email: email,
+            title: title,
+            message: message,
+            startDate: startDate,
+            image: image,
         });
 
             const coupleCard = await newCouple.save();
