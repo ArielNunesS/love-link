@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
-import userRoutes from "./routes/userRoutes.ts";
-import emailController from "./controllers/emailController.ts";
-import coupleRoutes from "./routes/coupleRoutes.ts";
+import userRoutes from "./routes/userRoutes";
+import emailController from "./controllers/emailController";
+import coupleRoutes from "./routes/coupleRoutes";
 
 const app = express();
 

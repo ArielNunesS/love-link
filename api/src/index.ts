@@ -1,5 +1,5 @@
-import app from "./app.ts"
-import { connectDB } from "./config/db_config.ts";
+import app from "./app"
+import { connectDB } from "./config/db_config";
 import "dotenv/config";
 
 const PORT = "4000"
