@@ -23,26 +23,21 @@ export default function coupleRoutes() {
     });
 
     router.post("/create", async(req, res) => {
-        const {
+        try {
+
+        const { name, email, title, message, startDate, image } = req.body;
+
+        const newCouple = new Couple({
             name,
             email,
             title,
             message,
             startDate,
             image,
-        } = req.body;
+        });
 
-        try {
-            const coupleCard = await Couple.create({
-                name,
-                email,
-                title,
-                message,
-                startDate,
-                image,
-            });
-            
-            res.json(coupleCard);
+            const coupleCard = await newCouple.save();
+            res.status(201).json(coupleCard);
         } catch(err) {
             console.error(err);
             res.status(400).json(err);
