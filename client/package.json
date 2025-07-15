@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "dotenv": "^17.2.0",
     "lucide-react": "^0.487.0",
     "luxon": "^3.6.1",
     "next": "15.3.0",
