@@ -1,12 +1,13 @@
 import Card from "../../../src/components/Card";
 import { notFound } from "next/navigation";
+import "dotenv/config";
 
 export default async function CouplePage({ params }: { params: Promise<{ couple: string }> }) {
     const coupleId = await params;
     let coupleData = null;
 
     try {
-        const backendAPIURL = "http://localhost:4000"
+        const backendAPIURL = process.env.BACKEND_URL
 
         const res = await fetch(`${backendAPIURL}/couples/${coupleId}`, {
             cache: "no-store",

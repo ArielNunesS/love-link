@@ -6,9 +6,8 @@ import { Form, useForm } from "react-hook-form";
 import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
-import { Link, Heart } from "lucide-react";
 import Navbar from "../../src/components/Navbar";
-import BackgroundLines from "../../src/components/BackgroundLines";
+import "dotenv/config";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 const MAX_FILE_SIZE = 3000000;
@@ -38,6 +37,23 @@ const cardSchema = z.object({
 })
 
 type TcardSchema = z.input<typeof cardSchema>;
+
+// async function handleSubmit(e) {
+//     e.preventDefault();
+
+//     const data = new FormData();
+
+//     const backendAPIURL = process.env.BACKEND_URL
+
+//         const response = await fetch(`${process.env.BACKEND_URL}/create`, {
+//             credentials: 'include',
+//             method: 'POST',
+//             body: data,
+//             headers: {
+//                 'Accept': 'application/json',
+//             }
+//         })
+// }
 
 export default function CreatePage() {
     const [dateFormatted, setDateFormatted ] = useState<Date | null>(null)
@@ -74,17 +90,61 @@ export default function CreatePage() {
     console.log(errors);
 
     const onSubmit = async (data: TcardSchema) => {
+        console.log("Dados validados para envio:", data);
+
+        const onSubmit = async (data: TcardSchema) => {
         const dt = DateTime.fromJSDate(data.startDate);
-        const dtFormated = new Date(dt.toLocaleString(DateTime.DATE_SHORT));
+        const dtFormated = dt.toISODate();
 
-        setDateFormatted(dtFormated);
+        const formData = new FormData();
+        formData.append("name", data.name);
+        formData.append("email", data.email);
+        formData.append("title", data.title);
+        formData.append("message", data.message);
+        formData.append("startDate", dtFormated);
 
-        console.log(dtFormated);
-        console.log("submit funcionando");
+        if(data.image && data.image[0]) {
+            formData.append("image", data.image[0])
+        }
 
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        reset();
-    };
+        try {
+        const backendAPIURL = process.env.BACKEND_URL || "http://localhost:4000"
+
+        const response = await fetch(`${backendAPIURL}/create`, {
+            method: "POST",
+            body: formData,
+            credentials: "include"
+        });
+
+        if(response.ok) {
+            console.log("form enviado com sucesso")
+            const result = await response.json();
+            console.log("resposta do backend", result)
+            reset();
+        } else {
+            const errorData = await response.json()
+            console.error("erro ao enviar form", response.status, errorData)
+        }
+
+    } catch(error) {
+        console.error("erro de requisição", error)
+    }
+}
+
+}
+
+    // const onSubmit = async (data: TcardSchema) => {
+    //     const dt = DateTime.fromJSDate(data.startDate);
+    //     const dtFormated = new Date(dt.toLocaleString(DateTime.DATE_SHORT));
+
+    //     setDateFormatted(dtFormated);
+
+    //     console.log(dtFormated);
+    //     console.log("submit funcionando");
+
+    //     await new Promise((resolve) => setTimeout(resolve, 2000));
+    //     reset();
+    // };
     
     return (
     <>
@@ -173,6 +233,7 @@ export default function CreatePage() {
    
                         <input 
                             type="file"
+                            name="img"
                             className="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer bg-[#09091d] rounded-lg outline-none"
                             {...register("image", {
                                 required: false,
