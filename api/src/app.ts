@@ -6,6 +6,14 @@ import coupleRoutes from "./routes/coupleRoutes";
 
 const app = express();
 
+app.use(cors({
+    origin: [
+        'https://love-link-theta.vercel.app/',
+        'http://localhost:3000',
+    ],
+    credentials: true
+}));
+
 app.use(cors());
 app.use(express.json());
 app.use('/users', userRoutes());

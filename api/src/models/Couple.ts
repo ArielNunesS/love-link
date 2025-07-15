@@ -6,8 +6,8 @@ const CoupleSchema = new mongoose.Schema ({
     email: {type: String, required: true, maxLength: 150, unique: true},
     title: {type: String, required: true, maxLength: 13},
     message: {type: String, required: true, maxLength: 680},
-    startDate: {type: String, required: true},
-    image: {type: String, required: true},
+    startDate: {type: Date, required: true},
+    image: {type: FileList || null, required: true},
 });
 
 const Couple = model("Couple", CoupleSchema);
