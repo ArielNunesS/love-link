@@ -8,7 +8,7 @@ export default function Navbar(){
     <header className="absolute top-3 left-0 right-0 z-20">
         <nav className="container mx-auto flex items-center px-5 py-5 justify-between">
             <Link href="/" className="flex items-center gap-2">
-                <Heart className="w-7 h-7 text-rose-400 fill-rose-400"/>
+            <img width="60" height="60" src="https://i.postimg.cc/fbwy95Ww/heart-icon.png"/>
                 <span className="text-2xl font-bold text-white">LoveLink</span>
             </Link>
     

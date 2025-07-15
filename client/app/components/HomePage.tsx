@@ -38,18 +38,18 @@ export default function HomePage() {
                           startDate={new Date(55555555)}
                           image={null}
                         />
-                                    {/* Button */}
 
-                                    <div className="relative w-130 group rounded-xl border-container">
-                                    <div className="absolute mt-12 h-10 inset-0 rounded-xl bg-gradient-to-r from-rose-300 to-rose-600 animate-border-move opacity-70 blur-md group-hover:opacity-100 transition"/>
-                                        <Link href={"/create"} className="relative z-10 w-full bg-rose-500 hover:bg-rose-600 text-white py-3 mt-15 
-                                          rounded-xl font-medium shadow-lg shadow-rose-500/40 text-center block">
-                                          FAZER MEU LOVELINK AGORA MESMO
-                                        </Link>
-                                    </div>
-                                  </div>
-                                  </div>
-                                  
+                    {/* Button */}
+                    <div className="relative w-130 group rounded-xl border-container">
+                    <div className="absolute mt-12 h-10 inset-0 rounded-xl bg-gradient-to-r from-rose-300 to-rose-600 animate-border-move opacity-70 blur-md group-hover:opacity-100 transition"/>
+                        <Link href={"/create"} className="relative z-10 w-full bg-rose-500 hover:bg-rose-600 text-white py-3 mt-15 
+                          rounded-xl font-medium shadow-lg shadow-rose-500/40 text-center block">
+                          FAZER MEU LOVELINK AGORA MESMO
+                        </Link>
+                    </div>
+                  </div>
+                  </div>
+
                         </div>
                         {/* Decorative Elements */}
                         <div className="absolute -top-6 -right-6 w-24 h-24 text-rose-500/40 animate-pulse">

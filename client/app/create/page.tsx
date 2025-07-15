@@ -1,12 +1,12 @@
 "use client"
 
 import React, { useState } from "react";
-import Card from "../../src/components/Card";
+import Card from "../components/Card";
 import { Form, useForm } from "react-hook-form";
 import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
-import Navbar from "../../src/components/Navbar";
+import Navbar from "../components/Navbar";
 import "dotenv/config";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];

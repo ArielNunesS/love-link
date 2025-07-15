@@ -1,4 +1,4 @@
-import Card from "../../../src/components/Card";
+import Card from "../../components/Card";
 import { notFound } from "next/navigation";
 import "dotenv/config";
 

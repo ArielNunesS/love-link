@@ -18,7 +18,7 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "LoveLink - Crie um card virtual personalizado para seu amor",
+  title: "LoveLink - Site para seu amor",
   description: "Eternize cada momento do seu amor com um card virtual personalizado e contador de tempo de relacionamento",
 };
 
