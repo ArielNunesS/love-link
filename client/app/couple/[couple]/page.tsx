@@ -25,7 +25,7 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
     return ( <>
         <div className="min-h-screen bg-[#09091d] flex items-center justify-center p-4 text-white">
 
-        <h1>Casal {coupleData.name}</h1>
+        <h1>oi {coupleData.name}</h1>
 
         <Card 
             name={coupleData.name}
