@@ -22,7 +22,6 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
         console.error(`Erro ao buscar dados para o casal ${coupleId}`)
     }
 
-
     return ( <>
         <div className="min-h-screen bg-[#09091d] flex items-center justify-center p-4 text-white">
 

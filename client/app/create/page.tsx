@@ -92,7 +92,6 @@ export default function CreatePage() {
     const onSubmit = async (data: TcardSchema) => {
         console.log("Dados validados para envio:", data);
 
-        const onSubmit = async (data: TcardSchema) => {
         const dt = DateTime.fromJSDate(data.startDate);
         const dtFormated = dt.toISODate();
 
@@ -131,7 +130,6 @@ export default function CreatePage() {
     } catch(error) {
         console.error("erro de requisição", error)
     }
-}
 
 }
 
