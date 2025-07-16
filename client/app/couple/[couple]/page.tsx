@@ -33,7 +33,7 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
             title={coupleData.title}
             message={coupleData.message}
             startDate={coupleData.startDate}
-            image={coupleData.image}
+            image={null}
         />
 
         </div>
