@@ -2,8 +2,8 @@ import Card from "../../components/Card";
 import { notFound } from "next/navigation";
 import "dotenv/config";
 
-export default async function CouplePage({ params }: { params: Promise<{ couple: string }> }) {
-    const coupleId = await params;
+export default async function CouplePage({ params }: { params: { couple: string } }) {
+    const coupleId = params.couple;
     let coupleData = null;
 
     try {
