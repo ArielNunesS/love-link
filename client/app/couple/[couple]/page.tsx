@@ -13,9 +13,9 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
             cache: "no-store",
         });
 
-        if(!res.ok) {
-            notFound();
-        }
+        // if(!res.ok) {
+        //     notFound();
+        // }
 
         coupleData = await res.json();
     } catch(error) {
