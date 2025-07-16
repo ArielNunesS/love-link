@@ -7,7 +7,7 @@ const CoupleSchema = new mongoose.Schema ({
     title: {type: String, required: true, maxLength: 13},
     message: {type: String, required: true, maxLength: 680},
     startDate: {type: Date, required: true},
-    image: {type: String, required: false},
+    image: {type: String, required: true},
 });
 
 const Couple = model("Couple", CoupleSchema);

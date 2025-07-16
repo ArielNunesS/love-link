@@ -13,7 +13,7 @@ app.use(cors({
         'https://love-link-theta.vercel.app',
         'http://localhost:3000',
     ],
-    credentials: true
+    credentials: true,
 }));
 
 app.use('/users', userRoutes());

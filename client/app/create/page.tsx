@@ -109,8 +109,6 @@ export default function CreatePage() {
         try {
         const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:4000"
 
-        console.log("tentando fazer requisição")
-
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
