@@ -7,7 +7,7 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
     let coupleData = null;
 
     try {
-        const backendAPIURL = process.env.BACKEND_URL
+        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL
 
         const res = await fetch(`${backendAPIURL}/couples/${coupleId}`, {
             cache: "no-store",
