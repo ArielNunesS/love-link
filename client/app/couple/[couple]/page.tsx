@@ -65,18 +65,23 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="bg-white/5 rounded-lg p-2">
                     <p className="text-rose-400 font-bold text-xl">{(years)}</p>
-                    <p className="text-white/70 text-xs cursor-default">years</p>
+                    <p className="text-white/70 text-xs cursor-default">anos</p>
                   </div>
                   <div className="bg-white/5 rounded-lg p-2">
                     <p className="text-rose-400 font-bold text-xl cursor-default">{months}</p>
-                    <p className="text-white/70 text-xs cursor-default">months</p>
+                    <p className="text-white/70 text-xs cursor-default">meses</p>
                   </div>
                   <div className="bg-white/5 rounded-lg p-2">
-                    <p className="text-rose-400 font-bold text-xl cursor-default">{days}</p>
-                    <p className="text-white/70 text-xs cursor-default">days</p>
+                    <p className="text-rose-400 font-bold text-xl cursor-default">{days - 1}</p>
+                    <p className="text-white/70 text-xs cursor-default">dias</p>
                   </div>
                 </div>
               </div>
+              <div>
+
+        <span className="ml-45">foto</span>
+         <img src={coupleData.image} className="absolut w-100 h-100"/>
+         </div>
 
         </div>
     </>
