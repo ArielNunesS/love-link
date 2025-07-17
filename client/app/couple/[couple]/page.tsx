@@ -1,9 +1,12 @@
 import Card from "../../components/Card";
 import { notFound } from "next/navigation";
 import "dotenv/config";
+import { DateTime } from "luxon";
+import { watch } from "fs";
 
 export default async function CouplePage({ params }: { params: Promise<{ couple: string }> }) {
-    const coupleId = await params;
+    const resolvedParams = await params
+    const coupleId = resolvedParams.couple;
     let coupleData = null;
 
     try {
@@ -13,14 +16,32 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
             cache: "no-store",
         });
 
-        // if(!res.ok) {
-        //     notFound();
-        // }
+        if(!res) {
+            console.log("Error in response")
+        }
 
         coupleData = await res.json();
+
+         if (!coupleData) {
+             console.error("Data received is invalid.");
+             console.log(coupleData);
+             notFound();
+        }
+
+        console.log(coupleData);
+
     } catch(error) {
-        console.error(`Erro ao buscar dados para o casal ${coupleId}`)
+        console.error(`Error during data search for couple ${coupleId}`)
     }
+
+  const now = DateTime.now();
+  const start = DateTime.fromISO(coupleData.startDate);
+
+  const diff = now.diff(start, ["years", "months", "days"]).toObject();
+
+  const years = Math.floor(diff.years ?? 0);
+  const months = Math.floor(diff.months ?? 0);
+  const days = Math.floor(diff.days ?? 0);
 
     return ( <>
         <div className="min-h-screen bg-[#09091d] flex items-center justify-center p-4 text-white">
@@ -35,6 +56,27 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
             startDate={coupleData.startDate}
             image={null}
         />
+
+              {/* Counter Card */}
+              <div className="bg-white/10 backdrtop-blur-sm rounded-xl p-4 mb-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <h4 className="text-white font-medium cursor-default">Tempo Juntos</h4>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-center">
+                  <div className="bg-white/5 rounded-lg p-2">
+                    <p className="text-rose-400 font-bold text-xl">{(years)}</p>
+                    <p className="text-white/70 text-xs cursor-default">years</p>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-2">
+                    <p className="text-rose-400 font-bold text-xl cursor-default">{months}</p>
+                    <p className="text-white/70 text-xs cursor-default">months</p>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-2">
+                    <p className="text-rose-400 font-bold text-xl cursor-default">{days}</p>
+                    <p className="text-white/70 text-xs cursor-default">days</p>
+                  </div>
+                </div>
+              </div>
 
         </div>
     </>
