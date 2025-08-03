@@ -8,16 +8,16 @@ import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";
 import {z} from "zod";
 
-interface CardProps {
+interface CardPreviewProps {
   name: string,
   email: string,
-  title: string;
-  message: string;
-  startDate: Date;
+  title: string,
+  message: string,
+  startDate: Date,
   image: FileList | null,
 }
 
-export default function Card(props: CardProps){
+export default function CardPreview(props: CardPreviewProps){
   const [ showMessage, setShowMessage ] = useState<boolean>(false);
   const now = DateTime.now();
   const start = DateTime.fromJSDate(props.startDate);
