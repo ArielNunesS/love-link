@@ -14,8 +14,8 @@ const MAX_FILE_SIZE = 3000000;
 const MAX_LINES = 15;
 
 const cardSchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
+    name: z.string().max(15, "O nome deve possuir no max. 15 digitos."),
+    email: z.string().email("Insira um email válido").min(1, "O campo 'email' é obrigatório."),
     title: z.string(),
     message: z.string(),
     startDate: z.date().max(new Date(), {
@@ -31,29 +31,12 @@ const cardSchema = z.object({
             if(!files || files.length === 0) return true;
             const file = files[0];
             return file.size <= MAX_FILE_SIZE;
-        }, "O tamanho da imagem da imagem é de 3 MB")
+        }, "O tamanho da imagem é de 3 MB")
             // ACCEPTED_IMAGE_TYPES.includes(images?.[0]?.type), {
         // message: "Somente formatos .jpg, .jpeg, .png e .webp são aceitos."
-})
+});
 
 type TcardSchema = z.input<typeof cardSchema>;
-
-// async function handleSubmit(e) {
-//     e.preventDefault();
-
-//     const data = new FormData();
-
-//     const backendAPIURL = process.env.BACKEND_URL
-
-//         const response = await fetch(`${process.env.BACKEND_URL}/create`, {
-//             credentials: 'include',
-//             method: 'POST',
-//             body: data,
-//             headers: {
-//                 'Accept': 'application/json',
-//             }
-//         })
-// }
 
 export default function CreatePage() {
     const [dateFormatted, setDateFormatted ] = useState<Date | null>(null)
@@ -65,26 +48,25 @@ export default function CreatePage() {
         reset,
         watch,
         setValue,
-        getValues,
     } = useForm<TcardSchema>({
         resolver: zodResolver(cardSchema),
     });
 
     const image = watch("image");
+    const title = watch("title");
+    const name = watch("name");
 
     const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const message = watch("message")
         const value = e.target.value;
-        const lines = value.split('\n').length;
+        const lines = value.split('\n');
 
-        if(lines >= MAX_LINES) {
-            console.log("barbecue")
+        if(lines.length >= MAX_LINES) {
             e.preventDefault();
-            // setValue('message', 'a'); // funcionando - reseta o texto e deixa somente o 'a'
-        } else {
-            console.log("burguer")
-            e.target.value = getValues('message')
+            const limited = lines.slice(0, MAX_LINES).join("\n");
+            setValue("message", limited);
+            return
         }
+            setValue("message", value);
     }
 
     console.log(errors);
@@ -156,13 +138,19 @@ export default function CreatePage() {
                         <input 
                             type="text"
                             className="w-full p-3.5 bg-[#09091d] rounded-lg outline-none"
+                            placeholder="Ariel e Letícia (max. 15 dígitos)"
                             maxLength={15}
-                            placeholder="Nome do Casal (max 15 dígitos)"
                             { ...register("name", {
                                 required: "Por favor insira um nome",
                             })}
+
                         />
+                            {name?.length > 12 && (
+                            <p className="hidden in-focus-within:block text-rose-300 ml-2 text-sm mt-1">max. 15 dígitos</p>
+                        )}
                     </div>
+
+                    
                 
                 <label className="block p-0 mt-5 text-lg font-semibold">Seu Email:</label>
                     <div className="p-[3px] rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">     
@@ -170,7 +158,7 @@ export default function CreatePage() {
                             type="email"
                             placeholder="seuemail@gmail.com"
                             className="w-full p-3.5 bg-[#09091d] rounded-lg outline-none"
-                            maxLength={150}
+                            maxLength={120}
                             { ...register("email", {
                                 required: "É necessário inserir um email para receber o produto",
                             })}
@@ -184,20 +172,24 @@ export default function CreatePage() {
                             placeholder="Feliz 3 Meses"
                             className="w-50 p-3.5 bg-[#09091d] rounded-lg outline-none"
                             maxLength={13}
-
                             { ...register("title", {
                                 required: "Por favor atribua um título (ex: João e Maria)",
                             })}
                         />
+                         
+                        {title?.length > 8 && (
+                            <p className="text-rose-300 ml-2 text-sm mt-1">max. 13 dígitos</p>
+                        )}
                     </div>
-
+                        
+                    
                 <label className="block p-0 gap-0 mt-5 text-lg font-semibold">Mensagem:</label>
                     <div className="p-[3px] w-fit h-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                         <textarea 
                             placeholder="Oi meu amor, queria dizer..."
-                            className="w-100 h-60 overflow-ellipsis resize-none justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap"
-                            maxLength={680}
-
+                            className="w-100 h-60 overflow-y-auto resize-none justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap"
+                            maxLength={700}
+                            style={{ resize: "none" }}
                             {...register("message", {
                                 required: "Por favor escreva uma mensagem para seu parceiro/a",
                                 onChange: handleMessageChange

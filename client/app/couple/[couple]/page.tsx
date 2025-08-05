@@ -1,8 +1,7 @@
 import Card from "../../components/Card";
 import { notFound } from "next/navigation";
-import "dotenv/config";
 import { DateTime } from "luxon";
-import { watch } from "fs";
+import "dotenv/config";
 
 export default async function CouplePage({ params }: { params: Promise<{ couple: string }> }) {
     const resolvedParams = await params
@@ -80,7 +79,7 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
               <div>
 
         <span className="ml-45">foto</span>
-         <img src={coupleData.image} className="absolut w-100 h-100"/>
+         <img alt="" src={coupleData.image} className="absolut w-100 h-100"/>
          </div>
 
         </div>

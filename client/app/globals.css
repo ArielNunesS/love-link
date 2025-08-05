@@ -4,6 +4,29 @@
 @import "tailwindcss/preflight.css" layer(base);
 @tailwind utilities;
 
+@property --border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@theme {
+  --breakpoint-xpp: 330px;
+  --breakpoint-pp: 375px;
+  --breakpoint-p: 425px;
+  --breakpoint-t: 1000px;
+  --breakpoint-l: 1224px;
+  --breakpoint-ll: 1640px;
+
+  --animate-rotate-border: border-rotate 3s linear infinite;
+
+  @keyframes border-rotate {
+    to {
+      --border-angle: 360deg;
+    }
+  }
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 10, 10, 32;
