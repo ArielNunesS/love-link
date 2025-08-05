@@ -11,10 +11,10 @@ export default function Navbar() {
             width="60"
             height="60"
             src="https://i.postimg.cc/fbwy95Ww/heart-icon.png"
-            className="w-15 max-xpp:w-10 max-pp:w-13"
+            className="w-15 max-p:w-13 max-pp:w-12 max-xpp:w-10"
             alt=""
           />
-          <span className="text-3xl font-bold text-white max-xpp:text-xl max-pp:text-2xl">
+          <span className="text-3xl font-bold text-white max-p:text-2xl max-xpp:text-xl">
             LoveLink
           </span>
         </Link>
