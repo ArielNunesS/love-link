@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
-import Card from "../components/Card";
+import CardPreview from "../components/CardPreview";
 import { Form, useForm } from "react-hook-form";
 import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -249,7 +249,7 @@ export default function CreatePage() {
 
             </form>
             <div className="md:w-1/2 md:mt-0"> 
-                <Card
+                <CardPreview
                     name={watch("name")}
                     email={""}
                     title={watch("title")}

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Heart, Calendar, Clock, Camera, Gift, Music, Mail } from "lucide-react";
-import Card from "./Card";
+import CardPreview from "./CardPreview";
 
 export default function HomePage() {
     return (
@@ -37,7 +37,7 @@ export default function HomePage() {
                 {/* Right side - Preview*/}
               <div className="w-full flex flex-col items-center justify-center mt-15">
                 <div className="flex flex-wrap justify-center">
-                    <Card
+                    <CardPreview
                           name="joao e maria"
                           email=""
                           title="joao e maria"

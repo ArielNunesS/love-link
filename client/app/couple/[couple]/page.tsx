@@ -1,7 +1,9 @@
-import Card from "../../components/Card";
+import CardPreview from "../../components/CardPreview";
 import { notFound } from "next/navigation";
 import { DateTime } from "luxon";
 import "dotenv/config";
+import { watch } from "fs";
+import CardFinal from "../../components/CardFinal";
 
 export default async function CouplePage({ params }: { params: Promise<{ couple: string }> }) {
     const resolvedParams = await params
@@ -47,7 +49,7 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
 
         <h1>oi {coupleData.name}</h1>
 
-        <Card 
+        <CardPreview
             name={coupleData.name}
             email={coupleData.email}
             title={coupleData.title}
@@ -56,31 +58,24 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
             image={null}
         />
 
-              {/* Counter Card */}
-              <div className="bg-white/10 backdrtop-blur-sm rounded-xl p-4 mb-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <h4 className="text-white font-medium cursor-default">Tempo Juntos</h4>
-                </div>
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  <div className="bg-white/5 rounded-lg p-2">
-                    <p className="text-rose-400 font-bold text-xl">{(years)}</p>
-                    <p className="text-white/70 text-xs cursor-default">anos</p>
-                  </div>
-                  <div className="bg-white/5 rounded-lg p-2">
-                    <p className="text-rose-400 font-bold text-xl cursor-default">{months}</p>
-                    <p className="text-white/70 text-xs cursor-default">meses</p>
-                  </div>
-                  <div className="bg-white/5 rounded-lg p-2">
-                    <p className="text-rose-400 font-bold text-xl cursor-default">{days - 1}</p>
-                    <p className="text-white/70 text-xs cursor-default">dias</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-
+        <div>
         <span className="ml-45">foto</span>
          <img alt="" src={coupleData.image} className="absolut w-100 h-100"/>
          </div>
+
+
+        <CardFinal
+            name={coupleData.name}
+            email={coupleData.email}
+            title={coupleData.title}
+            message={coupleData.message}
+            startDate={coupleData.startDate}
+            years={years}
+            months={months}
+            days={days - 1}
+            image={coupleData.image}
+        />
+
 
         </div>
     </>
