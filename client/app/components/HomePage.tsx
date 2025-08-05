@@ -43,8 +43,8 @@ export default function HomePage() {
                     <CardPreview
                           name="joao e maria"
                           email=""
-                          title="joao e maria"
-                          message="klaskdals"
+                          title="Te Amooo"
+                          message="Aqui um texto para que nunca se esqueça do quanto eu te amo"
                           startDate={new Date(11111111)}
                           image={null}
                         />
