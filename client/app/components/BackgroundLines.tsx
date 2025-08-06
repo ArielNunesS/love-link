@@ -76,8 +76,10 @@ export default function BackgroundLines() {
                  <div className="absolute top-1/4 left-1/5 w-1 h-1 rounded-full bg-pink-400 opacity-70"></div>
                  <div className="absolute top-1/3 left-2/3 w-1.5 h-1.5 rounded-full bg-pink-300 opacity-80"></div>
                  <div className="absolute top-2/3 left-1/4 w-1 h-1 rounded-full bg-pink-400 opacity-60"></div>
-                 <div className="absolute top-1/2 left-3/4 w-2 h-2 rounded-full bg-pink-300 opacity-75"></div>
-                 <div className="absolute top-3/4 left-1/2 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-70"></div>
+                 <div className="absolute top-5/7 left-5/11 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-70"></div>
+                 <div className="absolute top-7/9 left-1/3 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-70"></div>
+                 <div className="absolute top-1/5 left-2/4 w-2 h-2 rounded-full bg-pink-400 opacity-65"></div>
+                 <div className="absolute top-1/5 left-1/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
                </div>
              </div>
 )

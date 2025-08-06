@@ -8,6 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
 import Navbar from "../components/Navbar";
 import "dotenv/config";
+import BackgroundLines from "../components/BackgroundLines";
+import AnimatedBackground from "../components/AnimatedBackground";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 const MAX_FILE_SIZE = 3000000;
@@ -112,28 +114,21 @@ export default function CreatePage() {
     }
 
 }
-
-    // const onSubmit = async (data: TcardSchema) => {
-    //     const dt = DateTime.fromJSDate(data.startDate);
-    //     const dtFormated = new Date(dt.toLocaleString(DateTime.DATE_SHORT));
-
-    //     setDateFormatted(dtFormated);
-
-    //     console.log(dtFormated);
-    //     console.log("submit funcionando");
-
-    //     await new Promise((resolve) => setTimeout(resolve, 2000));
-    //     reset();
-    // };
     
     return (
     <>
-        <main className="w-screen min-h-screen flex items-center justify-end z-20 px-5 bg-[#09091d] ">
+
+        <main className="w-screen min-h-screen flex items-center justify-end z-20 px-5 bg-gradient-to-b from-[#0a0a20] via-[#101030] to-[#09091d]">
+            <AnimatedBackground/>
             <Navbar/>
-            <form className="grid grid-cols-2 ml-70 gap-x-40 w-200 mt-10 bg-[#09091d]" onSubmit={handleSubmit(onSubmit)}>
+            <div className="absolute p-0 left-1/3 top-20">
+                <h1 className="text-4xl font-bold">Quase Lá!</h1>
+                <p className="text-lg font-medium">Preencha os dados abaixo para criar seu LoveLink</p>
+            </div>
+            <form className="grid grid-cols-2 mr-30 gap-x-40 w-200 z-10 mt-30" onSubmit={handleSubmit(onSubmit)}>
 
             <div className="col-span-0">
-                <label className="block p-0 gap-y-5 text-lg font-semibold">Nome do Casal:</label>
+                <label className="block p-0 text-lg font-semibold">Nome do Casal:</label>
                     <div className="p-[3px] rounded-lg mt-2 bg-gradient-to-r  from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                         <input 
                             type="text"
@@ -148,11 +143,9 @@ export default function CreatePage() {
                             {name?.length > 12 && (
                             <p className="hidden in-focus-within:block text-rose-300 ml-2 text-sm mt-1">max. 15 dígitos</p>
                         )}
-                    </div>
-
-                    
+                    </div>                    
                 
-                <label className="block p-0 mt-5 text-lg font-semibold">Seu Email:</label>
+                <label className="block p-0 mt-3 text-lg font-semibold">Seu Email:</label>
                     <div className="p-[3px] rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">     
                         <input
                             type="email"
@@ -165,7 +158,7 @@ export default function CreatePage() {
                         />
                     </div>
 
-                <label className="block p-0 gap-0 mt-5 text-lg font-semibold">Titulo da Mensagem:</label>
+                <label className="block p-0 mt-3 text-lg font-semibold">Titulo da Mensagem:</label>
                     <div className="p-[3px] w-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                         <input
                             type="text"
@@ -183,11 +176,11 @@ export default function CreatePage() {
                     </div>
                         
                     
-                <label className="block p-0 gap-0 mt-5 text-lg font-semibold">Mensagem:</label>
+                <label className="block p-0 mt-3 text-lg font-semibold">Mensagem:</label>
                     <div className="p-[3px] w-fit h-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                         <textarea 
                             placeholder="Oi meu amor, queria dizer..."
-                            className="w-100 h-60 overflow-y-auto resize-none justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap"
+                            className="w-100 h-50 overflow-y-auto resize-none justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap"
                             maxLength={700}
                             style={{ resize: "none" }}
                             {...register("message", {
@@ -199,7 +192,7 @@ export default function CreatePage() {
                 </div>
 
                 <div className="col-span-1 mt-25">
-                <label className="block p-0 gap-0 mt-5 text-lg font-semibold">Data de Início:</label>
+                <label className="block p-0 mt-3 text-lg font-semibold">Data de Início:</label>
                     <div className="p-[3px] w-6/9 rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                         <input 
                             type="date"
@@ -213,7 +206,8 @@ export default function CreatePage() {
                         />
                     </div>
 
-                    <div className="p-[3px] w-fit relative rounded-lg mt-12 bg-gradient-to-r cursor-pointer from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 font-bold">
+                    <div className="p-[3px] w-fit relative rounded-lg mt-12 bg-gradient-to-r cursor-pointer font-bold
+                    from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-md shadow-rose-500/40">
                         <label className="flex items-center p-3 gap-2 text-lg cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
@@ -238,17 +232,18 @@ export default function CreatePage() {
                     </div>
                 </div>
 
-                <div className="p-[3px] mx-auto col-span-2 w-5/8 flex rounded-lg mt-12 bg-gradient-to-r cursor-pointer from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 font-bold">
+                <div className="flex p-1 mx-auto col-span-2 w-5/8 rounded-lg mt-12 bg-gradient-to-r cursor-pointer font-bold
+                from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40">
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="p-3 w-full h-full cursor-pointer disabled:bg-rose-300 font-semibold justify-center text-center">
+                        className="p-3 w-full h-full text-xl cursor-pointer disabled:bg-rose-300 font-semibold justify-center text-center">
                             Gerar QR Code
                     </button>
                 </div>
 
             </form>
-            <div className="md:w-1/2 md:mt-0"> 
+            <div className="md:w-1/4 md:mt-0 mr-40 z-10"> 
                 <CardPreview
                     name={watch("name")}
                     email={""}
@@ -256,7 +251,7 @@ export default function CreatePage() {
                     message={watch("message")}
                     startDate={watch("startDate")}
                     image={watch("image")}
-                />                                  
+                />                       
             </div>
         </main>
     </>

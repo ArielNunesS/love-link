@@ -13,12 +13,13 @@
 @theme {
   --breakpoint-xpp: 330px;
   --breakpoint-pp: 375px;
-  --breakpoint-p: 425px;
-  --breakpoint-t: 1000px;
+  --breakpoint-p: 450px;
+  --breakpoint-m: 700px;
+  --breakpoint-xm: 1000px;
   --breakpoint-l: 1224px;
   --breakpoint-ll: 1640px;
 
-  --animate-rotate-border: border-rotate 3s linear infinite;
+  --animate-rotate-border: border-rotate 4s linear infinite;
 
   @keyframes border-rotate {
     to {

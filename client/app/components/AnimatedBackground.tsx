@@ -71,7 +71,7 @@ export default function AnimatedBackground() {
             this.points = []
 
             // Configurações baseadas no índice para criar variedade
-            this.speed = 0.4 + Math.random() * 0.5
+            this.speed = 0.3 + Math.random() * 0.3
             this.amplitude = 20 + Math.random() * 50
 
             // Cores em tons de rosa com diferentes opacidades
@@ -86,7 +86,7 @@ export default function AnimatedBackground() {
 
             // Criar pontos ao longo da curva
             const segments = 2
-            for(let i = 0; i <= segments; i++) {
+            for(let i = 0; i <= segments; i++) {    
                 const x = (canvas.width * i) / segments
                 const y = baseY + Math.sin(i / 2) * this.amplitude
                 this.points.push({ x, y, originalY: y })
