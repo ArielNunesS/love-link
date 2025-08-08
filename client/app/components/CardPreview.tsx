@@ -51,7 +51,7 @@ export default function CardPreview(props: CardPreviewProps){
               {/* URL Bar */}
               <div className="mx-4 mt-2 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 flex items-center">
                   <div className="w-1 h-1 rounded-full bg-rose-400 mr-2"></div>
-                  <p className="text-white/80 text-xs">love-link-app.com.br/00{props.name}</p>
+                  <p className="text-white/80 text-xs">love-link-app.com.br/{props.name}</p>
               </div>
 
               {/* Content */}
@@ -115,7 +115,7 @@ export default function CardPreview(props: CardPreviewProps){
               {/* URL Bar */}
               <div className="mx-4 mt-2 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 flex items-center">
                   <div className="w-1 h-1 rounded-full bg-rose-400 mr-2"></div>
-                  <p className="text-white/80 text-xs text-nowrap overflow-hidden">love-link-app.com.br/00{props.name}</p>
+                  <p className="text-white/80 text-xs text-nowrap overflow-hidden">love-link-app.com.br/{props.name}</p>
               </div>
 
               {/* Content */}

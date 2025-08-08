@@ -32,7 +32,7 @@ export default function HomePage() {
                     transition-all duration-150 hover:shadow-rose-500/70
                     max-xm:text-2xl max-xm:w-9/11 max-xm:text-center max-xm:items-center max-xm:block max-xm:m-auto
                     max-m:text-2xl
-                    max-p:text-[22px] max-p:w-9/10
+                    max-p:text-[22px] max-p:w-10/10
                     max-pp:text-[21px]
                     max-xpp:py-4 max-xpp:text-xl
                     ">
@@ -60,7 +60,7 @@ export default function HomePage() {
                         <Link href={"/create"} className="relative z-10 w-full bg-rose-700 text-white text-lg py-3 mt-4
                           rounded-full font-medium shadow-lg hover:bg-rose-600 transition-all duration-150 hover:shadow-rose-500/70 text-center block
                           max-xm:w-9/10 max-xm:mx-auto max-xm:h-15 max-xm:text-[22px]
-                          max-m:w-8/10 max-m:text-[22px]
+                          max-m:w-8/10 max-m:text-[22px] max-m:h-20
                           max-p:w-6/9 max-p:text-xl
                           max-pp:w-5/8 max-pp:text-xl max-pp:h-21
                           max-xpp:w-3/4 max-xpp:text-lg max-xpp:h-20
