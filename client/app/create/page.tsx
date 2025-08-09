@@ -131,16 +131,16 @@ export default function CreatePage() {
             <AnimatedBackground/>
             <Navbar/>
             <div className="absolute p-0 xm:left-1/3 top-20
-                max-p:w-3/4 max-p:top-25 max-p:overflow-hidden">
+                max-p:w-8/10 max-p:px-7 max-p:top-25 max-p:overflow-hidden">
                 <h1 className="text-4xl font-bold max-p:text-3xl">Quase Lá!</h1>
-                <p className="text-lg font-medium max-p:text-base mt-2">Preencha os dados abaixo para criar seu LoveLink</p>
+                <p className="text-lg font-medium mt-2 max-p:text-lg max-p:w-full">Preencha os dados para criar seu <span className="text-rose-400">LoveLink</span> personalizado!</p>
             </div>
             <div className="grid grid-cols-2 mr-30 gap-x-40 w-200 z-10 mt-30
                 max-m:flex max-m:flex-col
                 max-p:gap-x-0 max-p:w-full max-p:mt-55"
                 onSubmit={handleSubmit(onSubmit)}>
 
-            <div className="col-span-1 max-p:flex max-p:flex-col max-p:col-span-full max-p:w-full max-p:px-7">
+            <div className="col-span-1 max-p:flex max-p:flex-col max-p:col-span-full max-p:w-full max-p:px-7 max-p:mt-5">
                 <label className="block p-0 text-lg font-semibold
                     max-p:flex max-p:flex-col max-p:w-full">Nome do Casal:</label>
                     <div className="p-[3px] rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
@@ -172,27 +172,7 @@ export default function CreatePage() {
                         />
                     </div>
 
-
-                <div className="xm:hidden">
-                <div className="mt-25 col-span-1 max-p:mt-3 max-p:mx-auto max-p:flex max-p:flex-col max-p:col-span-full max-p:w-5/9">
-                <label className="block p-0 mt-3 text-lg font-semibold">Data de Início:</label>
-                    <div className="p-[3px] w-7/10 rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
-                    max-p:w-full">
-                        <input 
-                            type="date"
-                            className="w-full p-3.5 bg-[#09091d] rounded-lg outline-none"
-                            max={new Date().toISOString().split("T")[0]}
-                        {...register("startDate", {
-                            required: "Informe a data de início do relacionamento",
-                            valueAsDate: true,
-                        })}
-
-                        />
-                    </div>
-                </div>
-                </div>
-
-                <div className="max-p:mt-7">
+                <div className="max-p:mt-3">
                 <label className="block p-0 mt-3 text-lg font-semibold">Titulo da Mensagem:</label>
                     <div className="p-[3px] w-full rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
                         max-p:w-full ">
@@ -211,11 +191,12 @@ export default function CreatePage() {
                         )}
                     </div>
                 </div>
+
                 <label className="block p-0 mt-3 text-lg font-semibold">Mensagem:</label>
                     <div className="p-[3px] w-fit h-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
                     max-p:w-full">
                         <textarea 
-                            placeholder="Oi meu amor, queria dizer..."
+                            placeholder="Oii meu amor, queria dizer o quanto te amo..."
                             className="w-100 h-50 overflow-y-auto resize-none justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
                             max-p:w-full max-p:h-45"
                             maxLength={800}
@@ -229,8 +210,8 @@ export default function CreatePage() {
                 </div>
 
                 <div className="xm:col-span-1 mt-25 max-p:mt-3 max-p:mx-auto col-span-1 max-p:flex max-p:flex-col max-p:col-span-full max-p:w-7/10">
-                <div className="max-m:hidden">
-                <label className="block p-0 mt-3 text-lg font-semibold">Data de Início:</label>
+                <div className="max-p:mx-auto max-p:w-6/9">
+                <label className="block p-0 mt-3 text-lg font-semibold ">Data de Início:</label>
                     <div className="p-[3px] w-5/9 rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
                     max-p:w-full">
                         <input 
@@ -292,7 +273,7 @@ export default function CreatePage() {
                     message={watch("message")}
                     startDate={watch("startDate")}
                     image={watch("image")}
-                />                       
+                />
             </div>
 
             <div className="flex p-1 mx-auto w-9/10 rounded-lg mt-12 cursor-pointer font-bold xm:hidden
