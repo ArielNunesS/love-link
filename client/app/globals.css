@@ -69,6 +69,10 @@ body {
   display: none;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

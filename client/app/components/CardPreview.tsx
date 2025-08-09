@@ -38,7 +38,7 @@ export default function CardPreview(props: CardPreviewProps){
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
               
               {/* Screen */}
-            <div className="relative bg-gradient-to-br from-purple-900/80 via-[#1a1a2e] to-rose-900/50 pt-5 pb-4 h-170 overflow-hidden">
+            <div className="relative bg-gradient-to-br from-purple-900/80 via-[#1a1a2e] to-rose-900/50 pt-5 pb-4 min-h-170 h-fit overflow-hidden">
                 <div className="px-4 py-2 flex items-center justify-between">
                     <div className="text-white/80 text-xs cursor-default">21:30</div>
                     <div className="flex items-center gap-1">
@@ -51,7 +51,7 @@ export default function CardPreview(props: CardPreviewProps){
               {/* URL Bar */}
               <div className="mx-4 mt-2 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 flex items-center">
                   <div className="w-1 h-1 rounded-full bg-rose-400 mr-2"></div>
-                  <p className="text-white/80 text-xs">love-link-app.com.br/{props.name}</p>
+                  <p className="text-white/80 text-xs text-nowrap overflow-hidden">love-link-app.com.br/{props.name}</p>
               </div>
 
               {/* Content */}
@@ -66,9 +66,9 @@ export default function CardPreview(props: CardPreviewProps){
                     </button>
                   </div>
                 </div>
-                  <p className="text-xl font-semibold " style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
+                  <p className="text-xl font-semibold wrap-break-word" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
               </div>
-                <div className="max-w-xs wrap-break-word">
+                <div className="max-w-xs">
                   <p className="text-xs font-normal whitespace-pre-wrap">{props.message}</p>
                 </div>
             </div>
@@ -122,7 +122,7 @@ export default function CardPreview(props: CardPreviewProps){
               <div className="px-4 mt-6">
 
               {/* Profile Section */}
-              <div className="flex items-center gap-3 mb-5">
+              <div className="flex items-center gap-3 mb-5 wrap-break-word">
                 <div className="p-0.5 bg-conic/[from_var(--border-angle)] from-purple-700 via-purple-600 to-purple-500 rounded-full animate-rotate-border">
                   <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
@@ -131,7 +131,7 @@ export default function CardPreview(props: CardPreviewProps){
                   </div>
                 </div>
                   <div>
-                    <h3 className="text-white font-bold text-lg cursor-default">{props.name}</h3>
+                    <h3 className="text-white font-bold text-lg cursor-default wrap-break-word">{props.name}</h3>
                   </div>
               </div>
 

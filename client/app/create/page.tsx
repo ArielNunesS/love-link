@@ -1,19 +1,18 @@
 "use client"
 
 import React, { useState, useEffect } from "react";
-import CardPreview from "../components/CardPreview";
 import { Form, useForm } from "react-hook-form";
 import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
+import CardPreview from "../components/CardPreview";
 import Navbar from "../components/Navbar";
-import "dotenv/config";
-import BackgroundLines from "../components/BackgroundLines";
 import AnimatedBackground from "../components/AnimatedBackground";
+import "dotenv/config";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 const MAX_FILE_SIZE = 3000000;
-const MAX_LINES = 15;
+const MAX_LINES = 20;
 
 const cardSchema = z.object({
     name: z.string().max(15, "O nome deve possuir no max. 15 digitos."),
@@ -141,22 +140,22 @@ export default function CreatePage() {
                 max-p:gap-x-0 max-p:w-full max-p:mt-55"
                 onSubmit={handleSubmit(onSubmit)}>
 
-            <div className="col-span-1 max-p:flex max-p:flex-col max-p:col-span-full max-p:w-full">
+            <div className="col-span-1 max-p:flex max-p:flex-col max-p:col-span-full max-p:w-full max-p:px-7">
                 <label className="block p-0 text-lg font-semibold
                     max-p:flex max-p:flex-col max-p:w-full">Nome do Casal:</label>
                     <div className="p-[3px] rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                         <input 
                             type="text"
                             className="w-full p-3.5 bg-[#09091d] rounded-lg outline-none"
-                            placeholder="Ariel e Letícia (max. 15 dígitos)"
-                            maxLength={15}
+                            placeholder="Ariel e Letícia (max. 20 dígitos)"
+                            maxLength={20}
                             { ...register("name", {
                                 required: "Por favor insira um nome",
                             })}
 
                         />
                             {name?.length > 12 && (
-                            <p className="hidden in-focus-within:block text-rose-300 ml-2 text-sm mt-1">max. 15 dígitos</p>
+                            <p className="hidden in-focus-within:block text-rose-300 ml-2 text-sm mt-1">max. 20 dígitos</p>
                         )}
                     </div>                 
 
@@ -173,43 +172,11 @@ export default function CreatePage() {
                         />
                     </div>
 
-                <label className="block p-0 mt-3 text-lg font-semibold">Titulo da Mensagem:</label>
-                    <div className="p-[3px] w-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700 max-p:w-full ">
-                        <input
-                            type="text"
-                            placeholder="Feliz 3 Meses"
-                            className="w-50 p-3.5 bg-[#09091d] rounded-lg outline-none max-p:w-full"
-                            maxLength={13}
-                            { ...register("title", {
-                                required: "Por favor atribua um título (ex: João e Maria)",
-                            })}
-                        />
-                         
-                        {title?.length > 8 && (
-                            <p className="text-rose-300 ml-2 text-sm mt-1">max. 13 dígitos</p>
-                        )}
-                    </div>
 
-                <label className="block p-0 mt-3 text-lg font-semibold">Mensagem:</label>
-                    <div className="p-[3px] w-fit h-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
-                    max-p:w-full">
-                        <textarea 
-                            placeholder="Oi meu amor, queria dizer..."
-                            className="w-100 h-50 overflow-y-auto resize-none justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
-                            max-p:w-full max-p:h-45"
-                            maxLength={700}
-                            style={{ resize: "none" }}
-                            {...register("message", {
-                                required: "Por favor escreva uma mensagem para seu parceiro/a",
-                                onChange: handleMessageChange
-                            })}
-                        />
-                    </div>
-                </div>
-
-                <div className="xm:col-span-1 mt-25 max-p:mt-3 max-p:mx-auto col-span-1 max-p:flex max-p:flex-col max-p:col-span-full max-p:w-7/10">
+                <div className="xm:hidden">
+                <div className="mt-25 col-span-1 max-p:mt-3 max-p:mx-auto max-p:flex max-p:flex-col max-p:col-span-full max-p:w-5/9">
                 <label className="block p-0 mt-3 text-lg font-semibold">Data de Início:</label>
-                    <div className="p-[3px] w-6/9 rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
+                    <div className="p-[3px] w-7/10 rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
                     max-p:w-full">
                         <input 
                             type="date"
@@ -222,10 +189,65 @@ export default function CreatePage() {
 
                         />
                     </div>
+                </div>
+                </div>
 
-                    <div className="p-[3px] w-fit relative rounded-lg mt-12 bg-gradient-to-r cursor-pointer font-bold
+                <div className="max-p:mt-7">
+                <label className="block p-0 mt-3 text-lg font-semibold">Titulo da Mensagem:</label>
+                    <div className="p-[3px] w-full rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
+                        max-p:w-full ">
+                        <input
+                            type="text"
+                            placeholder="Feliz 3 Meses"
+                            className="w-full p-3.5 bg-[#09091d] rounded-lg outline-none max-p:w-full"
+                            maxLength={20}
+                            { ...register("title", {
+                                required: "Por favor atribua um título (ex: João e Maria)",
+                            })}
+                        />
+                         
+                        {title?.length > 8 && (
+                            <p className="text-rose-300 ml-2 text-sm mt-1">max. 20 dígitos</p>
+                        )}
+                    </div>
+                </div>
+                <label className="block p-0 mt-3 text-lg font-semibold">Mensagem:</label>
+                    <div className="p-[3px] w-fit h-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
+                    max-p:w-full">
+                        <textarea 
+                            placeholder="Oi meu amor, queria dizer..."
+                            className="w-100 h-50 overflow-y-auto resize-none justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
+                            max-p:w-full max-p:h-45"
+                            maxLength={800}
+                            style={{ resize: "none" }}
+                            {...register("message", {
+                                required: "Por favor escreva uma mensagem para seu parceiro/a",
+                                onChange: handleMessageChange
+                            })}
+                        />
+                    </div>
+                </div>
+
+                <div className="xm:col-span-1 mt-25 max-p:mt-3 max-p:mx-auto col-span-1 max-p:flex max-p:flex-col max-p:col-span-full max-p:w-7/10">
+                <div className="max-m:hidden">
+                <label className="block p-0 mt-3 text-lg font-semibold">Data de Início:</label>
+                    <div className="p-[3px] w-5/9 rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
+                    max-p:w-full">
+                        <input 
+                            type="date"
+                            className="w-full p-3.5 bg-[#09091d] rounded-lg outline-none"
+                            max={new Date().toISOString().split("T")[0]}
+                        {...register("startDate", {
+                            required: "Informe a data de início do relacionamento",
+                            valueAsDate: true,
+                        })}
+
+                        />
+                    </div>
+                </div>
+                    <div className="p-[3px] w-5/9 relative rounded-lg mt-12 bg-gradient-to-r cursor-pointer font-bold
                     from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-md shadow-rose-500/40
-                    max-p:mt-7 max-p:mx-auto max-p:w-full">
+                    max-p:mt-7 max-p:mx-auto max-p:w-6/9">
                         <label className="flex items-center p-3 gap-2 text-lg cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
