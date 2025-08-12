@@ -66,5 +66,21 @@ export default function coupleRoutes() {
         }
     });
 
+    router.delete("/delete", async (req, res) => {
+        try{
+            const { id, email } = req.body;
+            const coupleFind = await Couple.findById(id);
+
+            if(coupleFind?.email === email){
+                const coupleDelete = await Couple.findByIdAndDelete(id);
+                res.json({message: "Couple deleted sucessfully"});
+            } else {
+                res.status(500).json({ error: "Couple invalid"});
+            }
+        } catch(err) {
+            res.status(500).json({ error: "Error when searching for couple", err});
+        }
+    });
+
     return router;
 }
