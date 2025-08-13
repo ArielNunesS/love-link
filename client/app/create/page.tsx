@@ -133,21 +133,22 @@ export default function CreatePage() {
     
     return (
     <>
-    <main className="w-screen min-h-screen flex max-xm:flex-col items-center xm:justify-end z-20 px-5 bg-gradient-to-b from-[#0a0a20] via-[#101030] to-[#09091d]
-    max-xm:items-start
-    max-xm:px-3 max-xm:overflow-hidden">
+    <main className="w-screen min-h-screen flex xm:justify-end items-center z-20 px-5 bg-gradient-to-b from-[#0a0a20] via-[#101030] to-[#09091d]
+    l:max-xl:px-20 max-xm:items-start max-xm:flex-col max-xm:px-3 max-xm:overflow-hidden">
         <AnimatedBackground/>
         <Navbar/>
-        <div className="absolute p-0 xm:left-1/3 top-20
+        <div className="absolute p-0 xl:left-3/8 top-20
+            l:max-xl:left-2/9
+            xm:max-l:left-3/9 xm:max-xl:mt-3
             max-xm:w-8/10 max-xm:px-7 max-xm:top-25 max-xm:overflow-hidden">
             <h1 className="text-4xl font-bold max-xm:text-3xl">Quase Lá!</h1>
-            <p className="text-lg font-medium mt-2 max-xm:text-lg max-xm:w-full">Preencha os dados para criar seu <span className="text-rose-400">LoveLink</span> personalizado!</p>
+            <p className="text-lg font-medium mt-2 xm:max-l:w-6/9 max-xm:text-lg max-xm:w-full">Preencha os dados para criar seu <span className="text-rose-400">LoveLink</span> personalizado!</p>
         </div>
         <div className="grid grid-cols-2 mr-30 gap-x-40 w-200 z-10 mt-30
-            max-xm:flex max-xm:flex-col
-            max-xm:gap-x-0 max-xm:w-full max-xm:mt-55"
+            xm:max-xl:mt-45 max-xm:flex max-xm:flex-col max-xm:gap-x-0 max-xm:w-full max-xm:mt-55"
             onSubmit={handleSubmit(onSubmit)}>
-        <div className="col-span-1 max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-full max-xm:px-7 max-xm:mt-5">
+        <div className="col-span-1
+            l:max-xl:w-full l:max-xl:ml-15 xm:max-l:w-70 xm:max-l:ml-10 max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-full max-xm:px-7 max-xm:mt-5">
             <label className="block p-0 text-lg font-semibold
                 max-xm:flex max-xm:flex-col max-xm:w-full">Nome do Casal:</label>
                 <div className="p-[3px] rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
@@ -181,8 +182,7 @@ export default function CreatePage() {
                 
             <div className="max-xm:mt-3 ">
             <label className="block p-0 mt-3 text-lg font-semibold">Titulo da Mensagem:</label>
-                <div className="p-[3px] w-full rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
-                    max-m:w-full">
+                <div className="p-[3px] w-full rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                     <input
                         type="text"
                         placeholder="Feliz 3 Meses"
@@ -206,7 +206,7 @@ export default function CreatePage() {
                     <textarea 
                         placeholder="Oii meu amor, queria dizer o quanto te amo..."
                         className="w-100 h-50 overflow-y-auto resize-none justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
-                        max-xm:w-full max-p:h-45"
+                        xm:max-xl:h-45 max-xm:w-full max-p:h-45"
                         maxLength={800}
                         style={{ resize: "none" }}
                         {...register("message", {
@@ -218,15 +218,16 @@ export default function CreatePage() {
                     />
                 </div>
                 {messageIsFocused && (
-                    <p className="text-red-500 text-right text-sm px-4 mt-1 rounded-lg">{message?.length || 0}/800</p>
+                    <p className="text-red-500 max-xm:text-right xm:max-xl:ml-84 text-sm px-4 mt-1 rounded-lg">{message?.length || 0}/800</p>
                 )}
             </div>
 
-            <div className="xm:col-span-1 mt-25 max-xm:mt-3 max-xm:mx-auto col-span-1 max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-7/10">
+            <div className="mt-23.5
+            xm:max-xl:w-full xm:col-span-1 max-xm:mt-3 max-xm:mx-auto col-span-1 max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-7/10">
             <div className="max-xm:mx-auto max-xm:w-6/9">
             <label className="block p-0 mt-3 text-lg font-semibold ">Data de Início:</label>
                 <div className="p-[3px] w-5/9 rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
-                max-xm:w-full">
+                xm:max-xl:w-6/9 max-xm:w-full">
                     <input 
                         type="date"
                         className="w-full p-3.5 bg-[#09091d] rounded-lg outline-none"
@@ -246,7 +247,7 @@ export default function CreatePage() {
 
                 <div className="p-[3px] w-5/9 relative rounded-lg mt-12 bg-gradient-to-r cursor-pointer font-bold
                 from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-md shadow-rose-500/40
-                max-xm:mt-7 max-xm:mx-auto max-xm:w-6/9">
+                max-ll:w-6/9 max-xm:mt-7 max-xm:mx-auto">
                     <label className="flex items-center p-3 gap-2 text-lg cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
@@ -271,7 +272,7 @@ export default function CreatePage() {
                 </div>
             </div>
             
-            <div className="flex p-1 mx-auto col-span-2 w-5/8 rounded-lg mt-12 cursor-pointer font-bold max-xm:hidden
+            <div className="flex p-1 mx-auto col-span-2 w-5/8 rounded-lg mt-7 cursor-pointer font-bold l:max-xl:mx-31.5 xm:max-xl:mx-25.5 max-xm:hidden
             bg-gradient-to-r from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40 ">
                 <button
                     onClick={handleSubmit(onSubmit)}
@@ -283,7 +284,7 @@ export default function CreatePage() {
             </div>
         </div>
 
-        <div className="xm:w-1/4 xm:mt-0 mr-40 z-10 max-xm:mx-auto max-m:mt-12 max-xm:mt-15"> 
+        <div className="mr-40 z-10 l:w-1/4 xm:max-xl:w-1/6 xm:max-xl:mt-30 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 max-m:mt-12"> 
             <CardPreview
                 name={name}
                 email={""}
@@ -294,7 +295,7 @@ export default function CreatePage() {
             />
         </div>
 
-        <div className="flex p-1 mx-auto w-9/10 rounded-lg mt-12 cursor-pointer font-bold xm:hidden p:max-m:w-7/9 m:max-xm:w-5/9
+        <div className="flex p-1 mx-auto w-9/10 rounded-lg mt-12 cursor-pointer font-bold xm:hidden m:max-xm:w-5/9 p:max-m:w-7/9 
             bg-gradient-to-r from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40">
                 <button
                     onClick={handleSubmit(onSubmit)}

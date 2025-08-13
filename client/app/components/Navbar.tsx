@@ -4,7 +4,7 @@ import { Heart } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="absolute top-3 left-0 right-0 z-20">
+    <header className="absolute top-0 left-0 right-0 z-20">
       <nav className="container mx-auto flex items-center px-5 py-5 justify-between max-md:flex-col max-md:items-start max-md:px-4">
         <Link href="/" className="flex items-center gap-2">
           <img
