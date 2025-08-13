@@ -164,7 +164,7 @@ export default function CardPreview(props: CardPreviewProps){
                     >
                     <Camera className="w-15 h-15 text-rose-400
                       max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
-                    <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-m:text-xl">Sua Foto Aqui</span>
+                    <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
                 </div>
               </div>
             </div>
