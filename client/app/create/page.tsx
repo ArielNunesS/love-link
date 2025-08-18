@@ -8,6 +8,7 @@ import { DateTime } from "luxon";
 import CardPreview from "../components/CardPreview";
 import Navbar from "../components/Navbar";
 import AnimatedBackground from "../components/AnimatedBackground";
+import Image from "next/image";
 import "dotenv/config";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
@@ -137,20 +138,25 @@ export default function CreatePage() {
     l:max-xl:px-20 max-xm:items-start max-xm:flex-col max-xm:px-3 max-xm:overflow-hidden">
         <AnimatedBackground/>
         <Navbar/>
-        <div className="absolute p-0 xl:left-3/8 top-20
-            l:max-xl:left-2/9
-            xm:max-l:left-3/9 xm:max-xl:mt-3
+        <div className="absolute p-0 top-20 select-none
+            xl:left-2/7
+            ll:max-xl:left-65
+            l:max-xl:top-20
+            xm:max-ll:left-1/6
+            xm:max-l:left-15 max-xl:top-25
+            xm:max-xl:left-2/9
             max-xm:w-8/10 max-xm:px-7 max-xm:top-25 max-xm:overflow-hidden">
-            <h1 className="text-4xl font-bold max-xm:text-3xl">Quase Lá!</h1>
-            <p className="text-lg font-medium mt-2 xm:max-l:w-6/9 max-xm:text-lg max-xm:w-full">Preencha os dados para criar seu <span className="text-rose-400">LoveLink</span> personalizado!</p>
+            <h1 className="text-5xl font-bold max-l:text-4xl max-xm:text-3xl">Quase Lá!</h1>
+            <p className="text-xl font-medium mt-2 max-l:text-lg max-xm:w-full">Preencha os dados para criar seu <span className="text-rose-400">LoveLink</span> personalizado!</p>
         </div>
         <div className="grid grid-cols-2 mr-30 gap-x-40 w-200 z-10 mt-30
             xm:max-xl:mt-45 max-xm:flex max-xm:flex-col max-xm:gap-x-0 max-xm:w-full max-xm:mt-55"
             onSubmit={handleSubmit(onSubmit)}>
+
         <div className="col-span-1
             l:max-xl:w-full l:max-xl:ml-15 xm:max-l:w-70 xm:max-l:ml-10 max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-full max-xm:px-7 max-xm:mt-5">
             <label className="block p-0 text-lg font-semibold
-                max-xm:flex max-xm:flex-col max-xm:w-full">Nome do Casal:</label>
+                max-xm:flex max-xm:flex-col max-xm:w-full select-none">Nome do Casal:</label>
                 <div className="p-[3px] rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                     <input 
                         type="text"
@@ -167,7 +173,7 @@ export default function CreatePage() {
                     {nameIsFocused && name?.length === 20 &&  (
                         <p className="text-red-500 text-right text-sm px-4 mt-1 rounded-lg">máx. 20 caracteres</p>
                     )}
-            <label className="block p-0 mt-3 text-lg font-semibold">Seu Email:</label>
+            <label className="block p-0 mt-3 text-lg font-semibold select-none">Seu Email:</label>
                 <div className="p-[3px] rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">     
                     <input
                         type="email"
@@ -181,7 +187,7 @@ export default function CreatePage() {
                 </div>
                 
             <div className="max-xm:mt-3 ">
-            <label className="block p-0 mt-3 text-lg font-semibold">Titulo da Mensagem:</label>
+            <label className="block p-0 mt-3 text-lg font-semibold select-none">Titulo da Mensagem:</label>
                 <div className="p-[3px] w-full rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                     <input
                         type="text"
@@ -200,12 +206,12 @@ export default function CreatePage() {
                         )}
             </div>
 
-            <label className="block p-0 mt-3 text-lg font-semibold">Mensagem:</label>
+            <label className="block p-0 mt-3 text-lg font-semibold select-none">Mensagem:</label>
                 <div className="p-[3px] w-fit h-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
                 max-xm:w-full">
                     <textarea 
                         placeholder="Oii meu amor, queria dizer o quanto te amo..."
-                        className="w-100 h-50 overflow-y-auto resize-none justify-start p-5 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
+                        className="w-100 h-50 overflow-y-auto resize-none justify-start py-5 px-3 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
                         xm:max-xl:h-45 max-xm:w-full max-p:h-45"
                         maxLength={800}
                         style={{ resize: "none" }}
@@ -225,7 +231,7 @@ export default function CreatePage() {
             <div className="mt-23.5
             xm:max-xl:w-full xm:col-span-1 max-xm:mt-3 max-xm:mx-auto col-span-1 max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-7/10">
             <div className="max-xm:mx-auto max-xm:w-6/9">
-            <label className="block p-0 mt-3 text-lg font-semibold ">Data de Início:</label>
+            <label className="block p-0 mt-3 text-lg font-semibold select-none">Data de Início:</label>
                 <div className="p-[3px] w-5/9 rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
                 xm:max-xl:w-6/9 max-xm:w-full">
                     <input 
@@ -248,7 +254,7 @@ export default function CreatePage() {
                 <div className="p-[3px] w-5/9 relative rounded-lg mt-12 bg-gradient-to-r cursor-pointer font-bold
                 from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-md shadow-rose-500/40
                 max-ll:w-6/9 max-xm:mt-7 max-xm:mx-auto">
-                    <label className="flex items-center p-3 gap-2 text-lg cursor-pointer">
+                    <label className="flex items-center p-3 gap-2 text-lg cursor-pointer select-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
                         </svg>
@@ -278,13 +284,20 @@ export default function CreatePage() {
                     onClick={handleSubmit(onSubmit)}
                     disabled={isSubmitting}
                     type="submit"
-                    className="p-3 w-full h-full text-xl cursor-pointer disabled:bg-rose-300 font-semibold justify-center text-center">
+                    className="p-3 w-full h-full text-xl cursor-pointer disabled:bg-rose-300 font-semibold justify-center text-center select-none">
                         Gerar QR Code
                 </button>
             </div>
         </div>
-
-        <div className="mr-40 z-10 l:w-1/4 xm:max-xl:w-1/6 xm:max-xl:mt-30 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 max-m:mt-12"> 
+        <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 max-m:mt-12"> 
+        <span className="absolute z-10 text-white/90 text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 pointer-events-none select-none">Como vai ficar</span>
+        <Image
+                src="https://i.postimg.cc/3RmxkV42/rose-arrow.png"
+                width={120}
+                height={120}
+                alt=""
+                className="absolute z-10 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 rotate-12 pointer-events-none select-none"
+                />
             <CardPreview
                 name={name}
                 email={""}
@@ -301,7 +314,7 @@ export default function CreatePage() {
                     onClick={handleSubmit(onSubmit)}
                     disabled={isSubmitting}
                     type="submit"
-                    className="p-3 w-full h-full text-xl cursor-pointer disabled:bg-rose-400 font-semibold justify-center text-center">
+                    className="p-3 w-full h-full text-xl cursor-pointer disabled:bg-rose-400 font-semibold justify-center text-center select-none">
                         Gerar QR Code
                 </button>
         </div>

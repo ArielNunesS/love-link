@@ -18,7 +18,7 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "LoveLink - Site para seu amor",
+  title: "LoveLink - Site para seu Amor",
   description: "Eternize cada momento do seu amor com um card virtual personalizado e contador de tempo de relacionamento",
 };
 
@@ -27,7 +27,7 @@ export default function RootLayout({
     children: React.ReactNode
   }) {
     return (
-      <html lang="pt-BR" className={`${firaSans.variable} ${dancingScript.variable} antialiased`}>
+      <html lang="pt-BR" className={`${firaSans.variable} antialiased ${dancingScript.variable} antialiased`}>
         <body className={`${firaSans.variable} antialiased`}>
           {children}
         </body>

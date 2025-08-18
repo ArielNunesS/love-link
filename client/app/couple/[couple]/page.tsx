@@ -1,9 +1,13 @@
-import CardPreview from "../../components/CardPreview";
+
 import { notFound } from "next/navigation";
 import { DateTime } from "luxon";
-import "dotenv/config";
 import { watch } from "fs";
+import CardPreview from "../../components/CardPreview";
 import CardFinal from "../../components/CardFinal";
+import AnimatedBackground from "../../components/AnimatedBackground";
+import BackgroundLines from "../../components/BackgroundLines";
+import Image from "next/image";
+import "dotenv/config";
 
 export default async function CouplePage({ params }: { params: Promise<{ couple: string }> }) {
     const resolvedParams = await params
@@ -45,9 +49,9 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
   const days = Math.floor(diff.days ?? 0);
 
     return ( <>
-        <div className="min-h-screen bg-[#09091d] flex items-center justify-center p-4 text-white">
-
-        <h1>oi {coupleData.name}</h1>
+    <main className="w-full min-h-screen z-30 items-center bg-gradient-to-br from-purple-800/80 via-[#412131] to-rose-900/70">
+        <div className="min-h-screen flex items-center justify-center p-4 text-white z-30">
+        {/* <h1>oi {coupleData.name}</h1>
 
         <CardPreview
             name={coupleData.name}
@@ -60,10 +64,10 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
 
         <div>
         <span className="ml-45">foto</span>
-         <img alt="" src={coupleData.image} className="absolut w-100 h-100"/>
-         </div>
+        <img alt="" src={coupleData.image} className="absolut w-100 h-100"/>
+        </div> */}
 
-
+        <div>
         <CardFinal
             name={coupleData.name}
             email={coupleData.email}
@@ -75,9 +79,9 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
             days={days - 1}
             image={coupleData.image}
         />
-
-
         </div>
+        </div>
+    </main>
     </>
     )
 }

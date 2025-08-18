@@ -21,6 +21,7 @@
   --breakpoint-xl: 1640px;
 
   --animate-rotate-border: border-rotate 4s linear infinite;
+  --animate-bounce: bounce 2s infinite;
 
   @keyframes border-rotate {
     to {
@@ -38,7 +39,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #d14949;
+    --foreground: rgb(209, 73, 73);
+    --back2: #ff637e;
   }
 }
 

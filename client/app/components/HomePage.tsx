@@ -27,7 +27,7 @@ export default function HomePage() {
                       <span className="font-bold text-xl text-rose-400 max-xpp:text-xl max-pp:text-[21px] max-p:text-[22px] max-m:text-2xl max-xm:text-2xl">Leva menos de 5 minutos!</span>
                     </p>
                   
-                  <Link href="/create" className="inline-block mx-auto rounded-full bg-rose-700 text-white font-medium
+                  <Link href="/create" className="inline-block mx-auto rounded-full bg-rose-700 text-white font-medium select-none
                     px-10 py-5 text-2xl shadow-lg shadow-rose-500/40 hover:bg-rose-600
                     transition-all duration-150 hover:shadow-rose-500/70
                     max-xm:text-2xl max-xm:w-9/11 max-xm:text-center max-xm:items-center max-xm:block max-xm:m-auto
@@ -44,11 +44,11 @@ export default function HomePage() {
               <div className="w-full flex flex-col items-center justify-center mt-20">
                 <div className="flex flex-wrap justify-center">
                     <CardPreview
-                          name="joão-e-maria"
+                          name="João e Maria"
                           email=""
                           title="Te Amooo"
                           message="Aqui um texto para que nunca se esqueça do quanto eu te amo"
-                          startDate={new Date(11111111)}
+                          startDate={new Date(1707001111111)}
                           image={null}
                         />
 
@@ -57,8 +57,8 @@ export default function HomePage() {
                       max-xpp:w-90">
                     <div className="absolute mt-3 h-8 inset-0 rounded-xl bg-rose-600 animate-border-move opacity-80 blur-md
                       max-xpp:w-65 max-xpp:mx-auto max-pp:w-80 max-p:w-80 max-m:w-100 max-xm:w-110 max-xm:mx-auto"/>
-                        <Link href={"/create"} className="relative z-10 w-full bg-rose-700 text-white text-lg py-3 mt-4
-                          rounded-full font-medium shadow-lg hover:bg-rose-600 transition-all duration-150 hover:shadow-rose-500/70 text-center block
+                        <Link href={"/create"} className="relative block z-10 w-full bg-rose-700 text-white text-lg py-3 mt-4 text-center
+                          rounded-full font-medium shadow-lg hover:bg-rose-600 transition-all duration-150 hover:shadow-rose-500/70 select-none
                           max-xm:w-9/10 max-xm:mx-auto max-xm:h-15 max-xm:text-[22px]
                           max-m:w-8/10 max-m:text-[22px] max-m:h-20
                           max-p:w-6/9 max-p:text-xl

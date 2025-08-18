@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Calendar, Heart, Clock, Music, Camera, Mail, MailOpen } from "lucide-react";
+import { Calendar, Heart, Clock, Music, Camera, Mail, MailOpen, Music2, Pause, Play, Minus, Music4 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";
@@ -40,7 +40,7 @@ export default function CardPreview(props: CardPreviewProps){
               {/* Screen */}
             <div className="relative bg-gradient-to-br from-purple-900/80 via-[#1a1a2e] to-rose-900/50 pt-5 pb-4 min-h-170 h-fit overflow-hidden">
                 <div className="px-4 py-2 flex items-center justify-between">
-                    <div className="text-white/80 text-xs cursor-default">21:30</div>
+                    <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
                     <div className="flex items-center gap-1">
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
@@ -51,7 +51,7 @@ export default function CardPreview(props: CardPreviewProps){
               {/* URL Bar */}
               <div className="mx-4 mt-2 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 flex items-center">
                   <div className="w-1 h-1 rounded-full bg-rose-400 mr-2"></div>
-                  <p className="text-white/80 text-xs text-nowrap overflow-hidden">love-link-app.com.br/{props.name}</p>
+                  <p className="text-white/80 text-xs text-nowrap overflow-hidden select-none">love-link-app.com.br/{props.name}</p>
               </div>
 
               {/* Content */}
@@ -59,17 +59,17 @@ export default function CardPreview(props: CardPreviewProps){
 
               {/* Profile Section */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="p-0.5 bg-conic/[from_var(--border-angle)] from-purple-700 via-purple-600 to-purple-500 rounded-full animate-rotate-border">
-                  <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center">
+                <div className="p-0.5 bg-pink-600/30 rounded-full">
+                  <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
                       <Mail/>
                     </button>
                   </div>
                 </div>
-                  <p className="text-xl font-semibold wrap-break-word" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
+                  <p className="text-xl font-semibold wrap-break-word select-none" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
               </div>
                 <div className="max-w-xs">
-                  <p className="text-xs font-normal whitespace-pre-wrap">{props.message}</p>
+                  <p className="text-xs px-1 font-normal wrap-break-word whitespace-pre-wrap select-none">{props.message}</p>
                 </div>
             </div>
           </div>
@@ -104,7 +104,7 @@ export default function CardPreview(props: CardPreviewProps){
               {/* Screen */}
             <div className="relative bg-gradient-to-br from-purple-900/80 via-[#1a1a2e] to-rose-900/50 pt-5 pb-4 h-170 overflow-hidden">
                 <div className="px-4 py-2 flex items-center justify-between">
-                    <div className="text-white/80 text-xs cursor-default">21:30</div>
+                    <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
                     <div className="flex items-center gap-1">
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
@@ -115,7 +115,7 @@ export default function CardPreview(props: CardPreviewProps){
               {/* URL Bar */}
               <div className="mx-4 mt-2 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 flex items-center">
                   <div className="w-1 h-1 rounded-full bg-rose-400 mr-2"></div>
-                  <p className="text-white/80 text-xs text-nowrap overflow-hidden">love-link-app.com.br/{props.name}</p>
+                  <p className="text-white/80 text-xs text-nowrap overflow-hidden select-none">love-link-app.com.br/{props.name}</p>
               </div>
 
               {/* Content */}
@@ -123,20 +123,20 @@ export default function CardPreview(props: CardPreviewProps){
 
               {/* Profile Section */}
               <div className="flex items-center gap-3 mb-5 wrap-break-word">
-                <div className="p-0.5 bg-conic/[from_var(--border-angle)] from-purple-700 via-purple-600 to-purple-500 rounded-full animate-rotate-border">
-                  <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center">
+                <div className="p-0.5 bg-pink-600/30 rounded-full">
+                  <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
                       <Mail/>
                     </button>
                   </div>
                 </div>
                   <div>
-                    <h3 className="text-white font-bold text-lg cursor-default wrap-break-word">{props.name}</h3>
+                    <h3 className="text-white font-bold text-lg cursor-default wrap-break-word select-none">{props.name}</h3>
                   </div>
               </div>
 
               {/* Counter Card */}
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 mb-4 cursor-default">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 mb-4 cursor-default select-none">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="w-4 h-4 text-rose-400"/>
                   <h4 className="text-white font-medium text-base max-xpp:text-sm">Tempo Juntos</h4>
@@ -158,15 +158,19 @@ export default function CardPreview(props: CardPreviewProps){
               </div>
 
               {/* Features */}
-              <div className="grid grid-cols-2 gap-3 mb-4 cursor-default">
+              <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
                 <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-50 p-5 flex items-center gap-2
-                      max-xpp:w-60.5 max-pp:w-68 max-p:w-73"
-                    >
+                      max-xpp:w-60.5 max-pp:w-68 max-p:w-73">
                     <Camera className="w-15 h-15 text-rose-400
                       max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
                     <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
                 </div>
               </div>
+                <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-25 p-5 flex items-center gap-2
+                      max-xpp:w-60.5 max-pp:w-68 max-p:w-73 select-none">
+                        <Music className="text-rose-400 w-10 h-10"/>
+                    <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Música</span>
+                  </div>
             </div>
           </div>
         </div>
