@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import userRoutes from "./routes/userRoutes";
 import emailController from "./controllers/emailController";
 import coupleRoutes from "./routes/coupleRoutes";
 
@@ -17,7 +16,6 @@ app.use(cors({
     credentials: true,
 }));
 
-app.use('/users', userRoutes());
 app.use('/couples', coupleRoutes());
 app.use('/email', emailController);
 

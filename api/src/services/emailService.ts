@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import Couple from "../models/Couple";
 import "dotenv/config";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -12,7 +13,7 @@ export async function sendEmail(req: any, res: any) {
 
     try{
         const { data, error } = await resend.emails.send({
-            from: "onboarding@resend.dev",
+            from: "email@love-link-app.com.br",
             to,
             subject,
             html

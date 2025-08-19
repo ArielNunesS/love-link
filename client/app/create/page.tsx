@@ -108,13 +108,23 @@ export default function CreatePage() {
         }
 
         try {
-        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://localhost:4000"
+        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://localhost:10000"
 
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
             credentials: "include"
         });
+
+        const sendEmail = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/email`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                to: data.email,
+                subject: "Testando",
+                html: `<p> Olá ${data.name}, recebemos sua requisição!`
+            })
+        })
 
         if(response.ok) {
             console.log("form enviado com sucesso")
