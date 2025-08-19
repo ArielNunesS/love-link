@@ -41,7 +41,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Right side - Preview*/}
-              <div className="w-full flex flex-col items-center justify-center mt-20">
+              <div className="w-full flex flex-col items-center justify-center mt-12">
                 <div className="flex flex-wrap justify-center">
                     <CardPreview
                           name="João e Maria"
@@ -57,7 +57,7 @@ export default function HomePage() {
                       max-xpp:w-90">
                     <div className="absolute mt-3 h-8 inset-0 rounded-xl bg-rose-600 animate-border-move opacity-80 blur-md
                       max-xpp:w-65 max-xpp:mx-auto max-pp:w-80 max-p:w-80 max-m:w-100 max-xm:w-110 max-xm:mx-auto"/>
-                        <Link href={"/create"} className="relative block z-10 w-full bg-rose-700 text-white text-lg py-3 mt-4 text-center
+                        <Link href={"/create"} className="relative block z-10 w-full bg-rose-700 text-white text-lg py-3 mt-3 text-center
                           rounded-full font-medium shadow-lg hover:bg-rose-600 transition-all duration-150 hover:shadow-rose-500/70 select-none
                           max-xm:w-9/10 max-xm:mx-auto max-xm:h-15 max-xm:text-[22px]
                           max-m:w-8/10 max-m:text-[22px] max-m:h-20

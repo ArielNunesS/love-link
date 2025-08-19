@@ -108,7 +108,7 @@ export default function CreatePage() {
         }
 
         try {
-        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:4000"
+        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://localhost:4000"
 
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
@@ -272,7 +272,7 @@ export default function CreatePage() {
                     />
                     {image && image.length > 0 &&(
                         <p className="text-sm text-white mt-2 ml-3">
-                            Arquivo: <span className="text-rose-300">{image[0].name}</span>
+                            Arquivo: <span className="text-white/70">{image[0].name}</span>
                         </p>
                     )}
                 </div>
@@ -289,15 +289,25 @@ export default function CreatePage() {
                 </button>
             </div>
         </div>
-        <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 max-m:mt-12"> 
-        <span className="absolute z-10 text-white/90 text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 pointer-events-none select-none">Como vai ficar</span>
-        <Image
+        <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 m:max-xm:mt-50 max-m:mt-50"> 
+        <span className="absolute z-10 text-white/90 text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 m:max-xm:-mt-30 m:max-xm:ml-29 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold max-m:-mt-27 max-m:ml-30 max-p:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none">Como vai ficar</span>
+            <Image
                 src="https://i.postimg.cc/3RmxkV42/rose-arrow.png"
                 width={120}
                 height={120}
                 alt=""
-                className="absolute z-10 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 rotate-12 pointer-events-none select-none"
-                />
+                className="absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 max-xm:ml-16 pointer-events-none select-none"
+            />
+
+            <Image
+                src="https://i.postimg.cc/q7rJwH17/icons8-click-66.png"
+                alt=""
+                width={25}
+                height={25}
+                className="absolute z-10 mt-45 -ml-8 rotate-90 xm:max-ll:mt-35 m:max-xm:mt-35 max-m:mt-35 max-p:-ml-2 max-pp:-ml-0 pointer-events-none select-none"
+            />
+                <span className="absolute z-10 text-white/90 text-xs max-p:text-[8px] font-normal mt-52 -ml-12 text-center xm:max-ll:mt-42 max-xm:mt-42 max-p:-ml-4 max-pp:-ml-2 pointer-events-none select-none">Clique<br/>na carta</span>
+
             <CardPreview
                 name={name}
                 email={""}

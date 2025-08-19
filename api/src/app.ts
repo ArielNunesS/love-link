@@ -12,7 +12,7 @@ app.use(cors({
     origin: [
         'https://love-link-theta.vercel.app',
         'https://love-link-app.com.br',
-        'http://localhost:3000',
+        'https://localhost:3000',
     ],
     credentials: true,
 }));

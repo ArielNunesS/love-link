@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Calendar, Heart, Clock, Music, Camera, Mail, MailOpen, Music2, Pause, Play, Minus, Music4 } from "lucide-react";
+import { Calendar, Heart, Music, Camera, Mail, MailOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";
@@ -62,11 +62,11 @@ export default function CardPreview(props: CardPreviewProps){
                 <div className="p-0.5 bg-pink-600/30 rounded-full">
                   <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
-                      <Mail/>
+                      <MailOpen/>
                     </button>
                   </div>
                 </div>
-                  <p className="text-xl font-semibold wrap-break-word select-none" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
+                  <p className="text-xl font-semibold wrap-anywhere select-none" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
               </div>
                 <div className="max-w-xs">
                   <p className="text-xs px-1 font-normal wrap-break-word whitespace-pre-wrap select-none">{props.message}</p>
