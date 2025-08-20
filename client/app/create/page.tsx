@@ -116,7 +116,7 @@ export default function CreatePage() {
             credentials: "include"
         });
 
-        const sendEmail = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/email`, {
+        const sendEmail = await fetch(`https://localhost:10000/email`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -288,25 +288,25 @@ export default function CreatePage() {
                 </div>
             </div>
             
-            <div className="flex p-1 mx-auto col-span-2 w-5/8 rounded-lg mt-7 cursor-pointer font-bold l:max-xl:mx-31.5 xm:max-xl:mx-25.5 max-xm:hidden
-            bg-gradient-to-r from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40 ">
+            <div className="flex p-1 mx-auto col-span-2 w-5/8 rounded-lg mt-7 cursor-pointer font-bold l:max-xl:mx-31.5 xm:max-xl:mx-25.5
+            bg-gradient-to-r from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40 max-xm:hidden">
                 <button
                     onClick={handleSubmit(onSubmit)}
                     disabled={isSubmitting}
                     type="submit"
-                    className="p-3 w-full h-full text-xl cursor-pointer disabled:bg-rose-300 font-semibold justify-center text-center select-none">
+                    className="p-3 w-full h-full text-xl cursor-pointer disabled:bg-rose-400 font-semibold justify-center text-center select-none max-xm:hidden">
                         Gerar QR Code
                 </button>
             </div>
         </div>
         <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 m:max-xm:mt-50 max-m:mt-50"> 
-        <span className="absolute z-10 text-white/90 text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 m:max-xm:-mt-30 m:max-xm:ml-29 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold max-m:-mt-27 max-m:ml-30 max-p:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none">Como vai ficar</span>
+        <span className="absolute z-10 text-white/90 text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 m:max-xm:-mt-30 m:max-xm:ml-49 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold max-m:-mt-27 max-m:ml-30 max-p:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none">Como vai ficar</span>
             <Image
                 src="https://i.postimg.cc/3RmxkV42/rose-arrow.png"
                 width={120}
                 height={120}
                 alt=""
-                className="absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 max-xm:ml-16 pointer-events-none select-none"
+                className="absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 max-xm:ml-36 pointer-events-none select-none"
             />
 
             <Image
@@ -314,30 +314,32 @@ export default function CreatePage() {
                 alt=""
                 width={25}
                 height={25}
-                className="absolute z-10 mt-45 -ml-8 rotate-90 xm:max-ll:mt-35 m:max-xm:mt-35 max-m:mt-35 max-p:-ml-2 max-pp:-ml-0 pointer-events-none select-none"
+                className="absolute z-10 mt-45 -ml-8 rotate-90 xm:max-ll:mt-35 m:max-xm:mt-35 m:max-xm:ml-12 max-m:mt-35 max-p:-ml-2 max-pp:-ml-0 pointer-events-none select-none"
             />
-                <span className="absolute z-10 text-white/90 text-xs max-p:text-[8px] font-normal mt-52 -ml-12 text-center xm:max-ll:mt-42 max-xm:mt-42 max-p:-ml-4 max-pp:-ml-2 pointer-events-none select-none">Clique<br/>na carta</span>
+                <span className="absolute z-10 text-white/90 text-xs max-p:text-[8px] font-normal mt-52 -ml-12 text-center xm:max-ll:mt-42 max-xm:mt-42 m:max-xm:ml-8 max-p:-ml-4 max-pp:-ml-2 pointer-events-none select-none">Clique<br/>na carta</span>
 
-            <CardPreview
-                name={name}
-                email={""}
-                title={title}
-                message={message}
-                startDate={startDate}
-                image={image}
-            />
-        </div>
-
-        <div className="flex p-1 mx-auto w-9/10 rounded-lg mt-12 cursor-pointer font-bold xm:hidden m:max-xm:w-5/9 p:max-m:w-7/9 
-            bg-gradient-to-r from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40">
+            <div className="m:max-xm:ml-20">
+                <CardPreview
+                    name={name}
+                    email={""}
+                    title={title}
+                    message={message}
+                    startDate={startDate}
+                    image={image}
+                />
+            </div>
+        <div className="flex p-1 mx-auto w-full rounded-lg mt-12 cursor-pointer font-bold m:max-xm:w-130 max-p:w-9/10
+            bg-gradient-to-r from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40 xm:hidden">
                 <button
                     onClick={handleSubmit(onSubmit)}
                     disabled={isSubmitting}
                     type="submit"
-                    className="p-3 w-full h-full text-xl cursor-pointer disabled:bg-rose-400 font-semibold justify-center text-center select-none">
+                    className="block p-3 w-full h-full text-xl cursor-pointer disabled:bg-rose-400 font-semibold justify-center text-center select-none xm:hidden">
                         Gerar QR Code
                 </button>
         </div>
+        </div>
+        <div className="py-5"/>
     </main>
     </>
 
