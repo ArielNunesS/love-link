@@ -116,7 +116,7 @@ export default function CreatePage() {
             credentials: "include"
         });
 
-        const sendEmail = await fetch(`https://localhost:10000/email`, {
+        const sendEmail = await fetch(`${backendAPIURL}/email`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
