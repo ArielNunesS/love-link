@@ -300,13 +300,13 @@ export default function CreatePage() {
             </div>
         </div>
         <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 m:max-xm:mt-50 max-m:mt-50"> 
-        <span className="absolute z-10 text-white/90 text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 m:max-xm:-mt-30 m:max-xm:ml-49 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold max-m:-mt-27 max-m:ml-30 max-p:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none">Como vai ficar</span>
+        <span className="absolute z-10 text-white/90 text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-27 m:max-xm:ml-49 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold  max-m:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none">Como vai ficar</span>
             <Image
                 src="https://i.postimg.cc/3RmxkV42/rose-arrow.png"
                 width={120}
                 height={120}
                 alt=""
-                className="absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 max-xm:ml-36 pointer-events-none select-none"
+                className="absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 m:max-xm:ml-37 max-m:ml-16 pointer-events-none select-none"
             />
 
             <Image
