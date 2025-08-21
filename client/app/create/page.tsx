@@ -119,7 +119,7 @@ export default function CreatePage() {
             reset();
 
             const result = await response.json();
-            const { coupleUrl, qrCodeLink } = result;
+            const { coupleUrl } = result;
 
             await fetch(`${backendAPIURL}/email`, {
                 method: "POST",
@@ -133,7 +133,7 @@ export default function CreatePage() {
                         <a href="${coupleUrl}">${coupleUrl}</a>
                     </p>
                     <p>Aqui está o QR Code:</p>
-                    <img src="${qrCodeLink} alt="QR Code"/>`,
+                    <img src="https://www.qrcoder.co.uk/api/v4/?key=MXY3NPsQZDF1UdJpjylzBOS85ErGikL9&text=${coupleUrl}">`
                 })
             })
 

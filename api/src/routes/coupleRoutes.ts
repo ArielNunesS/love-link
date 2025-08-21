@@ -70,9 +70,7 @@ export default function coupleRoutes() {
             };
 
             const coupleUrl = `https://love-link-app.com.br/couple/${coupleCard.slug}`;
-            const qrCodeImage = await fetch(`https://api.qrserver.com/v1/create-qr-code/?data=${coupleUrl}&size=300x300`);
-
-            const qrCodeLink = qrCodeImage.url;
+            // const qrCodeResponse = await fetch(`https://api.qrserver.com/v1/create-qr-code/?data=${coupleUrl}&size=300x300`);
 
             res.status(201).json({
                 coupleUrl,
