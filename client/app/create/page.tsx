@@ -133,7 +133,7 @@ export default function CreatePage() {
                         <a href="${coupleUrl}">${coupleUrl}</a>
                     </p>
                     <p>Aqui está o QR Code:</p>
-                    ${fetch(`https://api.qrserver.com/v1/create-qr-code/?data=${coupleUrl}&size=300x300`)}`
+                    ${await fetch(`https://api.qrserver.com/v1/create-qr-code/?data=${coupleUrl}&size=300x300`)}`
                 })
             })
 
