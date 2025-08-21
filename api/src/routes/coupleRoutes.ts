@@ -15,8 +15,21 @@ export default function coupleRoutes() {
 
     router.get("/:id", async (req, res) => {
         try{
-            const { id } = req.params;
+            const { id } = req.body;
             const coupleCard = await Couple.findById(id)
+
+            if(!coupleCard) res.status(404).json({ error: "Couple not found" });
+
+            res.json(coupleCard);
+        } catch(err) {
+            res.status(500).json({ error: "Error when searching for couple", err});
+        }
+    });
+
+    router.get("/:slug", async (req, res) => {
+        try{
+            const { slug } = req.params;
+            const coupleCard = await Couple.findOne({ slug: slug});
 
             if(!coupleCard) res.status(404).json({ error: "Couple not found" });
 
@@ -57,9 +70,11 @@ export default function coupleRoutes() {
             const coupleCard = await newCouple.save()
             
             if(coupleCard) {
-                res.status(201).json(coupleCard);
+                res.status(201).json(coupleCard);  
             };
 
+            coupleCard.slug = `${coupleCard._id.toString().slice(0, 4)}-${coupleCard.name.replace(/\s+/g, "-").toLowerCase()}`;
+            await coupleCard.save();
         } catch(err) {
             console.error(err);
             res.status(400).json(err);

@@ -11,13 +11,13 @@ import "dotenv/config";
 
 export default async function CouplePage({ params }: { params: Promise<{ couple: string }> }) {
     const resolvedParams = await params
-    const coupleId = resolvedParams.couple;
+    const coupleSlug = resolvedParams.couple;
     let coupleData = null;
 
     try {
         const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL
 
-        const res = await fetch(`${backendAPIURL}/couples/${coupleId}`, {
+        const res = await fetch(`${backendAPIURL}/couples/${coupleSlug}`, {
             cache: "no-store",
         });
 
@@ -36,7 +36,7 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
         console.log(coupleData);
 
     } catch(error) {
-        console.error(`Error during data search for couple ${coupleId}`)
+        console.error(`Error during data search for couple ${coupleSlug}`)
     }
 
   const now = DateTime.now();

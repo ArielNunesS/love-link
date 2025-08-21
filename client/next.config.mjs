@@ -8,7 +8,8 @@ const nextConfig = {
 
     images: {
         remotePatterns: [new URL("https://i.postimg.cc/**"), new URL("https://res.cloudinary.com/**")]
-    }
+    },
+
 };
 
 
