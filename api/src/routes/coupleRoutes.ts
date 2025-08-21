@@ -67,10 +67,15 @@ export default function coupleRoutes() {
                 coupleCard.slug = `${slugPart}-${coupleCard.name.replace(/\s+/g, "-").toLowerCase()}`;
 
                 await coupleCard.save();
-                
-                res.status(201).json(coupleCard);
             };
 
+        const coupleUrl = `https://love-link-app.com.br/couple/${coupleCard.slug}`;
+        const qrCodeImage = await fetch(`https://api.qrserver.com/v1/create-qr-code/?data=${coupleUrl}&size=300x300`);
+
+        res.status(201).json({
+            coupleUrl,
+            qrCodeImage
+        });
 
         } catch(err) {
             console.error(err);

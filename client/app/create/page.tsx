@@ -91,7 +91,6 @@ export default function CreatePage() {
     console.log(errors);
 
     const onSubmit = async (data: TcardSchema) => {
-        console.log("Dados validados para envio:", data);
 
         const dt = DateTime.fromJSDate(data.startDate);
         const dtFormated = dt.toISODate();
@@ -107,35 +106,44 @@ export default function CreatePage() {
             formData.append("image", data.image[0])
         }
 
+
         try {
         const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://localhost:10000"
 
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
-            credentials: "include"
+            credentials: "include",
         });
 
-        const sendEmail = await fetch(`${backendAPIURL}/email`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                to: data.email,
-                subject: "Testando",
-                html: `<p> Olá ${data.name}, recebemos sua requisição!`
-            })
-        })
+
 
         if(response.ok) {
-            console.log("form enviado com sucesso")
-            const result = await response.json();
-            console.log("resposta do backend", result)
             reset();
+
+            const result = await response.json();
+            const { coupleUrl, qrCodeImage } = result;
+
+            await fetch(`${backendAPIURL}/email`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    to: data.email,
+                    subject: "Testando",
+                    html: `
+                    <p>Olá, recebemos sua requisição!</p>
+                    <p>Aqui está o Link para sua página:
+                        <a href="${coupleUrl}">${coupleUrl}</a>
+                    </p>
+                    <p>Aqui está o QR Code:</p>
+                    <img src="${qrCodeImage} alt="QR Code"/>`,
+                })
+            })
+
         } else {
             const errorData = await response.json()
-            console.error("erro ao enviar form", response.status, errorData)
+            console.error("Erro ao enviar dados", response.status, errorData)
         }
-
     } catch(error) {
         console.error("erro de requisição", error)
     }
