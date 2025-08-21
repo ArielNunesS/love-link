@@ -14,25 +14,14 @@ export default function coupleRoutes() {
         res.json(couples);
     });
 
-    router.get("/:id", async (req, res) => {
-        try{
-            const { id } = req.body;
-            const coupleCard = await Couple.findById(id)
-
-            if(!coupleCard) res.status(404).json({ error: "Couple not found" });
-
-            res.json(coupleCard);
-        } catch(err) {
-            res.status(500).json({ error: "Error when searching for couple", err});
-        }
-    });
-
     router.get("/:slug", async (req, res) => {
         try{
             const { slug } = req.params;
-            const coupleCard = await Couple.findOne({ slug: slug});
+            const coupleCard = await Couple.findOne({slug: slug});
 
-            if(!coupleCard) res.status(404).json({ error: "Couple not found" });
+            if(!coupleCard){
+                return res.status(404).json({ error: "Couple not found" });
+            }
 
             res.json(coupleCard);
         } catch(err) {
@@ -72,7 +61,7 @@ export default function coupleRoutes() {
 
             const dataToHash = `${coupleCard._id}-${Date.now()}`;
             const uniqueHash = crypto.createHash("sha256").update(dataToHash).digest('base64url');
-            const slugPart = uniqueHash.slice(7, 12)
+            const slugPart = uniqueHash.slice(0, 4)
 
             if(coupleCard) {
                 coupleCard.slug = `${slugPart}-${coupleCard.name.replace(/\s+/g, "-").toLowerCase()}`;
