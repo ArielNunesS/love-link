@@ -4,6 +4,7 @@ import Couple from "../models/Couple";
 import multer from "multer";
 import upload from "../middlewares/multer";
 import cloudinary from "../utils/cloudinary";
+import crypto from "crypto";
 
 export default function coupleRoutes() {
     const router = Router();
@@ -68,15 +69,20 @@ export default function coupleRoutes() {
             });
 
             const coupleCard = await newCouple.save()
-            
+
+            const dataToHash = `${coupleCard._id}-${Date.now()}`;
+            const uniqueHash = crypto.createHash("sha256").update(dataToHash).digest('base64url');
+            const slugPart = uniqueHash.slice(7, 12)
+
             if(coupleCard) {
-                res.status(201).json(coupleCard);  
+                coupleCard.slug = `${slugPart}-${coupleCard.name.replace(/\s+/g, "-").toLowerCase()}`;
+
+                await coupleCard.save();
+                
+                res.status(201).json(coupleCard);
             };
 
-            const randomNumbers = Math.floor(1000 + Math.random() * 9000).toString();
 
-            coupleCard.slug = `${coupleCard._id.toString().slice(19, 21)}${randomNumbers}-${coupleCard.name.replace(/\s+/g, "-").toLowerCase()}`;
-            await coupleCard.save();
         } catch(err) {
             console.error(err);
             res.status(400).json(err);
