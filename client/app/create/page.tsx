@@ -106,7 +106,6 @@ export default function CreatePage() {
             formData.append("image", data.image[0])
         }
 
-
         try {
         const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://localhost:10000"
 
@@ -116,13 +115,11 @@ export default function CreatePage() {
             credentials: "include",
         });
 
-
-
         if(response.ok) {
             reset();
 
             const result = await response.json();
-            const { coupleUrl, qrCodeImage } = result;
+            const { coupleUrl, qrCodeImage, qrCodeLink } = result;
 
             await fetch(`${backendAPIURL}/email`, {
                 method: "POST",
@@ -136,7 +133,9 @@ export default function CreatePage() {
                         <a href="${coupleUrl}">${coupleUrl}</a>
                     </p>
                     <p>Aqui está o QR Code:</p>
-                    <img src="${qrCodeImage} alt="QR Code"/>`,
+                    <img src="${qrCodeImage} alt="QR Code"/><br/>
+                    <img src="${qrCodeLink} alt="QR Code"/>,`,
+                    
                 })
             })
 
@@ -170,7 +169,6 @@ export default function CreatePage() {
         <div className="grid grid-cols-2 mr-30 gap-x-40 w-200 z-10 mt-30
             xm:max-xl:mt-45 max-xm:flex max-xm:flex-col max-xm:gap-x-0 max-xm:w-full max-xm:mt-55"
             onSubmit={handleSubmit(onSubmit)}>
-
         <div className="col-span-1
             l:max-xl:w-full l:max-xl:ml-15 xm:max-l:w-70 xm:max-l:ml-10 max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-full max-xm:px-7 max-xm:mt-5">
             <label className="block p-0 text-lg font-semibold

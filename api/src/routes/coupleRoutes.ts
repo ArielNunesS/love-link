@@ -69,13 +69,15 @@ export default function coupleRoutes() {
                 await coupleCard.save();
             };
 
-        const coupleUrl = `https://love-link-app.com.br/couple/${coupleCard.slug}`;
-        const qrCodeImage = await fetch(`https://api.qrserver.com/v1/create-qr-code/?data=${coupleUrl}&size=300x300`);
+            const coupleUrl = `https://love-link-app.com.br/couple/${coupleCard.slug}`;
+            const qrCodeImage = await fetch(`https://quickchart.io/qr?text=${coupleUrl}&size=300`);
+            const qrCodeLink = qrCodeImage.body;
 
-        res.status(201).json({
-            coupleUrl,
-            qrCodeImage
-        });
+            res.status(201).json({
+                coupleUrl,
+                qrCodeImage,
+                qrCodeLink,
+            });
 
         } catch(err) {
             console.error(err);
