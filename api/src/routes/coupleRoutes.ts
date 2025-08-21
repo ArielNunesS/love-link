@@ -73,7 +73,9 @@ export default function coupleRoutes() {
                 res.status(201).json(coupleCard);  
             };
 
-            coupleCard.slug = `${coupleCard._id.toString().slice(16, 22)}-${coupleCard.name.replace(/\s+/g, "-").toLowerCase()}`;
+            const randomNumbers = Math.floor(1000 + Math.random() * 9000).toString();
+
+            coupleCard.slug = `${coupleCard._id.toString().slice(19, 21)}${randomNumbers}-${coupleCard.name.replace(/\s+/g, "-").toLowerCase()}`;
             await coupleCard.save();
         } catch(err) {
             console.error(err);
