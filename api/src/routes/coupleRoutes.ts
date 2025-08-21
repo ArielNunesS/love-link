@@ -73,7 +73,7 @@ export default function coupleRoutes() {
                 res.status(201).json(coupleCard);  
             };
 
-            coupleCard.slug = `${coupleCard._id.toString().slice(0, 4)}-${coupleCard.name.replace(/\s+/g, "-").toLowerCase()}`;
+            coupleCard.slug = `${coupleCard._id.toString().slice(16, 22)}-${coupleCard.name.replace(/\s+/g, "-").toLowerCase()}`;
             await coupleCard.save();
         } catch(err) {
             console.error(err);
