@@ -94,8 +94,11 @@ export default function CardPreview(props: CardPreviewProps){
     )
   }
     return (
+
       <div className="max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10">
+
       <div className="relative mx-auto">
+
           <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden
           shadow-2xl border-8 border-gray-800">
               {/* Notch */}
@@ -189,7 +192,7 @@ export default function CardPreview(props: CardPreviewProps){
                   max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
                 />
               </div>
-      </div>
           </div>
+      </div>
     )
 } 

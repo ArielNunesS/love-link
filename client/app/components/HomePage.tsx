@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Heart, Calendar, Clock, Camera, Gift, Music, Mail } from "lucide-react";
+import { Heart } from "lucide-react";
+import Image from "next/image";
 import CardPreview from "./CardPreview";
 
 export default function HomePage() {
@@ -73,6 +74,61 @@ export default function HomePage() {
             </div>
 
             </section>
+
+        <section className="relative w-full py-50 z-30">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-15">
+              <h2 className="text-4xl font-bold text-white mb-3">Como Fazer?</h2>
+            </div>
+
+            <div className="grid grid-cols-1 m:grid-cols-2 gap-8 w-5/7 h-120 mx-auto max-m:w-full">
+
+              <div className="bg-[#101030] rounded-2xl shadow-lg p-5 text-center flex flex-col items-center">
+                <p className="text-lg font-semibold text-white mb-5">1. Preencha os Dados</p>
+                <Image 
+                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  alt=""
+                  width={500}
+                  height={500}
+                  className="mb-4 rounded-4xl"
+                />
+              </div>
+
+              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
+                <p className="text-lg font-semibold text-white">2. Faça o Pagamento</p>
+                <Image 
+                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  alt=""
+                  width={300}
+                  height={300}
+                  className="mb-4"
+                />
+              </div>
+
+              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
+                <p className="text-lg font-semibold text-white">3. Receba o seu Site <br/>+<br/>QR Code no e-mail</p>
+                <Image 
+                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  alt=""
+                  width={300}
+                  height={300}
+                  className="mb-4"
+                />
+              </div>
+
+              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
+                <p className="text-lg font-semibold text-white">4. Surpreenda seu amor</p>
+                <Image 
+                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  alt=""
+                  width={300}
+                  height={300}
+                  className="mb-4"
+                />
+              </div>
+            </div>
+          </div>
+      </section>
         </div>
     </main>
     )

@@ -23,17 +23,17 @@ export default function Navbar() {
 
         <div className="flex items-center gap-8 max-xm:w-full max-xm:hidden">
           <Link
-            href="/exemplos"
+            href="#exemplos"
             className="text-2xl font-bold text-white max-m:hidden select-none"
           >
             Exemplos
           </Link>
 
           <Link
-            href="/como-funciona"
+            href="#como-funciona"
             className="text-2xl font-bold text-white max-m:text-lg max-m:w-full max-m:text-center select-none"
           >
-            Como Funciona
+            Como Fazer
           </Link>
         </div>
       </nav>

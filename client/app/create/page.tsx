@@ -128,8 +128,8 @@ export default function CreatePage() {
                     to: data.email,
                     subject: "Testando",
                     html: `
-                    <p>Olá, recebemos sua requisição!</p>
-                    <p>Aqui está o Link para sua página:
+                    <p>Olá, ${data.email.split('@')[0]} recebemos sua requisição!</p>
+                    <p>Aqui está o Link para sua página:<br/>
                         <a href="${coupleUrl}">${coupleUrl}</a>
                     </p>
                     <p>Aqui está o QR Code:</p>
