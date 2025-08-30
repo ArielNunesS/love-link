@@ -118,9 +118,13 @@ export default function CreatePage() {
         if(response.ok) {
             reset();
 
+            await fetch(`${backendAPIURL}/payment`, {
+                
+            })
+
             const result = await response.json();
             const { coupleUrl } = result;
-
+        
             await fetch(`${backendAPIURL}/email`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -139,10 +143,10 @@ export default function CreatePage() {
 
         } else {
             const errorData = await response.json()
-            console.error("Erro ao enviar dados", response.status, errorData)
+            console.error("Error during data send", response.status, errorData)
         }
     } catch(error) {
-        console.error("erro de requisição", error)
+        console.error("Requisition error", error)
     }
 }
     
@@ -150,7 +154,6 @@ export default function CreatePage() {
     <>
     <main className="w-screen min-h-screen flex xm:justify-end items-center z-20 px-5 bg-gradient-to-b from-[#0a0a20] via-[#101030] to-[#09091d]
     l:max-xl:px-20 max-xm:items-start max-xm:flex-col max-xm:px-3 max-xm:overflow-hidden">
-        <AnimatedBackground/>
         <Navbar/>
         <div className="absolute p-0 top-20 select-none
             xl:left-2/7

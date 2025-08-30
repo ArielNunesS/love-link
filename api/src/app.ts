@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import emailController from "./controllers/emailController";
 import coupleRoutes from "./routes/coupleRoutes";
+import paymentRoutes from "./routes/paymentRoutes";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cors({
 }));
 
 app.use('/couples', coupleRoutes());
+app.use('/payment', paymentRoutes());
 app.use('/email', emailController);
 
 export default app;

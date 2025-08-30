@@ -1,6 +1,5 @@
 import { Resend } from "resend";
 import Couple from "../models/Couple";
-import "dotenv/config";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

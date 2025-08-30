@@ -54,7 +54,7 @@ export default function HomePage() {
                         />
 
                     {/* Button */}
-                    <div className="relative w-130 group rounded-xl border-container
+                    {/* <div className="relative w-130 group rounded-xl border-container
                       max-xpp:w-90">
                     <div className="absolute mt-3 h-8 inset-0 rounded-xl bg-rose-600 animate-border-move opacity-80 blur-md
                       max-xpp:w-65 max-xpp:mx-auto max-pp:w-80 max-p:w-80 max-m:w-100 max-xm:w-110 max-xm:mx-auto"/>
@@ -68,7 +68,7 @@ export default function HomePage() {
                           ">
                           Fazer meu LoveLink <br className="hidden max-m:inline"/>AGORA MESMO!
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
               </div>
             </div>
@@ -129,6 +129,55 @@ export default function HomePage() {
             </div>
           </div>
       </section>
+
+        <section className="relative w-full py-50 z-30">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-15">
+              <h2 className="text-4xl font-bold text-white mb-3">Pergutas Frequentes</h2>
+            </div>
+
+            <div className="grid grid-cols-1 m:grid-cols-2 gap-8 w-5/7 h-120 mx-auto max-m:w-full">
+
+              <div className="bg-[#101030] rounded-2xl shadow-lg p-5 text-center flex flex-col items-center">
+                <p className="text-lg font-semibold text-white mb-5">1. Preencha os Dados</p>
+              </div>
+
+              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
+                <p className="text-lg font-semibold text-white">2. Faça o Pagamento</p>
+                <Image 
+                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  alt=""
+                  width={300}
+                  height={300}
+                  className="mb-4"
+                />
+              </div>
+
+              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
+                <p className="text-lg font-semibold text-white">3. Receba o seu Site <br/>+<br/>QR Code no e-mail</p>
+                <Image 
+                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  alt=""
+                  width={300}
+                  height={300}
+                  className="mb-4"
+                />
+              </div>
+
+              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
+                <p className="text-lg font-semibold text-white">4. Surpreenda seu amor</p>
+                <Image 
+                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  alt=""
+                  width={300}
+                  height={300}
+                  className="mb-4"
+                />
+              </div>
+            </div>
+          </div>
+      </section>
+
         </div>
     </main>
     )

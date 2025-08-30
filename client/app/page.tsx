@@ -18,7 +18,6 @@ export default function Home() {
       <BackgroundLines/>
       <Navbar/>
       <HomePage/>
-      <AnimatedBackground/>
     </div>
   );
 }
