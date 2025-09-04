@@ -15,7 +15,8 @@ export default function paymentRoutes() {
                 name: "Love Link - Página Personalizada",
                 description: "Uma página única para presentear seu amor, com um QR Code exclusivo!",
                 quantity: 1,
-                unit_amount: 1999
+                unit_amount: 1999,
+                image_url: "https://i.postimg.cc/fbwy95Ww/heart-icon.png"
             }
         ],
         payment_methods: [
@@ -34,38 +35,81 @@ export default function paymentRoutes() {
                 ]
             }
         ],
+        shipping: {
+            type: "FREE",
+            address_modifiable: false,
+            address: {
+                street: "Avenida Brasil",
+                number: "0",
+                locality: "Centro",
+                city: "Balneário Camboriú",
+                region_code: "SC",
+                country: "BRA",
+                postal_code: "88330040"
+            }
+        },
+
         soft_descriptor: "Página + QR Code",
-        redirect_url: "https://love-link-app.com.br/success/qrcode",
+        redirect_url: "https://love-link-app.com.br/success/",
         return_url: "https://love-link-app.com.br/",
-        notification_urls: [
-            "https://love-link-app.com.br"
-        ]
+        notification_urls: [ `${process.env.NEXT_PUBLIC_BACKEND_URL}/payment/webhook?secret=${process.env.PAGBANK_WEBHOOK_SECRET}` ],
+        payment_notification_urls: [ `${process.env.NEXT_PUBLIC_BACKEND_URL}/payment/webhook?secret=${process.env.PAGBANK_WEBHOOK_SECRET}` ]
     }
 
     const response = await fetch("https://sandbox.api.pagseguro.com/checkouts", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `${process.env.PAGBANK_TOKEN}`,
+            "Authorization": `Bearer ${process.env.PAGBANK_TOKEN}`,
         },
         body: JSON.stringify(body),
     });
 
     const data = await response.json();
-    const checkoutUrl = data.links[1].href;
+    
+    if(!response.ok) {
+        return res.status(response.status).json(data);
+    }
 
-    // const checkoutRedirect = await fetch(checkoutUrl, {
-    // });
-
-    if(!response.ok) return res.status(response.status).json(data);
-
-    res.status(201).json(data);
-    res.status(201).json(data.links[1].href);
+    return res.status(200).json({ checkoutUrl: data.links[1].href })
 
     } catch(error) {
         res.status(500).json({ error: "Error during checkout creation"});
     }
-})
+});
+
+
+
+    router.get("/:id", async(req, res) => {
+
+    const checkoutId = req.params;
+
+    const response = await fetch(`https://sandbox.api.pagseguro.com/checkouts/${checkoutId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${process.env.PAGBANK_TOKEN}`,
+        },
+    });
+
+
+
+    });
+
+
+
+    router.post("/webhook", async(req, res) => {
+        const secret = req.query.secret;
+
+        if(secret !== process.env.PAGBANK_WEBHOOK_SECRET) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
+
+        const event = req.body;
+
+        console.log("Pagbank Notification", event)
+        res.sendStatus(200)
+    });
 
     return router;
 }
