@@ -107,8 +107,7 @@ export default function CreatePage() {
         }
 
         try {
-        const backendAPIURL = "http://localhost:10000"
-        // process.env.NEXT_PUBLIC_BACKEND_URL || 
+        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:10000"
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
