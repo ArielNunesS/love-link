@@ -18,6 +18,7 @@
   --breakpoint-xm: 1024px;
   --breakpoint-l: 1248px;
   --breakpoint-ll: 1500px;
+  --breakpoint-lll: 1536px;
   --breakpoint-xl: 1640px;
 
   --animate-rotate-border: border-rotate 4s linear infinite;

@@ -1,7 +1,4 @@
 import React from "react";
-import AnimatedBackground from "./AnimatedBackground";
-import Link from "next/link";
-import { Heart } from "lucide-react";
 
 export default function BackgroundLines() {
     return (
@@ -36,7 +33,7 @@ export default function BackgroundLines() {
                      d="M0,350 C600,280 1200,400 1920,320"
                      fill="none"
                      stroke="rgba(244, 114, 182, 0.25)"
-                     strokeWidth="2"
+                     strokeWidth="1.5"
                    />
                  </svg>
    

@@ -22,11 +22,14 @@ export default function CardPreview(props: CardPreviewProps){
   const now = DateTime.now();
   const start = DateTime.fromJSDate(props.startDate);
 
-  const diff = now.diff(start, ["years", "months", "days"]).toObject();
+  const diff = now.diff(start, ["years", "months", "days", "hours", "minutes", "seconds"]).toObject();
 
   const years = Math.floor(diff.years ?? 0);
   const months = Math.floor(diff.months ?? 0);
   const days = Math.floor(diff.days ?? 0);
+  const hours = Math.floor(diff.hours ?? 0);
+  const minutes = Math.floor(diff.minutes ?? 0);
+  const seconds = Math.floor(diff.seconds ?? 0);
 
   if(showMessage) {
     return (
@@ -38,7 +41,7 @@ export default function CardPreview(props: CardPreviewProps){
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
               
               {/* Screen */}
-            <div className="relative bg-gradient-to-br from-purple-900/80 via-[#1a1a2e] to-rose-900/50 pt-5 pb-4 min-h-170 h-fit overflow-hidden">
+            <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-4 min-h-170 h-fit overflow-hidden">
                 <div className="px-4 py-2 flex items-center justify-between">
                     <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
                     <div className="flex items-center gap-1">
@@ -96,16 +99,14 @@ export default function CardPreview(props: CardPreviewProps){
     return (
 
       <div className="max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10">
-
       <div className="relative mx-auto">
-
           <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden
           shadow-2xl border-8 border-gray-800">
               {/* Notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
               
               {/* Screen */}
-            <div className="relative bg-gradient-to-br from-purple-900/80 via-[#1a1a2e] to-rose-900/50 pt-5 pb-4 h-170 overflow-hidden">
+            <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-4 h-170 overflow-hidden">
                 <div className="px-4 py-2 flex items-center justify-between">
                     <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
                     <div className="flex items-center gap-1">
@@ -148,6 +149,7 @@ export default function CardPreview(props: CardPreviewProps){
                   <div className="bg-white/5 rounded-lg p-2">
                     <p className="text-rose-400 font-bold text-xl">{years}</p>
                     <p className="text-white/70 text-xs">anos</p>
+
                   </div>
                   <div className="bg-white/5 rounded-lg p-2">
                     <p className="text-rose-400 font-bold text-xl">{months}</p>

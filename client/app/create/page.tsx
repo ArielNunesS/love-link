@@ -107,8 +107,8 @@ export default function CreatePage() {
         }
 
         try {
-        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://localhost:10000"
-
+        const backendAPIURL = "http://localhost:10000"
+        // process.env.NEXT_PUBLIC_BACKEND_URL || 
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
@@ -118,28 +118,42 @@ export default function CreatePage() {
         if(response.ok) {
             reset();
 
-            await fetch(`${backendAPIURL}/payment`, {
-                
-            })
+            const paymentRes = await fetch(`${backendAPIURL}/payment`, {
+                    method: "POST",
+                });
+
+            const paymentData = await paymentRes.json()
+            
+            if(paymentData.checkoutUrl) {
+                setTimeout(() => {
+                    const newTab = window.open(paymentData.checkoutUrl, "_blank");
+
+                    if (!newTab) {
+                        window.location.href = paymentData.checkoutUrl;
+                }
+                }, 3000);
+            }
 
             const result = await response.json();
             const { coupleUrl } = result;
-        
-            await fetch(`${backendAPIURL}/email`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    to: data.email,
-                    subject: "Testando",
-                    html: `
-                    <p>Olá, ${data.email.split('@')[0]} recebemos sua requisição!</p>
-                    <p>Aqui está o Link para sua página:<br/>
-                        <a href="${coupleUrl}">${coupleUrl}</a>
-                    </p>
-                    <p>Aqui está o QR Code:</p>
-                    <img src="https://www.qrcoder.co.uk/api/v4/?key=MXY3NPsQZDF1UdJpjylzBOS85ErGikL9&text=${coupleUrl}">`
+            
+            if(paymentRes) {
+                await fetch(`${backendAPIURL}/email`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        to: data.email,
+                        subject: "Testando",
+                        html: `
+                        <p>Olá, ${data.email.split('@')[0]} recebemos sua requisição!</p>
+                        <p>Aqui está o Link para sua página:<br/>
+                            <a href="${coupleUrl}">${coupleUrl}</a>
+                        </p>
+                        <p>Aqui está o QR Code:</p>
+                        <img src="https://www.qrcoder.co.uk/api/v4/?key=MXY3NPsQZDF1UdJpjylzBOS85ErGikL9&text=${coupleUrl}">`
+                    })
                 })
-            })
+            }
 
         } else {
             const errorData = await response.json()
@@ -207,7 +221,7 @@ export default function CreatePage() {
                 <div className="p-[3px] w-full rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                     <input
                         type="text"
-                        placeholder="Feliz 3 Meses"
+                        placeholder="Feliz 5 Meses"
                         className="w-full p-3.5 bg-[#09091d] rounded-lg outline-none"
                         maxLength={20}
                         { ...register("title", {
@@ -226,7 +240,7 @@ export default function CreatePage() {
                 <div className="p-[3px] w-fit h-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
                 max-xm:w-full">
                     <textarea 
-                        placeholder="Oii meu amor, queria dizer o quanto te amo..."
+                        placeholder="Oii meu amor, quero te falar o quanto te amo..."
                         className="w-100 h-50 overflow-y-auto resize-none justify-start py-5 px-3 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
                         xm:max-xl:h-45 max-xm:w-full max-p:h-45"
                         maxLength={800}

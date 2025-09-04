@@ -7,10 +7,10 @@ import CardPreview from "./CardPreview";
 export default function HomePage() {
     return (
     <main className="min-h-screen z-10">
-        <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#09091d]">
+        <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#020203]">
         <section className="relative flex items-center justify-center overflow-x-clip">
-            <div className="relative z-10 container xm:flex-row mx-auto px-4 top flex flex-col items-center justify-between gap-8">
-                <div className="text-left max-m:ml-0 ml-7">
+            <div className="relative z-10 container mx-auto px-4 top flex flex-col items-center justify-between gap-8 xm:flex-row">
+                <div className="text-left max-m:ml-0 max-l:ml-7 l:mx-10 ll:ml-10 lll:ml-65">
                   <h1 className="text-6xl font-bold mb-5 -mt-15 max-xpp:text-4xl max-pp:text-[42px] max-p:text-[46px] max-m:text-[52px] max-xm:text-6xl max-m:mt-15 max-xm:mt-18 ">
                       <span className="text-rose-500">
                             Eternize </span>
@@ -42,33 +42,19 @@ export default function HomePage() {
                 </div>
 
                 {/* Right side - Preview*/}
-              <div className="w-full flex flex-col items-center justify-center mt-12">
+              <div className="w-full flex flex-col items-center justify-center mt-12
+                xl:mt-15
+                lll:mr-30
+                ll:mt-7 ll:mr-10">
                 <div className="flex flex-wrap justify-center">
                     <CardPreview
-                          name="João e Maria"
+                          name="Ariel e Letícia"
                           email=""
-                          title="Te Amooo"
-                          message="Aqui um texto para que nunca se esqueça do quanto eu te amo"
+                          title="Feliz 6 Meses Amor"
+                          message="Aqui um texto para que nunca se esqueça do quanto eu te amo..."
                           startDate={new Date(1707001111111)}
                           image={null}
                         />
-
-                    {/* Button */}
-                    {/* <div className="relative w-130 group rounded-xl border-container
-                      max-xpp:w-90">
-                    <div className="absolute mt-3 h-8 inset-0 rounded-xl bg-rose-600 animate-border-move opacity-80 blur-md
-                      max-xpp:w-65 max-xpp:mx-auto max-pp:w-80 max-p:w-80 max-m:w-100 max-xm:w-110 max-xm:mx-auto"/>
-                        <Link href={"/create"} className="relative block z-10 w-full bg-rose-700 text-white text-lg py-3 mt-3 text-center
-                          rounded-full font-medium shadow-lg hover:bg-rose-600 transition-all duration-150 hover:shadow-rose-500/70 select-none
-                          max-xm:w-9/10 max-xm:mx-auto max-xm:h-15 max-xm:text-[22px]
-                          max-m:w-8/10 max-m:text-[22px] max-m:h-20
-                          max-p:w-6/9 max-p:text-xl
-                          max-pp:w-5/8 max-pp:text-xl max-pp:h-21
-                          max-xpp:w-3/4 max-xpp:text-lg max-xpp:h-20
-                          ">
-                          Fazer meu LoveLink <br className="hidden max-m:inline"/>AGORA MESMO!
-                        </Link>
-                    </div> */}
                 </div>
               </div>
             </div>
@@ -97,11 +83,11 @@ export default function HomePage() {
               <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
                 <p className="text-lg font-semibold text-white">2. Faça o Pagamento</p>
                 <Image 
-                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  src="https://i.postimg.cc/28VvZRk4/love-link-payment.pngpng"
                   alt=""
-                  width={300}
-                  height={300}
-                  className="mb-4"
+                  width={450}
+                  height={450}
+                  className="mt-20"
                 />
               </div>
 
@@ -130,50 +116,17 @@ export default function HomePage() {
           </div>
       </section>
 
-        <section className="relative w-full py-50 z-30">
+        <section className="relative w-full py-50 mt-100 z-30">
           <div className="container mx-auto px-6">
             <div className="text-center mb-15">
               <h2 className="text-4xl font-bold text-white mb-3">Pergutas Frequentes</h2>
             </div>
 
-            <div className="grid grid-cols-1 m:grid-cols-2 gap-8 w-5/7 h-120 mx-auto max-m:w-full">
-
-              <div className="bg-[#101030] rounded-2xl shadow-lg p-5 text-center flex flex-col items-center">
-                <p className="text-lg font-semibold text-white mb-5">1. Preencha os Dados</p>
-              </div>
-
-              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
-                <p className="text-lg font-semibold text-white">2. Faça o Pagamento</p>
-                <Image 
-                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
-                  alt=""
-                  width={300}
-                  height={300}
-                  className="mb-4"
-                />
-              </div>
-
-              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
-                <p className="text-lg font-semibold text-white">3. Receba o seu Site <br/>+<br/>QR Code no e-mail</p>
-                <Image 
-                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
-                  alt=""
-                  width={300}
-                  height={300}
-                  className="mb-4"
-                />
-              </div>
-
-              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
-                <p className="text-lg font-semibold text-white">4. Surpreenda seu amor</p>
-                <Image 
-                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
-                  alt=""
-                  width={300}
-                  height={300}
-                  className="mb-4"
-                />
-              </div>
+            <div className=" w-5/7 mx-auto max-m:w-full">
+                <p className="text-3xl mt-5 font-semibold text-white">1. Preencha os Dados</p>
+                <p className="text-3xl mt-5 font-semibold text-white">2. Faça o Pagamento</p>
+                <p className="text-3xl mt-5 font-semibold text-white">3. Receba o seu Site QR Code no e-mail</p>
+                <p className="text-3xl mt-5 font-semibold text-white">4. Surpreenda seu amor</p>
             </div>
           </div>
       </section>
