@@ -18,10 +18,10 @@ export default function Navbar() {
         alt=""
         width={60}
         height={60}
-        className="w-15 max-p:w-13 max-pp:w-12 max-xpp:w-10 select-none"
+        className="w-15 max-xm:w-13 max-m:w-12 max-pp:w-10 select-none"
         />
 
-        <span className="text-3xl font-bold text-white max-p:text-2xl max-xpp:text-xl select-none">
+        <span className="text-3xl font-bold text-white max-xm:text-2xl max-pp:text-xl select-none">
           LoveLink
         </span>
         </Link>

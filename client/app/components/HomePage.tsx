@@ -52,7 +52,7 @@ export default function HomePage() {
                           email=""
                           title="Feliz 6 Meses Amor"
                           message="Aqui um texto para que nunca se esqueça do quanto eu te amo..."
-                          startDate={new Date(1707001111111)}
+                          startDate={new Date("2024-01-01")}
                           image={null}
                         />
                 </div>
