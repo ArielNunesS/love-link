@@ -78,11 +78,9 @@ export default function paymentRoutes() {
     }
 });
 
+    router.get("/:checkoutId", async(req, res) => {
 
-
-    router.get("/:id", async(req, res) => {
-
-    const checkoutId = req.params;
+    const {checkoutId} = req.params;
 
     const response = await fetch(`https://sandbox.api.pagseguro.com/checkouts/${checkoutId}`, {
         method: "GET",
@@ -92,8 +90,17 @@ export default function paymentRoutes() {
         },
     });
 
+        const data = await response.json();
 
+        if(!response.ok) {
+            return res.status(response.status).json(data);
+        }
 
+        if(data.status === "INACTIVE") {
+            return res.status(200).json(data);
+        }
+
+        return res.status(200).json(data);
     });
 
 
