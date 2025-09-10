@@ -2,11 +2,12 @@
 
 import React from "react";
 import Link from "next/link";
-import { Calendar, Heart, Music, Camera, Mail, MailOpen } from "lucide-react";
 import Image from "next/image";
+import { Calendar, Heart, Music, Camera, Mail, MailOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";
+import { useModal } from "../contexts/ModalContext";
 import {z} from "zod";
 
 interface CardPreviewProps {
@@ -20,9 +21,10 @@ interface CardPreviewProps {
 
 export default function CardPreview(props: CardPreviewProps){
   const [ showMessage, setShowMessage ] = useState<boolean>(false);
+  const { isOpen } = useModal()
+
   const now = DateTime.now();
   const start = DateTime.fromJSDate(props.startDate);
-
   const diff = now.diff(start, ["years", "months", "days", "hours", "minutes", "seconds"]).toObject();
 
   const years = Math.floor(diff.years ?? 0);
@@ -34,14 +36,15 @@ export default function CardPreview(props: CardPreviewProps){
 
   if(showMessage) {
     return (
-      <div className="max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10">
+
+      <div className={`max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10
+      ${isOpen ? "opacity-50 pointer-events-none" : "opacity-100"}`}>
       <div className="relative mx-auto">
-          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden
-          shadow-2xl border-8 border-gray-800">
-              {/* Notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-              
-              {/* Screen */}
+          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-800">
+            {/* Notch */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
+            
+            {/* Screen */}
             <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-5 h-170 overflow-y-scroll">
                 <div className="px-4 ml-3 py-1 flex items-center justify-between">
                     <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
@@ -78,35 +81,36 @@ export default function CardPreview(props: CardPreviewProps){
             </div>
           </div>
         </div>
-              {/* Decorative Elements */}
-              <div className="absolute -top-10 -right-10 w-24 h-24 text-rose-500/40 animate-pulse">
-                <Heart className="w-full h-full fill-rose-500/30
-                  max-p:size-20 max-p:mt-3 max-p:ml-0
-                  max-pp:size-17 max-pp:mt-5
-                  max-xpp:size-15 max-xpp:mt-5 max-xpp:ml-2"
-                />
-              </div>
-              <div className="absolute bottom-2 -left-7 w-16 h-16 text-rose-500/50">
-                <Heart className="w-full h-full animate-ping fill-rose-500/35
-                  max-p:size-14 max-p:mt-7 max-p:ml-6
-                  max-pp:size-12 max-pp:mt-9 max-pp:ml-7
-                  max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
-                />
-              </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute -top-10 -right-10 w-24 h-24 text-rose-500/40 animate-pulse">
+            <Heart className="w-full h-full fill-rose-500/30
+              max-p:size-20 max-p:mt-3 max-p:ml-0
+              max-pp:size-17 max-pp:mt-5
+              max-xpp:size-15 max-xpp:mt-5 max-xpp:ml-2"
+            />
           </div>
+          <div className="absolute bottom-2 -left-7 w-16 h-16 text-rose-500/50">
+            <Heart className="w-full h-full animate-ping fill-rose-500/35
+              max-p:size-14 max-p:mt-7 max-p:ml-6
+              max-pp:size-12 max-pp:mt-9 max-pp:ml-7
+              max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
+            />
+          </div>
+        </div>
       </div>
     )
   }
     return (
 
-      <div className="max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10">
-      <div className="relative mx-auto">
-          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-y-scroll
-          shadow-2xl border-8 border-gray-800">
-              {/* Notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-              
-              {/* Screen */}
+      <div className={`max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10
+        ${isOpen ? "opacity-50 pointer-events-none" : "opacity-100"}`}>
+        <div className="relative mx-auto">
+          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-y-scroll shadow-2xl border-8 border-gray-800">
+            {/* Notch */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
+            
+            {/* Screen */}
             <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-5 h-170 overflow-y-scroll">
             {props.image ? (
               <div className=""></div>
@@ -114,14 +118,14 @@ export default function CardPreview(props: CardPreviewProps){
             <div>
               </div>
           }
-                <div className="px-4 ml-3 py-1 flex items-center justify-between">
-                    <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
-                    <div className="flex items-center gap-1 mr-3">
-                      <div className="w-1 h-1 rounded-full bg-white/80"></div>
-                      <div className="w-1 h-1 rounded-full bg-white/80"></div>
-                      <div className="w-1 h-1 rounded-full bg-white/80"></div>
-                    </div>
+            <div className="px-4 ml-3 py-1 flex items-center justify-between">
+                <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
+                <div className="flex items-center gap-1 mr-3">
+                  <div className="w-1 h-1 rounded-full bg-white/80"></div>
+                  <div className="w-1 h-1 rounded-full bg-white/80"></div>
+                  <div className="w-1 h-1 rounded-full bg-white/80"></div>
                 </div>
+            </div>
 
               {/* URL Bar */}
               <div className="mx-4 mt-2 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 flex items-center">
@@ -169,6 +173,7 @@ export default function CardPreview(props: CardPreviewProps){
                 </div>
               </div>
 
+              {/* Features */}
                 {props.image ? (
                   <Image
                   src={props.image}
@@ -188,7 +193,6 @@ export default function CardPreview(props: CardPreviewProps){
                     </div>
                 }
 
-              {/* Features */}
                 <div className="flex bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-25 p-5 mt-3 items-center gap-2
                       max-xpp:w-60.5 max-pp:w-68 max-p:w-73 select-none">
                         <Music className="text-rose-400 w-10 h-10"/>
@@ -197,22 +201,22 @@ export default function CardPreview(props: CardPreviewProps){
             </div>
           </div>
         </div>
-              {/* Decorative Elements */}
-              <div className="absolute -top-10 -right-10 w-24 h-24 text-rose-500/50">
-                <Heart className="w-full h-full fill-rose-500/35 animate-pulse
-                  max-p:size-20 max-p:mt-3 max-p:ml-0
-                  max-pp:size-17 max-pp:mt-5
-                  max-xpp:size-15 max-xpp:mt-5 max-xpp:ml-2"
-                />
-              </div>
-              <div className="absolute bottom-2 -left-7 w-16 h-16 text-rose-500/50">
-                <Heart className="w-full h-full fill-rose-500/35 animate-ping
-                  max-p:size-14 max-p:mt-7 max-p:ml-6
-                  max-pp:size-12 max-pp:mt-9 max-pp:ml-7
-                  max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
-                />
-              </div>
+          {/* Decorative Elements */}
+          <div className="absolute -top-10 -right-10 w-24 h-24 text-rose-500/50">
+            <Heart className="w-full h-full fill-rose-500/35 animate-pulse
+              max-p:size-20 max-p:mt-3 max-p:ml-0
+              max-pp:size-17 max-pp:mt-5
+              max-xpp:size-15 max-xpp:mt-5 max-xpp:ml-2"
+            />
           </div>
+          <div className="absolute bottom-2 -left-7 w-16 h-16 text-rose-500/50">
+            <Heart className="w-full h-full fill-rose-500/35 animate-ping
+              max-p:size-14 max-p:mt-7 max-p:ml-6
+              max-pp:size-12 max-pp:mt-9 max-pp:ml-7
+              max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
+            />
+          </div>
+        </div>
       </div>
     )
 } 

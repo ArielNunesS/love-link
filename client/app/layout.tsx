@@ -1,6 +1,7 @@
 import React from "react";
-import { Fira_Sans, Dancing_Script } from "next/font/google";
 import type { Metadata } from "next";
+import { Fira_Sans, Dancing_Script } from "next/font/google";
+import { ModalProvider } from "./contexts/ModalContext";
 import "./globals.css";
 
 const firaSans = Fira_Sans({
@@ -29,7 +30,9 @@ export default function RootLayout({
     return (
       <html lang="pt-BR" className={`${firaSans.variable} antialiased ${dancingScript.variable} antialiased`}>
         <body className={`${firaSans.variable} antialiased`}>
-          {children}
+          <ModalProvider>
+            {children}
+          </ModalProvider>
         </body>
       </html>
     )

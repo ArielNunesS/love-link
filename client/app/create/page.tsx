@@ -6,6 +6,7 @@ import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
 import { X } from "lucide-react";
+import { useModal } from "../contexts/ModalContext";
 import CardPreview from "../components/CardPreview";
 import Navbar from "../components/Navbar";
 import Image from "next/image";
@@ -74,9 +75,9 @@ export default function CreatePage() {
     const [ titleIsFocused, setTitleIsFocused ] = useState(false);
     const [ messageIsFocused, setMessageIsFocused ] = useState(false);
     const [ dateIsFocused, setDateIsFocused ] = useState(false);
-    const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ isHovering, setIsHovering ] = useState(false);
     const [ imagePreviewUrl, setImagePreviewUrl ] = useState<string | null>(null);
+    const { isOpen, openModal, closeModal } = useModal();
 
     useEffect(() => {
         if(image && image.length > 0) {
@@ -120,7 +121,7 @@ export default function CreatePage() {
 
     try {
 
-        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL ||  "http://localhost:10000"
+        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:10000"
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
@@ -312,7 +313,7 @@ export default function CreatePage() {
                     
                     />
                     {image && image.length > 0 &&(
-                        <p className="text-sm text-white mt-2 ml-3">
+                        <p className="text-sm text-white mt-2 ml-3 select-none">
                             Arquivo: <span className="text-white/70">{image[0].name}</span>
                         </p>
                     )}
@@ -329,7 +330,7 @@ export default function CreatePage() {
                     onMouseEnter={() => setIsHovering(true)}
                     onMouseLeave={() => setIsHovering(false)}>
                     <button
-                        onClick={() => setModalIsOpen(true)}
+                        onClick={() => openModal()}
                         disabled={!isValid || isSubmitting}
                         type="submit"
                         className="p-3 w-full h-full text-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed font-semibold justify-center text-center select-none max-xm:hidden">
@@ -338,11 +339,12 @@ export default function CreatePage() {
                 </div>
                 <span className={`text-white/70 m-0 p-0 text-xs ${!isValid && isHovering ? "opacity-75" : "opacity-0"}`}>Preencha Todos os Dados</span>
             </div>
-            {modalIsOpen && (
+            
+            {isOpen && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
                 <div className="rounded-lg bg-[#09091d] opacity-100 border-3 border-rose-500/60 z-20 xm:fixed inset-0 xm:w-130 xm:h-60 xm:top-75 xm:left-2/8 max-xm:bg-amber-500">
                     <button 
-                        onClick={() => setModalIsOpen(false)}
+                        onClick={() => closeModal()}
                         className="absolute top-2 right-2 text-white hover:text-rose-500 transition-colors cursor-pointer">
                         <X/>
                     </button>
@@ -382,38 +384,45 @@ export default function CreatePage() {
             
         </div>
         <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 m:max-xm:mt-50 max-m:mt-50"> 
-        <span className="absolute z-10 text-white text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-27 m:max-xm:ml-49 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold max-m:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none">Como vai ficar</span>
+        <span className={`absolute z-10 text-white text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-27 m:max-xm:ml-49 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold max-m:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none
+            ${isOpen ? "opacity-50" : "opacity-100"}`}>Como vai ficar</span>
+        <span className={`absolute z-10 text-white/90 text-xs max-p:text-[8px] font-normal mt-52 -ml-12 text-center xm:max-ll:mt-42 max-xm:mt-42 m:max-xm:ml-8 max-p:-ml-4 max-pp:-ml-2 pointer-events-none select-none
+            ${isOpen ? "opacity-50" : "opacity-100"}`}>Clique<br/>na carta</span>
+
             <Image
                 src="https://i.postimg.cc/3RmxkV42/rose-arrow.png"
                 width={120}
                 height={120}
                 alt=""
-                className="absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 m:max-xm:ml-37 max-m:ml-16 pointer-events-none select-none"
+                className={`absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 m:max-xm:ml-37 max-m:ml-16 pointer-events-none select-none
+                    ${isOpen ? "opacity-50" : "opacity-100"}`}
             />
-
             <Image
                 src="https://i.postimg.cc/q7rJwH17/icons8-click-66.png"
                 alt=""
                 width={25}
                 height={25}
-                className="absolute z-10 mt-45 -ml-8 rotate-90 xm:max-ll:mt-35 m:max-xm:mt-35 m:max-xm:ml-12 max-m:mt-35 max-p:-ml-2 max-pp:-ml-0 pointer-events-none select-none"
+                className={`absolute z-10 mt-45 -ml-8 rotate-90 xm:max-ll:mt-35 m:max-xm:mt-35 m:max-xm:ml-12 max-m:mt-35 max-p:-ml-2 max-pp:-ml-0 pointer-events-none select-none
+                    ${isOpen ? "opacity-50" : "opacity-100"}`}
             />
-                <span className="absolute z-10 text-white/90 text-xs max-p:text-[8px] font-normal mt-52 -ml-12 text-center xm:max-ll:mt-42 max-xm:mt-42 m:max-xm:ml-8 max-p:-ml-4 max-pp:-ml-2 pointer-events-none select-none">Clique<br/>na carta</span>
+        
 
-            <div className="m:max-xm:ml-20">
-                <CardPreview
-                    name={name}
-                    email={""}
-                    title={title}
-                    message={message}
-                    startDate={startDate}
-                    image={imagePreviewUrl}
-                />
-            </div>
+
+        <div className="m:max-xm:ml-20 select-none">
+            <CardPreview
+                name={name}
+                email={""}
+                title={title}
+                message={message}
+                startDate={startDate}
+                image={imagePreviewUrl}
+            />
+        </div>
+
         <div className="flex p-1 mx-auto w-full rounded-lg mt-12 cursor-pointer font-bold m:max-xm:w-130 max-p:w-9/10
             bg-gradient-to-r from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40 xm:hidden">
                 <button
-                    onClick={() => setModalIsOpen(true)}
+                    onClick={() => openModal()}
                     disabled={!isValid || isSubmitting}
                     type="submit"
                     className="block p-3 w-full h-full text-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed font-semibold justify-center text-center select-none xm:hidden">
