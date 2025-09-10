@@ -52,8 +52,8 @@ export default function paymentRoutes() {
         soft_descriptor: "Página + QR Code",
         redirect_url: "https://love-link-app.com.br/success/",
         return_url: "https://love-link-app.com.br/",
-        notification_urls: [ `${process.env.NEXT_PUBLIC_BACKEND_URL}/payment/webhook/${process.env.PAGBANK_WEBHOOK_SECRET}` ],
-        payment_notification_urls: [ `${process.env.NEXT_PUBLIC_BACKEND_URL}/payment/webhook/${process.env.PAGBANK_WEBHOOK_SECRET}` ]
+        notification_urls: [ `${process.env.NEXT_PUBLIC_BACKEND_URL}/payment/webhook?secret=${process.env.PAGBANK_WEBHOOK_SECRET}` ],
+        payment_notification_urls: [ `${process.env.NEXT_PUBLIC_BACKEND_URL}/payment/webhook?secret=${process.env.PAGBANK_WEBHOOK_SECRET}` ]
     }
 
     const response = await fetch("https://sandbox.api.pagseguro.com/checkouts", {
@@ -103,8 +103,8 @@ export default function paymentRoutes() {
         return res.status(200).json(data);
     });
 
-    router.post("/webhook/:secret", async(req, res) => {
-        const { secret } = req.params;
+    router.post("/webhook", async(req, res) => {
+        const secret = req.query.secret;
 
         if(secret !== process.env.PAGBANK_WEBHOOK_SECRET) {
             return res.status(401).json({ error: "Unauthorized" });
