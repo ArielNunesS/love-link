@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Calendar, Heart, Music, Camera, Mail, MailOpen } from "lucide-react";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";
@@ -14,7 +15,7 @@ interface CardPreviewProps {
   title: string,
   message: string,
   startDate: Date,
-  image: FileList | null,
+  image: string | null
 }
 
 export default function CardPreview(props: CardPreviewProps){
@@ -41,10 +42,10 @@ export default function CardPreview(props: CardPreviewProps){
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
               
               {/* Screen */}
-            <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-4 min-h-170 h-fit overflow-hidden">
-                <div className="px-4 py-2 flex items-center justify-between">
+            <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-5 h-170 overflow-y-scroll">
+                <div className="px-4 ml-3 py-1 flex items-center justify-between">
                     <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 mr-3">
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
@@ -100,16 +101,22 @@ export default function CardPreview(props: CardPreviewProps){
 
       <div className="max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10">
       <div className="relative mx-auto">
-          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden
+          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-y-scroll
           shadow-2xl border-8 border-gray-800">
               {/* Notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
               
               {/* Screen */}
-            <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-4 h-170 overflow-hidden">
-                <div className="px-4 py-2 flex items-center justify-between">
+            <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-5 h-170 overflow-y-scroll">
+            {props.image ? (
+              <div className=""></div>
+            ) :
+            <div>
+              </div>
+          }
+                <div className="px-4 ml-3 py-1 flex items-center justify-between">
                     <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 mr-3">
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
@@ -123,10 +130,10 @@ export default function CardPreview(props: CardPreviewProps){
               </div>
 
               {/* Content */}
-              <div className="px-4 mt-6">
+              <div className="px-4 mt-5">
 
               {/* Profile Section */}
-              <div className="flex items-center gap-3 mb-5 wrap-break-word">
+              <div className="flex items-center gap-3 mb-3 wrap-break-word">
                 <div className="p-0.5 bg-pink-600/30 rounded-full">
                   <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
@@ -140,7 +147,7 @@ export default function CardPreview(props: CardPreviewProps){
               </div>
 
               {/* Counter Card */}
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 mb-4 cursor-default select-none">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 mb-3 cursor-default select-none">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="w-4 h-4 text-rose-400"/>
                   <h4 className="text-white font-medium text-base max-xpp:text-sm">Tempo Juntos</h4>
@@ -162,16 +169,27 @@ export default function CardPreview(props: CardPreviewProps){
                 </div>
               </div>
 
+                {props.image ? (
+                  <Image
+                  src={props.image}
+                  alt="image"
+                  width={310}
+                  height={310}
+                  className="object-cover border-3 rounded-2xl mx-auto"/>
+                
+                ) :
+                  <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
+                      <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-50 p-5 flex items-center gap-2
+                            max-xpp:w-60.5 max-pp:w-68 max-p:w-73">
+                          <Camera className="w-15 h-15 text-rose-400
+                            max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
+                          <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
+                      </div>
+                    </div>
+                }
+
               {/* Features */}
-              <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
-                <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-50 p-5 flex items-center gap-2
-                      max-xpp:w-60.5 max-pp:w-68 max-p:w-73">
-                    <Camera className="w-15 h-15 text-rose-400
-                      max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
-                    <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
-                </div>
-              </div>
-                <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-25 p-5 flex items-center gap-2
+                <div className="flex bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-25 p-5 mt-3 items-center gap-2
                       max-xpp:w-60.5 max-pp:w-68 max-p:w-73 select-none">
                         <Music className="text-rose-400 w-10 h-10"/>
                     <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Música</span>
