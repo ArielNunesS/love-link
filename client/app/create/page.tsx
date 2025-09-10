@@ -1,17 +1,18 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, useForm } from "react-hook-form";
 import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
+import { X } from "lucide-react";
 import CardPreview from "../components/CardPreview";
 import Navbar from "../components/Navbar";
 import Image from "next/image";
 import "dotenv/config";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-const MAX_FILE_SIZE = 3000000;
+const MAX_FILE_SIZE = 1000000;
 const MAX_LINES = 20;
 
 const today = new Date();
@@ -19,23 +20,23 @@ today.setHours(0, 0, 0, 0);
 
 const cardSchema = z.object({
     name: z.string().max(20),
-    email: z.string().email("Insira um email válido").min(1, "O campo 'email' é obrigatório."),
+    email: z.string().email("Insira um email válido").min(1, "O email é obrigatório."),
     title: z.string().max(20),
     message: z.string().max(800),
-    startDate: z.date().min(new Date("1900-01-01")).max(today, {
+    startDate: z.date({ invalid_type_error: "Informe uma data válida" }).min(new Date("1900-01-01"), "Informe uma data válida").max(today, {
         message: "A data não pode ser uma data futura",
     }),
-    image: z.any().refine(
-        (files) => {
-            if(!files || files.length === 0) return true;
-            const file = files[0];
-            return ACCEPTED_IMAGE_TYPES.includes(file.type)
+    image: z.any()
+    .refine((files) => files?.length > 0, "Uma imagem é obrigatória")
+    .refine((files) => {
+            const file = files?.[0];
+            return ACCEPTED_IMAGE_TYPES.includes(file?.type)
         }, "Somente formatos .jpg, .jpeg, .png e .webp são aceitos.")
-        .refine((files) => {
+    .refine((files) => {
+            const file = files?.[0];
             if(!files || files.length === 0) return true;
-            const file = files[0];
-            return file.size <= MAX_FILE_SIZE;
-        }, "O tamanho da imagem é de 3 MB")
+            return file?.size <= MAX_FILE_SIZE;
+        }, "O tamanho máximo da imagem é de 1 MB")
 });
 
 type TcardSchema = z.input<typeof cardSchema>;
@@ -44,7 +45,7 @@ export default function CreatePage() {
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting, isValid }, 
+        formState: { errors, isSubmitting, isValid, dirtyFields }, 
         reset,
         watch,
         setValue,
@@ -57,22 +58,39 @@ export default function CreatePage() {
             email: "",
             title: "",
             message: "",
+            startDate: new Date(),
             image: null,
         }
     });
 
     const name = watch("name");
+    const email = watch("email");
     const title = watch("title");
     const message = watch("message");
     const startDate = watch("startDate");
     const image = watch("image");
 
     const [ nameIsFocused, setNameIsFocused ] = useState(false);
-    const [ titleIsFocused, setTitleIsFocused ] = useState(false); 
+    const [ titleIsFocused, setTitleIsFocused ] = useState(false);
     const [ messageIsFocused, setMessageIsFocused ] = useState(false);
     const [ dateIsFocused, setDateIsFocused ] = useState(false);
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ isHovering, setIsHovering ] = useState(false);
+    const [ imagePreviewUrl, setImagePreviewUrl ] = useState<string | null>(null);
+
+    useEffect(() => {
+        if(image && image.length > 0) {
+            const file = image[0];
+            const url = URL.createObjectURL(file);
+            setImagePreviewUrl(url);
+
+            return () => {
+                URL.revokeObjectURL(url);
+            };
+        } else {
+            setImagePreviewUrl(null);
+        }
+    }, [image]);
 
     const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.target.value;
@@ -87,8 +105,6 @@ export default function CreatePage() {
             setValue("message", value);
     }
 
-    console.log(errors);
-
     const onSubmit = async (data: TcardSchema) => {
 
         const dt = DateTime.fromJSDate(data.startDate);
@@ -100,10 +116,12 @@ export default function CreatePage() {
         formData.append("title", data.title);
         formData.append("message", data.message);
         formData.append("startDate", dtFormated);
-        formData.append("image", data.image[0])
+        formData.append("image", data.image[0]);
 
-        try {
-        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:10000"
+    try {
+
+        const backendAPIURL = "http://localhost:10000"
+        // process.env.NEXT_PUBLIC_BACKEND_URL || 
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
@@ -113,15 +131,13 @@ export default function CreatePage() {
         if(response.ok) {
             reset();
 
-            setModalIsOpen(true);
-
             const paymentRes = await fetch(`${backendAPIURL}/payment`, {
                     method: "POST",
                 });
 
             const paymentData = await paymentRes.json()
             
-            if(paymentData.checkoutUrl) {
+            if(paymentData) {
                 setTimeout(() => {
                     const newTab = window.open(paymentData.checkoutUrl, "_blank");
 
@@ -192,7 +208,7 @@ export default function CreatePage() {
                         placeholder="Ariel e Letícia"
                         maxLength={20}
                         { ...register("name", {
-                            required: "Por favor insira um nome",
+                            required: true,
                         })}
                         onFocus={() => setNameIsFocused(true)}
                         onBlur={() => setNameIsFocused(false)}
@@ -209,7 +225,7 @@ export default function CreatePage() {
                         className="w-full p-3 bg-[#09091d] rounded-lg outline-none"
                         maxLength={120}
                         { ...register("email", {
-                            required: "É necessário inserir um email para receber o produto",
+                            required: true,
                         })}
                     />
                 </div>
@@ -222,7 +238,7 @@ export default function CreatePage() {
                         className="w-full p-3 bg-[#09091d] rounded-lg outline-none"
                         maxLength={20}
                         { ...register("title", {
-                            required: "Por favor atribua um título (ex: João e Maria)",
+                            required: true,
                         })}
                         onFocus={() => setTitleIsFocused(true)}
                         onBlur={() => setTitleIsFocused(false)}
@@ -243,14 +259,14 @@ export default function CreatePage() {
                         maxLength={800}
                         style={{ resize: "none" }}
                         {...register("message", {
-                            required: "Por favor escreva uma mensagem para seu parceiro/a",
+                            required: true,
                             onChange: handleMessageChange
                         })}
                         onFocus={() => setMessageIsFocused(true)}
                         onBlur={() => setMessageIsFocused(false)}
                     />
                 </div>
-                {messageIsFocused && (
+                {messageIsFocused && dirtyFields.message && (
                     <p className="text-red-500 max-xm:text-right xm:max-xl:ml-84 text-sm px-4 mt-1 rounded-lg">{message?.length || 0}/800</p>
                 )}
             </div>
@@ -263,10 +279,10 @@ export default function CreatePage() {
                 xm:max-xl:w-6/9 max-xm:w-full">
                     <input 
                         type="date"
-                        className="w-full p-3 bg-[#09091d] text-white/60 rounded-lg outline-none"
+                        className={`w-full p-3 bg-[#09091d] rounded-lg outline-none ${dirtyFields.startDate ? "text-white/100" : "text-white/60"}`}
                         max={new Date().toISOString().split("T")[0]}
                     {...register("startDate", {
-                        required: "Informe a data de início do relacionamento",
+                        required: true,
                         valueAsDate: true,
                     })}
                     onFocus={() => setDateIsFocused(true)}
@@ -274,7 +290,7 @@ export default function CreatePage() {
                     />
                 </div>
                 {dateIsFocused && errors.startDate && (
-                    <p className="text-red-500 text-right text-sm px-2 mt-1 rounded-lg xm:text-left">Informe uma data válida.</p>
+                    <p className="text-red-500 text-right text-sm px-2 mt-1 rounded-lg xm:text-left">Insira uma data válida</p>
                 )}
             </div>
 
@@ -292,7 +308,7 @@ export default function CreatePage() {
                         type="file"
                         className="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer bg-[#09091d] rounded-lg outline-none"
                         {...register("image", {
-                            required: false,
+                            required: true,
                         })}
                     
                     />
@@ -303,8 +319,8 @@ export default function CreatePage() {
                     )}
 
                 </div>
-                    {image && errors.image && (
-                        <p className="text-red-500 text-left text-sm pr-32 mt-1 rounded-lg">Somente imagens <br/>.jpg, .jpeg, .png e .webp <br/>são aceitas</p>
+                    {errors.image && (
+                        <p className="text-red-500 text-left text-sm pr-32 mt-1 rounded-lg">{errors.image.message.toString()}</p>
                     )}
             </div>
             
@@ -314,8 +330,7 @@ export default function CreatePage() {
                     onMouseEnter={() => setIsHovering(true)}
                     onMouseLeave={() => setIsHovering(false)}>
                     <button
-                        onClick={handleSubmit(onSubmit)}
-
+                        onClick={() => setModalIsOpen(true)}
                         disabled={!isValid || isSubmitting}
                         type="submit"
                         className="p-3 w-full h-full text-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed font-semibold justify-center text-center select-none max-xm:hidden">
@@ -325,8 +340,47 @@ export default function CreatePage() {
                 <span className={`text-white/70 m-0 p-0 text-xs ${!isValid && isHovering ? "opacity-75" : "opacity-0"}`}>Preencha Todos os Dados</span>
             </div>
             {modalIsOpen && (
-                <div className="relative w-15 h-15 bg-amber-400">as</div>
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                <div className="rounded-lg bg-[#09091d] opacity-100 border-3 border-rose-500/60 z-20 xm:fixed inset-0 xm:w-130 xm:h-60 xm:top-75 xm:left-2/8 max-xm:bg-amber-500">
+                    <button 
+                        onClick={() => setModalIsOpen(false)}
+                        className="absolute top-2 right-2 text-white hover:text-rose-500 transition-colors cursor-pointer">
+                        <X/>
+                    </button>
+                <label className="block px-3 py-2 mt-4 mx-19 text-lg w-full font-bold select-none">Confirme o email para receber o QR Code</label>
+                <div className="p-[3px] rounded-lg w-7/10 mt-1 mx-19 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">     
+                    <input
+                        type="email"
+                        placeholder="email@gmail.com"
+                        className="w-full p-3 bg-[#09091d] rounded-lg outline-none"
+                        maxLength={120}
+                        value={email || ""}
+                        { ...register("email", {
+                            required: "É necessário inserir um email para receber o produto",
+                        })}
+                    />
+                </div>
+                
+                <div className="p-1 items-center mx-auto col-span-2 w-4/8 rounded-lg cursor-pointer font-bold l:max-xl:mx-31.5 xm:max-xl:mx-25.5
+                bg-gradient-to-r from-green-600/80 to-green-900/80 hover:from-green-500/80 hover:to-green-700/80 shadow-lg shadow-green-500/30 max-xm:hidden mt-5"
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}>
+                    <button
+                        onClick={handleSubmit(onSubmit)}
+                        disabled={isSubmitting}
+                        type="submit"
+                        className="p-2 w-full h-full text-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed font-semibold justify-center text-center select-none max-xm:hidden">
+                            Pagar ( Pix ou Cartão )
+                    </button>
+                    {isSubmitting && (
+                        <div className="text-xs justify-center mx-auto text-white/90">Indo Para Pagamento..</div>
+                    )}
+                </div>
+                        
+                </div>
+                </div>
             )}
+            
         </div>
         <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 m:max-xm:mt-50 max-m:mt-50"> 
         <span className="absolute z-10 text-white text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-27 m:max-xm:ml-49 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold max-m:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none">Como vai ficar</span>
@@ -354,17 +408,17 @@ export default function CreatePage() {
                     title={title}
                     message={message}
                     startDate={startDate}
-                    image={image}
+                    image={imagePreviewUrl}
                 />
             </div>
         <div className="flex p-1 mx-auto w-full rounded-lg mt-12 cursor-pointer font-bold m:max-xm:w-130 max-p:w-9/10
             bg-gradient-to-r from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40 xm:hidden">
                 <button
-                    onClick={handleSubmit(onSubmit)}
+                    onClick={() => setModalIsOpen(true)}
                     disabled={!isValid || isSubmitting}
                     type="submit"
                     className="block p-3 w-full h-full text-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed font-semibold justify-center text-center select-none xm:hidden">
-                        Gerar QR Code
+                        Criar LoveLink
                 </button>
         </div>
         </div>
