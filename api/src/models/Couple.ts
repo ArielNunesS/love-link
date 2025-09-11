@@ -6,7 +6,7 @@ const CoupleSchema = new mongoose.Schema ({
     slug: {type: String},
     email: {type: String, required: true, maxLength: 120},
     title: {type: String, required: true, maxLength: 20},
-    message: {type: String, required: true, maxLength: 800},
+    message: {type: String, required: true, maxLength: 1500},
     startDate: {type: Date, required: true},
     image: {type: String, required: true},
 });

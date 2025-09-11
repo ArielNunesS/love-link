@@ -39,13 +39,13 @@ export default function paymentRoutes() {
             type: "FREE",
             address_modifiable: false,
             address: {
-                street: "Avenida Brasil",
+                street: "Rua",
                 number: "0",
-                locality: "Centro",
-                city: "Balneário Camboriú",
+                locality: "Bairro",
+                city: "Cidade",
                 region_code: "SC",
                 country: "BRA",
-                postal_code: "88330040"
+                postal_code: "00000000"
             }
         },
 
