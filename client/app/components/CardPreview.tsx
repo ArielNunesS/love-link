@@ -34,7 +34,6 @@ export default function CardPreview(props: CardPreviewProps){
   const minutes = Math.floor(diff.minutes ?? 0);
   const seconds = Math.floor(diff.seconds ?? 0);
 
-  if(showMessage) {
     return (
 
       <div className={`max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10
@@ -54,17 +53,17 @@ export default function CardPreview(props: CardPreviewProps){
                       <div className="w-1 h-1 rounded-full bg-white/80"></div>
                     </div>
                 </div>
-                  
-              {/* URL Bar */}
+              
+              {/* URL */}
               <div className="mx-4 mt-2 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 flex items-center">
                   <div className="w-1 h-1 rounded-full bg-rose-400 mr-2"></div>
                   <p className="text-white/80 text-xs text-nowrap overflow-hidden select-none">love-link-app.com.br/{props.name}</p>
               </div>
 
-              {/* Content */}
-              <div className="px-4 mt-6">
-
-              {/* Profile Section */}
+              <div className="px-4 mt-5">
+        {showMessage ? (
+          <>
+              {/* Mail Button */}
               <div className="flex items-center gap-3 mb-5">
                 <div className="p-0.5 bg-pink-600/30 rounded-full">
                   <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
@@ -78,65 +77,10 @@ export default function CardPreview(props: CardPreviewProps){
                 <div className="max-w-xs">
                   <p className="text-xs px-1 font-normal wrap-break-word whitespace-pre-wrap select-none">{props.message}</p>
                 </div>
-            </div>
-          </div>
-        </div>
-
-          {/* Decorative Elements */}
-          <div className="absolute -top-10 -right-10 w-24 h-24 text-rose-500/40 animate-pulse">
-            <Heart className="w-full h-full fill-rose-500/30
-              max-p:size-20 max-p:mt-3 max-p:ml-0
-              max-pp:size-17 max-pp:mt-5
-              max-xpp:size-15 max-xpp:mt-5 max-xpp:ml-2"
-            />
-          </div>
-          <div className="absolute bottom-2 -left-7 w-16 h-16 text-rose-500/50">
-            <Heart className="w-full h-full animate-ping fill-rose-500/35
-              max-p:size-14 max-p:mt-7 max-p:ml-6
-              max-pp:size-12 max-pp:mt-9 max-pp:ml-7
-              max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
-            />
-          </div>
-        </div>
-      </div>
-    )
-  }
-    return (
-
-      <div className={`max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10
-        ${isOpen ? "opacity-50 pointer-events-none" : "opacity-100"}`}>
-        <div className="relative mx-auto">
-          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-y-scroll shadow-2xl border-8 border-gray-800">
-            {/* Notch */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-            
-            {/* Screen */}
-            <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-5 h-170 overflow-y-scroll">
-            {props.image ? (
-              <div className=""></div>
-            ) :
-            <div>
-              </div>
-          }
-            <div className="px-4 ml-3 py-1 flex items-center justify-between">
-                <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
-                <div className="flex items-center gap-1 mr-3">
-                  <div className="w-1 h-1 rounded-full bg-white/80"></div>
-                  <div className="w-1 h-1 rounded-full bg-white/80"></div>
-                  <div className="w-1 h-1 rounded-full bg-white/80"></div>
-                </div>
-            </div>
-
-              {/* URL Bar */}
-              <div className="mx-4 mt-2 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 flex items-center">
-                  <div className="w-1 h-1 rounded-full bg-rose-400 mr-2"></div>
-                  <p className="text-white/80 text-xs text-nowrap overflow-hidden select-none">love-link-app.com.br/{props.name}</p>
-              </div>
-
-              {/* Content */}
-              <div className="px-4 mt-5">
-
-              {/* Profile Section */}
+          </>
+        ) : (
+          <>
+              {/* Mail Button */}
               <div className="flex items-center gap-3 mb-3 wrap-break-word">
                 <div className="p-0.5 bg-pink-600/30 rounded-full">
                   <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
@@ -150,7 +94,7 @@ export default function CardPreview(props: CardPreviewProps){
                   </div>
               </div>
 
-              {/* Counter Card */}
+              {/* Counter */}
               <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 mb-3 cursor-default select-none">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="w-4 h-4 text-rose-400"/>
@@ -173,50 +117,50 @@ export default function CardPreview(props: CardPreviewProps){
                 </div>
               </div>
 
-              {/* Features */}
-                {props.image ? (
-                  <Image
-                  src={props.image}
-                  alt="image"
-                  width={310}
-                  height={310}
-                  className="object-cover border-3 rounded-2xl mx-auto"/>
-                
-                ) :
-                  <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
-                      <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-50 p-5 flex items-center gap-2
-                            max-xpp:w-60.5 max-pp:w-68 max-p:w-73">
-                          <Camera className="w-15 h-15 text-rose-400
-                            max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
-                          <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
-                      </div>
-                    </div>
-                }
+              {/* Image and Music */}
+              {props.image ? (
+                <Image
+                src={props.image}
+                alt="image"
+                width={310}
+                height={310}
+                className="object-cover border-3 rounded-2xl mx-auto"/>
+              ) :
+                <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
+                  <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-50 p-5 flex items-center gap-2
+                    max-xpp:w-60.5 max-pp:w-68 max-p:w-73">
+                      <Camera className="w-15 h-15 text-rose-400 max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
+                      <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
+                  </div>
+                </div>
+              }
 
                 <div className="flex bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-25 p-5 mt-3 items-center gap-2
-                      max-xpp:w-60.5 max-pp:w-68 max-p:w-73 select-none">
-                        <Music className="text-rose-400 w-10 h-10"/>
+                  max-xpp:w-60.5 max-pp:w-68 max-p:w-73 select-none">
+                    <Music className="text-rose-400 w-10 h-10"/>
                     <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Música</span>
-                  </div>
-            </div>
-          </div>
-        </div>
-          {/* Decorative Elements */}
-          <div className="absolute -top-10 -right-10 w-24 h-24 text-rose-500/50">
-            <Heart className="w-full h-full fill-rose-500/35 animate-pulse
-              max-p:size-20 max-p:mt-3 max-p:ml-0
-              max-pp:size-17 max-pp:mt-5
-              max-xpp:size-15 max-xpp:mt-5 max-xpp:ml-2"
-            />
-          </div>
-          <div className="absolute bottom-2 -left-7 w-16 h-16 text-rose-500/50">
-            <Heart className="w-full h-full fill-rose-500/35 animate-ping
-              max-p:size-14 max-p:mt-7 max-p:ml-6
-              max-pp:size-12 max-pp:mt-9 max-pp:ml-7
-              max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
-            />
+                </div>
+          </>
+        )}
           </div>
         </div>
       </div>
-    )
-} 
+        
+        <div className="absolute -top-10 -right-10 w-24 h-24 text-rose-500/40 animate-pulse">
+          <Heart className="w-full h-full fill-rose-500/30
+            max-p:size-20 max-p:mt-3 max-p:ml-0
+            max-pp:size-17 max-pp:mt-5
+            max-xpp:size-15 max-xpp:mt-5 max-xpp:ml-2"
+          />
+        </div>
+        <div className="absolute bottom-2 -left-7 w-16 h-16 text-rose-500/50">
+          <Heart className="w-full h-full animate-ping fill-rose-500/35
+            max-p:size-14 max-p:mt-7 max-p:ml-6
+            max-pp:size-12 max-pp:mt-9 max-pp:ml-7
+            max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
