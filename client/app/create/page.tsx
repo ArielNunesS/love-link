@@ -17,13 +17,12 @@ const MAX_FILE_SIZE = 1000000;
 const MAX_LINES = 20;
 
 const today = new Date();
-today.setHours(0, 0, 0, 0);
 
 const cardSchema = z.object({
     name: z.string().max(20),
     email: z.string().email("Insira um email válido").min(1, "O email é obrigatório."),
     title: z.string().max(20),
-    message: z.string().max(800),
+    message: z.string().max(1500),
     startDate: z.date({ invalid_type_error: "Informe uma data válida" }).min(new Date("1900-01-01"), "Informe uma data válida").max(today, {
         message: "A data não pode ser uma data futura",
     }),
@@ -256,7 +255,7 @@ export default function CreatePage() {
                         placeholder="Oii meu amor, quero te dizer o quanto te amo..."
                         className="w-100 h-50 overflow-y-auto resize-none justify-start py-5 px-3 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
                         xm:max-xl:h-45 max-xm:w-full max-p:h-45"
-                        maxLength={800}
+                        maxLength={1500}
                         style={{ resize: "none" }}
                         {...register("message", {
                             required: true,
@@ -278,12 +277,13 @@ export default function CreatePage() {
                 <div className="p-[3px] w-5/9 rounded-lg mt-1 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
                 xm:max-xl:w-6/9 max-xm:w-full">
                     <input 
-                        type="date"
+                    type="datetime-local"
                         className={`w-full p-3 bg-[#09091d] rounded-lg outline-none ${dirtyFields.startDate ? "text-white/100" : "text-white/60"}`}
-                        max={new Date().toISOString().split("T")[0]}
+                        max={DateTime.now().startOf("minute").toFormat("yyyy-MM-dd'T'HH:mm")}
                     {...register("startDate", {
                         required: true,
                         valueAsDate: true,
+                        validate: (value) => value <= new Date(),
                     })}
                     onFocus={() => setDateIsFocused(true)}
                     onBlur={() => setDateIsFocused(false)}

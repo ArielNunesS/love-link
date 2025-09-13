@@ -3,11 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useModal } from "../contexts/ModalContext";
 import { Calendar, Heart, Music, Camera, Mail, MailOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";
-import { useModal } from "../contexts/ModalContext";
 import {z} from "zod";
 
 interface CardPreviewProps {
@@ -21,10 +21,19 @@ interface CardPreviewProps {
 
 export default function CardPreview(props: CardPreviewProps){
   const [ showMessage, setShowMessage ] = useState<boolean>(false);
+  const [ secondsPassed, setSecondsPassed ] = useState<number>(0);
   const { isOpen } = useModal()
 
-  const now = DateTime.now();
-  const start = DateTime.fromJSDate(props.startDate);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSecondsPassed(prevSeconds => prevSeconds + 1);
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, [])
+
+  const now = DateTime.now().setLocale("pt-BR");
+  const start = DateTime.fromJSDate(props.startDate).setZone("America/Sao_Paulo", {keepLocalTime: true});
   const diff = now.diff(start, ["years", "months", "days", "hours", "minutes", "seconds"]).toObject();
 
   const years = Math.floor(diff.years ?? 0);
@@ -32,14 +41,21 @@ export default function CardPreview(props: CardPreviewProps){
   const days = Math.floor(diff.days ?? 0);
   const hours = Math.floor(diff.hours ?? 0);
   const minutes = Math.floor(diff.minutes ?? 0);
-  const seconds = Math.floor(diff.seconds ?? 0);
+  const seconds = Math.floor(diff.seconds ?? 0); + secondsPassed;
+
+  let displaySeconds = seconds % 60;
+  let displayMinutes = minutes + Math.floor(seconds / 60);
+  let displayHours = hours + Math.floor(displayMinutes / 60);
+
+  displayMinutes = displayMinutes % 60;
+  displayHours = displayHours % 24;
 
     return (
 
       <div className={`max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10
       ${isOpen ? "opacity-50 pointer-events-none" : "opacity-100"}`}>
       <div className="relative mx-auto">
-          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-800">
+          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden shadow-2xl border-6 border-gray-800">
             {/* Notch */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
             
@@ -115,9 +131,9 @@ export default function CardPreview(props: CardPreviewProps){
                     <p className="text-white/70 text-xs">dias</p>
                   </div>
                 </div>
+                <p className="text-white/70 text-xs text-center mt-3 p-0">{`${displayHours.toString().padStart(2, "0")} h ${displayMinutes.toString().padStart(2, "0")} m ${displaySeconds.toString().padStart(2, "0")} s`}</p>
               </div>
-
-              {/* Image and Music */}
+              
               {props.image ? (
                 <Image
                 src={props.image}
