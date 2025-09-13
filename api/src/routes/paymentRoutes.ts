@@ -80,7 +80,7 @@ export default function paymentRoutes() {
 
     router.get("/:checkoutId", async(req, res) => {
 
-    const {checkoutId} = req.params;
+    const { checkoutId } = req.params;
 
     const response = await fetch(`https://sandbox.api.pagseguro.com/checkouts/${checkoutId}`, {
         method: "GET",
@@ -97,6 +97,9 @@ export default function paymentRoutes() {
         }
 
         if(data.status === "INACTIVE") {
+
+            
+
             return res.status(200).json(data);
         }
 
@@ -110,7 +113,7 @@ export default function paymentRoutes() {
             return res.status(401).json({ error: "Unauthorized" });
         }
 
-        const event = req.body;
+        const event = res.json();
 
         console.log("Pagbank Notification", event)
         res.sendStatus(200)
