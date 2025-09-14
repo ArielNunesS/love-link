@@ -78,11 +78,11 @@ export default function paymentRoutes() {
     }
 });
 
-    router.get("/:checkoutId", async(req, res) => {
+    router.get("/:orderId", async(req, res) => {
 
-    const { checkoutId } = req.params;
+    const { orderId } = req.params;
 
-    const response = await fetch(`https://sandbox.api.pagseguro.com/checkouts/${checkoutId}`, {
+    const response = await fetch(`https://sandbox.api.pagseguro.com/orders/${orderId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -96,10 +96,8 @@ export default function paymentRoutes() {
             return res.status(response.status).json(data);
         }
 
-        if(data.status === "INACTIVE") {
-
-            
-
+        if(data.status === "PAID") {
+            console.log("Order Paid");
             return res.status(200).json(data);
         }
 
@@ -113,10 +111,15 @@ export default function paymentRoutes() {
             return res.status(401).json({ error: "Unauthorized" });
         }
 
-        const event = res.json();
+    try {
+        const event = req.body;
+        console.log("Pagbank Notification Received", event)
 
-        console.log("Pagbank Notification", event)
-        res.sendStatus(200)
+        return res.status(200).json({ received: true });
+    } catch(err) {
+        console.error("Error:", err);
+        return res.status(500);
+    }
     });
 
     return router;
