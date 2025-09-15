@@ -1,5 +1,6 @@
 import express from "express";
 import { Router } from "express";
+import Order from "../models/Order";
 
 export default function paymentRoutes() {
     const router = Router();
@@ -105,15 +106,33 @@ export default function paymentRoutes() {
     });
 
     router.post("/webhook", async(req, res) => {
+    try {
         const secret = req.query.secret;
 
         if(secret !== process.env.PAGBANK_WEBHOOK_SECRET) {
             return res.status(401).json({ error: "Unauthorized" });
         }
 
-    try {
         const event = req.body;
         console.log("Pagbank Notification Received", event)
+
+        const referenceId = event.reference_id;
+        const amount = event.charges?.[0]?.amount?.value || 0;
+        const status = event.charges?.[0]?.status || "Unknown";
+        const paymentMethod = event.charges?.[0]?.payment_method?.type || "Unknown";
+
+        await Order.findOneAndUpdate(
+            { reference_id: referenceId },
+            {
+                reference_id: referenceId,
+                status,
+                amount,
+                paymentMethod,
+                createdAt: new Date(event.createdAt),
+                updatedAt: new Date(),
+            },
+            { upsert: true, new: true}
+        );
 
         return res.status(200).json({ received: true });
     } catch(err) {
