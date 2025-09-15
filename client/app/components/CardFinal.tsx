@@ -49,10 +49,9 @@ export default function CardFinal(props: CardFinalProps){
   displayHours = displayHours % 24;
   
   return (
-  
+    <>
         <div className="max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10">
         <div className="relative mx-auto">
-              
               {/* Screen */}
                 <div className="px-4 mt-5">
           {showMessage ? (
@@ -130,11 +129,11 @@ export default function CardFinal(props: CardFinalProps){
                   </div>
                 }
   
-                  <div className="flex bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-25 p-5 mt-3 items-center gap-2
+                  {/* <div className="flex bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-25 p-5 mt-3 items-center gap-2
                     max-xpp:w-60.5 max-pp:w-68 max-p:w-73 select-none">
                       <Music className="text-rose-400 w-10 h-10"/>
                       <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Música</span>
-                  </div>
+                  </div> */}
             </>
           )}
             </div>
@@ -149,11 +148,12 @@ export default function CardFinal(props: CardFinalProps){
           </div>
           <div className="relative bottom-220 left-70 w-16 h-16 text-rose-500/50">
             <Heart className="w-full h-full animate-ping fill-rose-500/35
-              max-p:size-14 max-p:mt-7 max-p:ml-6
+              max-p:size-14 max-p:mt-15 max-p:ml-6
               max-pp:size-12 max-pp:mt-9 max-pp:ml-7
               max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
             />
           </div>
         </div>
+        </>
     )
 } 

@@ -23,9 +23,9 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
 
         coupleData = await res.json();
 
-         if (!coupleData) {
-             console.error("Data received is invalid.");
-             notFound();
+        if (!coupleData) {
+            console.error("Data received is invalid.");
+            notFound();
         }
 
     } catch(error) {
@@ -35,9 +35,9 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
     const startDate = new Date(coupleData.startDate);
 
     return ( <>
-    <main className="w-full min-h-screen z-30 items-center bg-gradient-to-br from-purple-900/80 via-[#270a35] to-rose-900/50 ">
+    <main className="w-full min-h-screen z-30 items-center bg-gradient-to-br from-purple-900/80 via-[#270a35] to-rose-900/50 overflow-hidden ">
         <div className="min-h-screen flex items-center justify-center p-4 text-white z-30">
-        <div className="mt-10">
+        <div className="mt-7">
         <Image
             src="https://i.postimg.cc/q7rJwH17/icons8-click-66.png"
             alt=""

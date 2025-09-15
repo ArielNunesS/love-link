@@ -52,7 +52,7 @@ export default function HomePage() {
                           email=""
                           title="Feliz 6 Meses Amor"
                           message="Aqui um texto para que nunca se esqueça do quanto eu te amo..."
-                          startDate={new Date("2024-01-01")}
+                          startDate={new Date("2022-04-03")}
                           image={null}
                         />
                 </div>
@@ -61,7 +61,7 @@ export default function HomePage() {
 
             </section>
 
-        <section className="relative w-full py-50 z-30">
+        <section id="como-fazer" className="relative w-full py-50 z-30">
           <div className="container mx-auto px-6">
             <div className="text-center mb-15">
               <h2 className="text-4xl font-bold text-white mb-3">Como Fazer?</h2>
@@ -74,8 +74,8 @@ export default function HomePage() {
                 <Image 
                   src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
                   alt=""
-                  width={500}
-                  height={500}
+                  width={400}
+                  height={400}
                   className="mb-4 rounded-4xl"
                 />
               </div>
@@ -94,7 +94,7 @@ export default function HomePage() {
               <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
                 <p className="text-lg font-semibold text-white">3. Receba o seu Site <br/>+<br/>QR Code no e-mail</p>
                 <Image 
-                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  src="https://i.postimg.cc/1XgjWjJf/love-link-email.png"
                   alt=""
                   width={300}
                   height={300}
@@ -105,18 +105,18 @@ export default function HomePage() {
               <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
                 <p className="text-lg font-semibold text-white">4. Surpreenda seu amor</p>
                 <Image 
-                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  src="https://i.postimg.cc/vZJb5CL2/love-link-couple-page.png"
                   alt=""
-                  width={300}
-                  height={300}
-                  className="mb-4"
+                  width={250}
+                  height={250}
+                  className="mb-4 mt-5"
                 />
               </div>
             </div>
           </div>
       </section>
 
-        <section className="relative w-full py-50 mt-100 z-30">
+        {/* <section className="relative w-full py-50 mt-100 z-30">
           <div className="container mx-auto px-6">
             <div className="text-center mb-15">
               <h2 className="text-4xl font-bold text-white mb-3">Pergutas Frequentes</h2>
@@ -129,7 +129,7 @@ export default function HomePage() {
                 <p className="text-3xl mt-5 font-semibold text-white">4. Surpreenda seu amor</p>
             </div>
           </div>
-      </section>
+      </section> */}
 
         </div>
     </main>

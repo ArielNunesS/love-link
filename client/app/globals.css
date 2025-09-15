@@ -51,6 +51,12 @@ body {
   font-family: var(--font-fira-sans)
 }
 
+.body-lock {
+  overflow: hidden;
+  position: fixed; /* evita bug no iOS */
+  width: 100%;
+}
+
 .custom-file-label {
     cursor: pointer;
 }

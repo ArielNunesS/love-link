@@ -39,7 +39,7 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="#como-funciona"
+            href="#como-fazer"
             className="text-2xl font-bold text-white max-m:text-lg max-m:w-full max-m:text-center select-none"
           >
             Como Fazer

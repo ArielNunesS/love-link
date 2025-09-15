@@ -53,7 +53,7 @@ export default function CardPreview(props: CardPreviewProps){
     return (
 
       <div className={`max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10
-      ${isOpen ? "opacity-50 pointer-events-none" : "opacity-100"}`}>
+      ${isOpen ? "opacity-50" : "opacity-100"}`}>
       <div className="relative mx-auto">
           <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden shadow-2xl border-6 border-gray-800">
             {/* Notch */}
@@ -151,11 +151,11 @@ export default function CardPreview(props: CardPreviewProps){
                 </div>
               }
 
-                <div className="flex bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-25 p-5 mt-3 items-center gap-2
+                {/* <div className="flex bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-25 p-5 mt-3 items-center gap-2
                   max-xpp:w-60.5 max-pp:w-68 max-p:w-73 select-none">
                     <Music className="text-rose-400 w-10 h-10"/>
                     <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Música</span>
-                </div>
+                </div> */}
           </>
         )}
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface ModalContextType {
   isOpen: boolean;
@@ -12,6 +12,14 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if(isOpen) {
+      document.body.classList.add("body-lock")
+    } else {
+      document.body.classList.remove("body-lock")
+    }
+  }, [isOpen]);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);

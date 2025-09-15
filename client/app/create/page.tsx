@@ -13,7 +13,7 @@ import Image from "next/image";
 import "dotenv/config";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-const MAX_FILE_SIZE = 1000000;
+const MAX_FILE_SIZE = 5000000;
 const MAX_LINES = 20;
 
 const today = new Date();
@@ -36,7 +36,7 @@ const cardSchema = z.object({
             const file = files?.[0];
             if(!files || files.length === 0) return true;
             return file?.size <= MAX_FILE_SIZE;
-        }, "O tamanho máximo da imagem é de 1 MB")
+        }, "O tamanho máximo da imagem é de 5 MB")
 });
 
 type TcardSchema = z.input<typeof cardSchema>;
@@ -120,7 +120,8 @@ export default function CreatePage() {
 
     try {
 
-        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:10000"
+        const backendAPIURL = "http://localhost:10000"
+        // process.env.NEXT_PUBLIC_BACKEND_URL || 
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
@@ -155,14 +156,84 @@ export default function CreatePage() {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         to: data.email,
-                        subject: "Testando",
+                        subject: "Sua Página LoveLink!",
                         html: `
-                        <p>Olá, ${data.email.split('@')[0]} recebemos sua requisição!</p>
-                        <p>Aqui está o Link para sua página:<br/>
-                            <a href="${coupleUrl}">${coupleUrl}</a>
-                        </p>
-                        <p>Aqui está o QR Code:</p>
-                        <img src="https://www.qrcoder.co.uk/api/v4/?key=MXY3NPsQZDF1UdJpjylzBOS85ErGikL9&text=${coupleUrl}">`
+                        <html lang="pt-BR">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Sua Página LoveLink!</title>
+                </head>
+                <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f5f5f5;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f5f5f5;">
+                <tr>
+                    <td align="center" valign="top">
+                <!-- Container principal -->
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; margin: 0px auto; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <!-- Cabeçalho -->
+                    <tr>
+                        <td style="padding: 25px 20px; text-align: center;">
+                            <h1 style="color: #333 !important; margin-top: 10px; font-size: 24px; font-weight: bold;">Seu LoveLink está pronto!</h1>
+                        </td>
+                    </tr>
+                    
+                    <!-- Conteúdo -->
+                    <tr>
+                        <td style="padding: 30px;">
+                            <p style="margin: 0 0 20px 0; color: #333; line-height: 1.6; font-size: 16px;">
+                                Olá, <strong>${data.email.split('@')[0]}</strong>, recebemos seu pedido!
+                            </p>
+                            
+                            <p style="margin: 0 0 20px 0; color: #333; line-height: 1.6; font-size: 16px;">
+                                Aqui está o Link para sua página:
+                            </p>
+                            
+                            <div style="background-color: #f9f9f9; padding: 15px; border-radius: 6px; border-left: 4px solid #2575fc; margin-bottom: 25px;">
+                                <a href="${coupleUrl}" style="color: #2575fc; text-decoration: none; font-size: 16px; word-break: break-all;">${coupleUrl}</a>
+                            </div>
+                            
+                            <p style="margin: 0 0 20px 0; color: #333; line-height: 1.6; font-size: 16px;">
+                                Aqui está o QR Code:
+                            </p>
+                            
+                            <div style="text-align: center; padding: 15px; background-color: #f9f9f9; border-radius: 6px;">
+                                <img src="https://www.qrcoder.co.uk/api/v4/?key=MXY3NPsQZDF1UdJpjylzBOS85ErGikL9&text=${coupleUrl}" 
+                                     alt="QR Code" 
+                                     style="max-width: 250px; height: auto; display: block; margin: 0 auto;" />
+                            </div>
+
+                            <p style="margin: 0 0 20px 0; color: #333; line-height: 1.6; font-size: 14px;">
+                                Muito obrigado por nos escolher.
+                                <br/>
+                                Desejo a vocês muitas felicidades, que consquistem o mundo inteiro juntos(a)!
+                                <br/>
+                                "O verdadeiro amor transforma dois mundos particulares em um universo compartilhado"
+                                <br/>
+                            </p>
+
+                            <p style="margin: 0 0 10px 0; font-size: 14px">Caso tenha alguma dúvida, ou precisar de assistência
+                            fique à vontade para me contatar pelo email lovelinkapp00@gmail.com</p>
+
+                            <p style="margin: 0 0 20px 0; color: #333; line-height: 1.6; font-size: 12px; font-weight: bold;">
+                                Com muito carinho,
+                                <br/>
+                                @arielnuness
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Rodapé -->
+                    <tr>
+                        <td style="background-color: #f1f1f1; padding: 20px; text-align: center; color: #666; font-size: 14px;">
+                            <p style="margin: 0;">© 2025 - Todos os direitos reservados</p>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+                </tr>
+                </table>
+                </body>
+                </html>`
                     })
                 })
             }
@@ -341,19 +412,24 @@ export default function CreatePage() {
             </div>
             
             {isOpen && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                <div className="rounded-lg bg-[#09091d] opacity-100 border-3 border-rose-500/60 z-20 xm:fixed inset-0 xm:w-130 xm:h-60 xm:top-75 xm:left-2/8 max-xm:bg-amber-500">
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000]">
+                <div className="relative rounded-lg bg-[#09091d] opacity-100 border-3 border-rose-500/60 z-[999] inset-0
+                xl:top-65
+                ll:left-3/10 l:left-2/10
+                xm:w-135 xm:h-70 xm:top-70 xm:max-l:left-1/10 xm:fixed
+                max-xm:w-19/20 max-xm:h-75 max-xm:mb-7
+                max-p:w-9/10">
                     <button 
                         onClick={() => closeModal()}
                         className="absolute top-2 right-2 text-white hover:text-rose-500 transition-colors cursor-pointer">
                         <X/>
                     </button>
-                <label className="block px-3 py-2 mt-4 mx-19 text-lg w-full font-bold select-none">Confirme o email para receber o QR Code</label>
-                <div className="p-[3px] rounded-lg w-7/10 mt-1 mx-19 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">     
+                <label className="block px-3 py-2 w-7/10 mx-auto mt-9 text-lg font-bold select-none max-xm:mt-10 max-p:text-sm">Confirme o email para receber o QR Code</label>
+                <div className="p-[3px] rounded-lg w-7/10 mx-auto mt-1 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700 ">     
                     <input
                         type="email"
                         placeholder="email@gmail.com"
-                        className="w-full p-3 bg-[#09091d] rounded-lg outline-none"
+                        className="w-full p-3 bg-[#09091d] rounded-lg outline-none max-p:text-sm"
                         maxLength={120}
                         value={email || ""}
                         { ...register("email", {
@@ -362,15 +438,15 @@ export default function CreatePage() {
                     />
                 </div>
                 
-                <div className="p-1 items-center mx-auto col-span-2 w-4/8 rounded-lg cursor-pointer font-bold l:max-xl:mx-31.5 xm:max-xl:mx-25.5
-                bg-gradient-to-r from-green-600/80 to-green-900/80 hover:from-green-500/80 hover:to-green-700/80 shadow-lg shadow-green-500/30 max-xm:hidden mt-5"
+                <div className="p-1 items-center mx-auto col-span-2 w-4/8 rounded-lg cursor-pointer font-bold
+                bg-gradient-to-r from-green-600/80 to-green-900/80 hover:from-green-500/80 hover:to-green-700/80 shadow-lg shadow-green-500/30 mt-5 max-xm:w-5/8"
                     onMouseEnter={() => setIsHovering(true)}
                     onMouseLeave={() => setIsHovering(false)}>
                     <button
                         onClick={handleSubmit(onSubmit)}
                         disabled={isSubmitting}
                         type="submit"
-                        className="p-2 w-full h-full text-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed font-semibold justify-center text-center select-none max-xm:hidden">
+                        className="p-2 w-full h-full text-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed font-semibold justify-center text-center select-none max-p:text-lg">
                             Pagar ( Pix ou Cartão )
                     </button>
                     {isSubmitting && (
@@ -385,9 +461,9 @@ export default function CreatePage() {
         </div>
         <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 m:max-xm:mt-50 max-m:mt-50"> 
         <span className={`absolute z-10 text-white text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-27 m:max-xm:ml-49 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold max-m:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none
-            ${isOpen ? "opacity-50" : "opacity-100"}`}>Como vai ficar</span>
+            ${isOpen ? "hidden" : "opacity-100"}`}>Como vai ficar</span>
         <span className={`absolute z-10 text-white/90 text-xs max-p:text-[8px] font-normal mt-52 -ml-12 text-center xm:max-ll:mt-42 max-xm:mt-42 m:max-xm:ml-8 max-p:-ml-4 max-pp:-ml-2 pointer-events-none select-none
-            ${isOpen ? "opacity-50" : "opacity-100"}`}>Clique<br/>na carta</span>
+            ${isOpen ? "hidden" : "opacity-100"}`}>Clique<br/>na carta</span>
 
             <Image
                 src="https://i.postimg.cc/3RmxkV42/rose-arrow.png"
@@ -395,7 +471,7 @@ export default function CreatePage() {
                 height={120}
                 alt=""
                 className={`absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 m:max-xm:ml-37 max-m:ml-16 pointer-events-none select-none
-                    ${isOpen ? "opacity-50" : "opacity-100"}`}
+                    ${isOpen ? "hidden" : "opacity-100"}`}
             />
             <Image
                 src="https://i.postimg.cc/q7rJwH17/icons8-click-66.png"
@@ -403,7 +479,7 @@ export default function CreatePage() {
                 width={25}
                 height={25}
                 className={`absolute z-10 mt-45 -ml-8 rotate-90 xm:max-ll:mt-35 m:max-xm:mt-35 m:max-xm:ml-12 max-m:mt-35 max-p:-ml-2 max-pp:-ml-0 pointer-events-none select-none
-                    ${isOpen ? "opacity-50" : "opacity-100"}`}
+                    ${isOpen ? "hidden" : "opacity-100"}`}
             />
         
 
