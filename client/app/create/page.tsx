@@ -337,7 +337,7 @@ export default function CreatePage() {
                     />
                 </div>
                 {messageIsFocused && dirtyFields.message && (
-                    <p className="text-red-500 max-xm:text-right xm:max-xl:ml-84 text-sm px-4 mt-1 rounded-lg">{message?.length || 0}/800</p>
+                    <p className="text-red-500 max-xm:text-right xm:max-xl:ml-84 text-sm px-4 mt-1 rounded-lg">{message?.length || 0}/1500</p>
                 )}
             </div>
 
@@ -349,7 +349,7 @@ export default function CreatePage() {
                 xm:max-xl:w-6/9 max-xm:w-full">
                     <input 
                     type="datetime-local"
-                        className={`w-full p-3 bg-[#09091d] rounded-lg outline-none ${dirtyFields.startDate ? "text-white/100" : "text-white/60"}`}
+                        className={`w-full p-3 bg-[#09091d] text-sm rounded-lg outline-none ${dirtyFields.startDate ? "text-white/100" : "text-white/60"}`}
                         max={DateTime.now().startOf("minute").toFormat("yyyy-MM-dd'T'HH:mm")}
                     {...register("startDate", {
                         required: true,
@@ -424,12 +424,12 @@ export default function CreatePage() {
                         className="absolute top-2 right-2 text-white hover:text-rose-500 transition-colors cursor-pointer">
                         <X/>
                     </button>
-                <label className="block px-3 py-2 w-7/10 mx-auto mt-9 text-lg font-bold select-none max-xm:mt-10 max-p:text-sm">Confirme o email para receber o QR Code</label>
+                <label className="block px-3 py-2 w-7/10 mx-auto mt-9 text-lg font-bold select-none max-xm:mt-10 max-p:text-[16px] max-pp:text-sm">Confirme o email para receber o QR Code</label>
                 <div className="p-[3px] rounded-lg w-7/10 mx-auto mt-1 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700 ">     
                     <input
                         type="email"
                         placeholder="email@gmail.com"
-                        className="w-full p-3 bg-[#09091d] rounded-lg outline-none max-p:text-sm"
+                        className="w-full p-3 bg-[#09091d] rounded-lg outline-none max-pp:text-sm"
                         maxLength={120}
                         value={email || ""}
                         { ...register("email", {
@@ -446,7 +446,7 @@ export default function CreatePage() {
                         onClick={handleSubmit(onSubmit)}
                         disabled={isSubmitting}
                         type="submit"
-                        className="p-2 w-full h-full text-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed font-semibold justify-center text-center select-none max-p:text-lg">
+                        className="p-2 w-full h-full text-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed font-semibold justify-center text-center select-none max-pp:text-lg">
                             Pagar ( Pix ou Cartão )
                     </button>
                     {isSubmitting && (
