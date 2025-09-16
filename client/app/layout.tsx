@@ -36,13 +36,14 @@ export default function RootLayout({
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <meta name="mobile-web-app-capable" content="yes" />
+          <link rel="manifest" href="/manifest.json" />
+        </head>
 
           <body className={`${firaSans.variable} antialiased`}>
             <ModalProvider>
               {children}
             </ModalProvider>
           </body>
-        </head>
       </html>
     )
   }
