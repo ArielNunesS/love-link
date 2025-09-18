@@ -36,7 +36,8 @@ const cardSchema = z.object({
             const file = files?.[0];
             if(!files || files.length === 0) return true;
             return file?.size <= MAX_FILE_SIZE;
-        }, "O tamanho máximo da imagem é de 5 MB")
+        }, "O tamanho máximo da imagem é de 5 MB"),
+    background: z.enum(["rose", "red", "purple", "blackPurple"]),
 });
 
 type TcardSchema = z.input<typeof cardSchema>;
@@ -69,6 +70,7 @@ export default function CreatePage() {
     const message = watch("message");
     const startDate = watch("startDate");
     const image = watch("image");
+    const background = watch("background");
 
     const [ nameIsFocused, setNameIsFocused ] = useState(false);
     const [ titleIsFocused, setTitleIsFocused ] = useState(false);
@@ -117,7 +119,7 @@ export default function CreatePage() {
         formData.append("message", data.message);
         formData.append("startDate", dtFormated);
         formData.append("image", data.image[0]);
-
+        formData.append("background", data.background);
     try {
 
         const backendAPIURL = "http://localhost:10000"
@@ -254,10 +256,11 @@ export default function CreatePage() {
         <Navbar/>
         <div className="absolute p-0 top-20 select-none
             xl:left-2/7
+            max-xl:top-25
             ll:max-xl:left-65
             l:max-xl:top-20
             xm:max-ll:left-1/6
-            xm:max-l:left-15 max-xl:top-25
+            xm:max-l:left-15 
             xm:max-xl:left-2/9
             max-xm:w-8/10 max-xm:px-7 max-xm:top-25 max-xm:overflow-hidden">
             <h1 className="text-5xl font-bold max-l:text-4xl max-xm:text-4xl">Quase Lá!</h1>
@@ -268,7 +271,10 @@ export default function CreatePage() {
             xm:max-xl:mt-45 max-xm:flex max-xm:flex-col max-xm:gap-x-0 max-xm:w-full max-xm:mt-55"
             onSubmit={handleSubmit(onSubmit)}>
         <div className="col-span-1
-            l:max-xl:w-full l:max-xl:ml-15 xm:max-l:w-70 xm:max-l:ml-10 max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-full max-xm:px-7 max-xm:mt-5 max-pp:mt-10">
+            l:max-xl:w-full l:max-xl:ml-15
+            xm:max-l:w-70 xm:max-l:ml-10
+            m:max-xm:w-7/10 m:max-xm:mx-auto max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-full max-xm:px-7 max-xm:mt-5
+            max-pp:mt-10">
             <label className="block p-0 text-lg font-semibold
                 max-xm:flex max-xm:flex-col max-xm:w-full select-none">Nome do Casal:</label>
                 <div className="p-[3px] rounded-lg mt-1 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
@@ -299,7 +305,6 @@ export default function CreatePage() {
                         })}
                     />
                 </div>
-            <div className="max-xm:mt-3 ">
             <label className="block p-0 mt-3 text-lg font-semibold select-none">Titulo da Mensagem:</label>
                 <div className="p-[3px] w-full rounded-lg mt-1 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700">
                     <input
@@ -317,15 +322,14 @@ export default function CreatePage() {
                 {titleIsFocused && title?.length === 20 && (
                     <p className="text-red-500 text-right text-sm px-4 mt-1 rounded-lg">máx. 20 caracteres</p>
                 )}
-            </div>
 
             <label className="block p-0 mt-3 text-lg font-semibold select-none">Mensagem:</label>
-                <div className="p-[3px] w-fit h-fit rounded-lg mt-2 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
-                max-xm:w-full">
+                <div className="p-[3px] w-fit h-fit rounded-lg mt-1 bg-gradient-to-r from-rose-600 to-rose-800 focus-within:from-rose-400 focus-within:to-rose-700
+                l:max-ll:w-70 xm:max-l:w-70 max-xm:w-full">
                     <textarea 
                         placeholder="Oii meu amor, quero te dizer o quanto te amo..."
-                        className="w-100 h-50 overflow-y-auto resize-none justify-start py-5 px-3 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
-                        xm:max-xl:h-45 max-xm:w-full max-p:h-45"
+                        className="w-90 h-50 overflow-y-auto resize-none justify-start py-5 px-3 bg-[#09091d] rounded-lg outline-none whitespace-pre-wrap
+                        xm:max-ll:w-full xm:max-xl:h-45 max-xm:w-full max-p:h-45"
                         maxLength={1500}
                         style={{ resize: "none" }}
                         {...register("message", {
@@ -337,11 +341,11 @@ export default function CreatePage() {
                     />
                 </div>
                 {messageIsFocused && dirtyFields.message && (
-                    <p className="text-red-500 max-xm:text-right xm:max-xl:ml-84 text-sm px-4 mt-1 rounded-lg">{message?.length || 0}/1500</p>
+                    <p className="text-red-500 max-xm:text-right ll:max-xl:ml-84 xm:max-ll:ml-54 text-sm px-4 mt-1 rounded-lg">{message?.length || 0}/1500</p>
                 )}
             </div>
 
-            <div className="mt-23.5
+            <div className="mt-22
             xm:max-xl:w-full xm:col-span-1 max-xm:mt-3 max-xm:mx-auto col-span-1 max-xm:flex max-xm:flex-col max-xm:col-span-full max-xm:w-7/10">
             <div className="max-xm:mx-auto max-xm:w-6/9">
             <label className="block p-0 mt-3 text-lg font-semibold select-none">Data de Início:</label>
@@ -365,9 +369,9 @@ export default function CreatePage() {
                 )}
             </div>
 
-                <div className="p-[1px] w-5/9 relative rounded-lg mt-9 bg-gradient-to-r cursor-pointer font-bold
+                <div className="p-[1px] w-5/9 relative rounded-lg mt-11 bg-gradient-to-r cursor-pointer font-bold
                 from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-md shadow-rose-500/40
-                max-ll:w-6/9 max-xm:mt-7 max-xm:mx-auto">
+                max-xl:w-6/9 max-xm:mt-7 max-xm:mx-auto">
                     <label className="flex items-center p-3 gap-2 text-lg cursor-pointer select-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
@@ -393,6 +397,55 @@ export default function CreatePage() {
                     {errors.image && (
                         <p className="text-red-500 text-left text-sm pr-32 mt-1 rounded-lg">{errors.image.message.toString()}</p>
                     )}
+
+                <div className="mx-auto">
+                    <label className="block p-0 mt-7 text-lg font-semibold select-none">Tema:</label>
+                    <div className="flex gap-3 mt-2">
+                        <label>
+                          <input
+                            type="radio"
+                            value="rose"
+                            {...register("background", { required: true })}
+                            className="hidden"
+                          />
+                          <div className={`w-12 h-12 rounded-xl cursor-pointer bg-gradient-to-br from-rose-500/100 via-[#350a17] to-rose-500/100
+                              ${background == "rose" ? "border-1 border-white/90" : "border-none"}`} />
+                        </label>
+
+                        <label>
+                          <input
+                            type="radio"
+                            value="purple"
+                            {...register("background", { required: true })}
+                            className="hidden"
+                          />
+                          <div className={`w-12 h-12 rounded-xl cursor-pointer bg-gradient-to-br from-purple-700/80 via-[#270a35] to-purple-700/80
+                              ${background == "purple" ? "border-1 border-white/90" : "border-none"}`} />
+                        </label>
+
+                        <label>
+                          <input
+                            type="radio"
+                            value="red"
+                            {...register("background", { required: true })}
+                            className="hidden rounded-xl"
+                          />
+                          <div className={`w-12 h-12 rounded-xl cursor-pointer bg-gradient-to-br from-red-600/90 via-[#350a0a] to-red-600/90
+                              ${background == "red" ? "border-1 border-white/90" : "border-none"}`} />
+                        </label>
+
+                        <label>
+                            <input
+                              type="radio"
+                              value="blackPurple"
+                              {...register("background", { required: true })}
+                              className="hidden rounded-xl"
+                            />
+                            <div className={`w-12 h-12 rounded-xl cursor-pointer bg-gradient-to-br from-black via-[#412a68] to-black
+                                ${background == "blackPurple" ? "border-1 border-white/90" : "border-none"}`} />
+                        </label>
+                    </div>
+                </div>
             </div>
             
             <div className="flex flex-col items-center mx-auto col-span-2 w-full rounded-lg mt-7 max-xm:hidden">
@@ -460,7 +513,7 @@ export default function CreatePage() {
             
         </div>
         <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 m:max-xm:mt-50 max-m:mt-50"> 
-        <span className={`absolute z-10 text-white text-sm font-normal ll:ml-7 xl:ml-10 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-27 m:max-xm:ml-49 p:max-xm:text-xl max-xm:text-lg max-xm:font-bold max-m:ml-28 max-pp:ml-25 max-xpp:ml-22 pointer-events-none select-none
+        <span className={`absolute z-10 text-white text-sm font-normal xl:ml-4 ll:ml-7 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-30 m:max-xm:ml-47 pp:max-xm:text-2xl max-xm:text-lg max-xm:font-bold max-m:ml-26 max-p:ml-23 max-pp:ml-26 max-xpp:ml-22 pointer-events-none select-none
             ${isOpen ? "hidden" : "opacity-100"}`}>Como vai ficar</span>
         <span className={`absolute z-10 text-white/90 text-xs max-p:text-[8px] font-normal mt-52 -ml-12 text-center xm:max-ll:mt-42 max-xm:mt-42 m:max-xm:ml-8 max-p:-ml-4 max-pp:-ml-2 pointer-events-none select-none
             ${isOpen ? "hidden" : "opacity-100"}`}>Clique<br/>na carta</span>
@@ -492,6 +545,7 @@ export default function CreatePage() {
                 message={message}
                 startDate={startDate}
                 image={imagePreviewUrl}
+                background={background || "rose"}
             />
         </div>
 

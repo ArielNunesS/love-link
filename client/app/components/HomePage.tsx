@@ -5,6 +5,7 @@ import Image from "next/image";
 import CardPreview from "./CardPreview";
 
 export default function HomePage() {
+
     return (
     <main className="min-h-screen z-10">
         <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#020203]">
@@ -54,6 +55,7 @@ export default function HomePage() {
                           message="Aqui um texto para que nunca se esqueça do quanto eu te amo..."
                           startDate={new Date("2022-04-03")}
                           image={null}
+                          background="rose"
                         />
                 </div>
               </div>

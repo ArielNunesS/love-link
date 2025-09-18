@@ -121,8 +121,8 @@ export default function CardFinal(props: CardFinalProps){
                   className="object-cover border-3 rounded-2xl mx-auto"/>
                 ) :
                   <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
-                    <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-50 p-5 flex items-center gap-2
-                      max-xpp:w-60.5 max-pp:w-68 max-p:w-73">
+                    <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-79 h-50 p-5 flex items-center gap-2
+                      max-xpp:w-61 max-pp:w-69 max-p:w-74">
                         <Camera className="w-15 h-15 text-rose-400 max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
                         <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
                     </div>

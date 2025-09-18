@@ -16,13 +16,23 @@ interface CardPreviewProps {
   title: string,
   message: string,
   startDate: Date,
-  image: string | null
+  image: string | null,
+  background: "rose" | "red" | "purple" | "blackPurple";
 }
+
 
 export default function CardPreview(props: CardPreviewProps){
   const [ showMessage, setShowMessage ] = useState<boolean>(false);
   const [ secondsPassed, setSecondsPassed ] = useState<number>(0);
   const { isOpen } = useModal()
+
+
+  const backgroundClasses: Record<CardPreviewProps["background"], string> = {
+    rose: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/70",
+    red: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-red-800/70",
+    purple: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-purple-900/50",
+    blackPurple: "bg-gradient-to-b from-[#0a0a20] via-[#412a68] to-[#0a0a20]",
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,10 +67,10 @@ export default function CardPreview(props: CardPreviewProps){
       <div className="relative mx-auto">
           <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden shadow-2xl border-6 border-gray-800">
             {/* Notch */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
+            <div className={"absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"}></div>
             
             {/* Screen */}
-            <div className="relative bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/50 pt-5 pb-5 h-170 overflow-y-scroll">
+            <div className={`relative pt-5 pb-5 h-170 overflow-y-scroll card-scroll ${backgroundClasses[props.background]}`}>
                 <div className="px-4 ml-3 py-1 flex items-center justify-between">
                     <div className="text-white/80 text-xs cursor-default select-none">21:30</div>
                     <div className="flex items-center gap-1 mr-3">
@@ -143,8 +153,8 @@ export default function CardPreview(props: CardPreviewProps){
                 className="object-cover border-3 rounded-2xl mx-auto"/>
               ) :
                 <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
-                  <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-78 h-50 p-5 flex items-center gap-2
-                    max-xpp:w-60.5 max-pp:w-68 max-p:w-73">
+                  <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-79 h-50 p-5 flex items-center gap-2
+                    max-xpp:w-61 max-pp:w-69 max-p:w-74">
                       <Camera className="w-15 h-15 text-rose-400 max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
                       <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
                   </div>
