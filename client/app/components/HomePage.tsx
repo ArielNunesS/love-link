@@ -7,7 +7,7 @@ import CardPreview from "./CardPreview";
 export default function HomePage() {
 
     return (
-    <main className="min-h-screen z-10">
+    <main className="min-h-screen z-10 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#020203]">
         <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#020203]">
         <section className="relative flex items-center justify-center overflow-x-clip">
             <div className="relative z-10 container mx-auto px-4 top flex flex-col items-center justify-between gap-8 xm:flex-row">
@@ -18,14 +18,14 @@ export default function HomePage() {
                             cada momento do seu
                       <span className="text-rose-400 animate-pulse"> AMOR </span>
                   </h1>
-                    <p className="text-xl text-white/80 mb-8
+                    <p className="text-xl text-white/90 mb-8
                       max-m:text-lg
                       max-p:text-lg
                       max-pp:text-[17px]
                       max-xpp:text-[15.4px]"
                       >
                       Crie um site personalizado com contador de tempo do seu relacionamento e compartilhe memórias especiais
-                      com seu parceiro em um endereço único.<br/>
+                      com seu parceiro em um <span className="text-rose-400">presente único.</span><br/>
                       <span className="font-bold text-xl text-rose-400 max-xpp:text-xl max-pp:text-[21px] max-p:text-[22px] max-m:text-2xl max-xm:text-2xl">Leva menos de 5 minutos!</span>
                     </p>
                   
@@ -47,7 +47,7 @@ export default function HomePage() {
                 xl:mt-15
                 lll:mr-30
                 ll:mt-7 ll:mr-10">
-                <div className="flex flex-wrap justify-center">
+                <div className="flex flex-wrap justify-center scale-100">
                     <CardPreview
                           name="Ariel e Letícia"
                           email=""
@@ -71,29 +71,29 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 m:grid-cols-2 gap-8 w-5/7 h-120 mx-auto max-m:w-full">
 
-              <div className="bg-[#101030] rounded-2xl shadow-lg p-5 text-center flex flex-col items-center">
+              <div className="rounded-2xl shadow-lg p-5 text-center flex flex-col items-center">
                 <p className="text-lg font-semibold text-white mb-5">1. Preencha os Dados</p>
                 <Image 
-                  src="https://i.postimg.cc/cLgjjzNj/love-link-form.png"
+                  src="https://i.postimg.cc/9Xs88gxK/love-link-form.png"
                   alt=""
-                  width={400}
-                  height={400}
+                  width={300}
+                  height={300}
                   className="mb-4 rounded-4xl"
                 />
               </div>
 
-              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
+              <div className="rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
                 <p className="text-lg font-semibold text-white">2. Faça o Pagamento</p>
                 <Image 
-                  src="https://i.postimg.cc/28VvZRk4/love-link-payment.pngpng"
+                  src="https://i.postimg.cc/FHpx4TZ9/love-link-payment.png"
                   alt=""
-                  width={450}
-                  height={450}
-                  className="mt-20"
+                  width={250}
+                  height={250}
+                  className=""
                 />
               </div>
 
-              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
+              <div className="rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
                 <p className="text-lg font-semibold text-white">3. Receba o seu Site <br/>+<br/>QR Code no e-mail</p>
                 <Image 
                   src="https://i.postimg.cc/1XgjWjJf/love-link-email.png"
@@ -104,7 +104,7 @@ export default function HomePage() {
                 />
               </div>
 
-              <div className="bg-[#101030] rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
+              <div className="rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
                 <p className="text-lg font-semibold text-white">4. Surpreenda seu amor</p>
                 <Image 
                   src="https://i.postimg.cc/vZJb5CL2/love-link-couple-page.png"

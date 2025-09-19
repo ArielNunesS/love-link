@@ -33,14 +33,14 @@ export default function Navbar() {
         <div className="flex items-center gap-8 max-xm:w-full max-xm:hidden">
           <Link
             href="#exemplos"
-            className="text-2xl font-bold text-white max-m:hidden select-none"
+            className="text-xl font-bold text-white/80 hover:text-white max-m:hidden select-none"
           >
             Exemplos
           </Link>
 
           <Link
             href="#como-fazer"
-            className="text-2xl font-bold text-white max-m:text-lg max-m:w-full max-m:text-center select-none"
+            className="text-xl font-bold text-white/80 hover:text-white max-m:hidden select-none"
           >
             Como Fazer
           </Link>

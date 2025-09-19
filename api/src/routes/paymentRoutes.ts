@@ -1,14 +1,17 @@
 import express from "express";
 import { Router } from "express";
+import { v4 as uuidv4 } from "uuid";
 import Order from "../models/Order";
 
 export default function paymentRoutes() {
     const router = Router();
 
     router.post("/", async(req,res) => {
+        const referenceId = uuidv4();
+
     try {
         const body = {
-        reference_id: "001",
+        reference_id: referenceId,
         customer_modifiable: true,
         items: [
             {

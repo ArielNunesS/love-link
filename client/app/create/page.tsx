@@ -61,6 +61,7 @@ export default function CreatePage() {
             message: "",
             startDate: new Date(),
             image: null,
+            background: "rose"
         }
     });
 
@@ -408,7 +409,7 @@ export default function CreatePage() {
                             {...register("background", { required: true })}
                             className="hidden"
                           />
-                          <div className={`w-12 h-12 rounded-xl cursor-pointer bg-gradient-to-br from-rose-500/100 via-[#350a17] to-rose-500/100
+                          <div className={`w-11 h-11 rounded-xl cursor-pointer bg-gradient-to-br from-rose-500/100 via-[#350a17] to-rose-500/100
                               ${background == "rose" ? "border-1 border-white/90" : "border-none"}`} />
                         </label>
 
@@ -419,7 +420,7 @@ export default function CreatePage() {
                             {...register("background", { required: true })}
                             className="hidden"
                           />
-                          <div className={`w-12 h-12 rounded-xl cursor-pointer bg-gradient-to-br from-purple-700/80 via-[#270a35] to-purple-700/80
+                          <div className={`w-11 h-11 rounded-xl cursor-pointer bg-gradient-to-br from-purple-700/80 via-[#270a35] to-purple-700/80
                               ${background == "purple" ? "border-1 border-white/90" : "border-none"}`} />
                         </label>
 
@@ -430,7 +431,7 @@ export default function CreatePage() {
                             {...register("background", { required: true })}
                             className="hidden rounded-xl"
                           />
-                          <div className={`w-12 h-12 rounded-xl cursor-pointer bg-gradient-to-br from-red-600/90 via-[#350a0a] to-red-600/90
+                          <div className={`w-11 h-11 rounded-xl cursor-pointer bg-gradient-to-br from-red-600/90 via-[#350a0a] to-red-600/90
                               ${background == "red" ? "border-1 border-white/90" : "border-none"}`} />
                         </label>
 
@@ -441,7 +442,7 @@ export default function CreatePage() {
                               {...register("background", { required: true })}
                               className="hidden rounded-xl"
                             />
-                            <div className={`w-12 h-12 rounded-xl cursor-pointer bg-gradient-to-br from-black via-[#412a68] to-black
+                            <div className={`w-11 h-11 rounded-xl cursor-pointer bg-gradient-to-br from-black via-[#412a68] to-black
                                 ${background == "blackPurple" ? "border-1 border-white/90" : "border-none"}`} />
                         </label>
                     </div>

@@ -26,12 +26,11 @@ export default function CardPreview(props: CardPreviewProps){
   const [ secondsPassed, setSecondsPassed ] = useState<number>(0);
   const { isOpen } = useModal()
 
-
   const backgroundClasses: Record<CardPreviewProps["background"], string> = {
-    rose: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/70",
-    red: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-red-800/70",
-    purple: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-purple-900/50",
-    blackPurple: "bg-gradient-to-b from-[#0a0a20] via-[#412a68] to-[#0a0a20]",
+    rose: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/80",
+    purple: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-purple-900/60",
+    red: "bg-gradient-to-b from-purple-900/80 via-[#350a2c] to-red-800/80",
+    blackPurple: "bg-gradient-to-b from-[#0a0a20] via-[#422575] to-[#0a0a20]",
   };
 
   useEffect(() => {
@@ -91,8 +90,8 @@ export default function CardPreview(props: CardPreviewProps){
           <>
               {/* Mail Button */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="p-0.5 bg-pink-600/30 rounded-full">
-                  <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
+                <div className="p-0.5 bg-pink-700/30 rounded-full">
+                  <div className="w-16 h-16 rounded-full bg-pink-700 flex items-center justify-center animate-bounce">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
                       <MailOpen/>
                     </button>
@@ -108,8 +107,8 @@ export default function CardPreview(props: CardPreviewProps){
           <>
               {/* Mail Button */}
               <div className="flex items-center gap-3 mb-3 wrap-break-word">
-                <div className="p-0.5 bg-pink-600/30 rounded-full">
-                  <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
+                <div className="p-0.5 bg-pink-700/30 rounded-full">
+                  <div className="w-16 h-16 rounded-full bg-pink-700 flex items-center justify-center animate-bounce">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
                       <Mail/>
                     </button>

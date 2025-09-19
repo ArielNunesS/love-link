@@ -9,6 +9,7 @@ const CoupleSchema = new mongoose.Schema ({
     message: {type: String, required: true, maxLength: 1500},
     startDate: {type: Date, required: true},
     image: {type: String, required: true},
+    background: {type: String, required: true, default: "rose"},
 });
 
 const Couple = model("Couple", CoupleSchema);

@@ -3,11 +3,10 @@ import React from "react";
 export default function BackgroundLines() {
     return (
              <div className="fixed inset-0 z-1">
-               <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#0a0a20]"></div>
+               <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#0d0d20]"></div>
    
-               {/* Linhas curvas decorativas */}
-               <div className="absolute inset-0 overflow-hidden">
-                 {/* Linha 1 */}
+               Linhas
+               {/* <div className="absolute inset-0 overflow-hidden">
                  <svg className="absolute w-full h-full" preserveAspectRatio="none">
                    <path
                      d="M0,100 C300,150 500,50 1920,100"
@@ -17,7 +16,6 @@ export default function BackgroundLines() {
                    />
                  </svg>
    
-                 {/* Linha 2 */}
                  <svg className="absolute w-full h-full" preserveAspectRatio="none">
                    <path
                      d="M0,200 C400,300 800,150 1920,250"
@@ -27,7 +25,6 @@ export default function BackgroundLines() {
                    />
                  </svg>
    
-                 {/* Linha 3 - mais brilhante */}
                  <svg className="absolute w-full h-full" preserveAspectRatio="none">
                    <path
                      d="M0,350 C600,280 1200,400 1920,320"
@@ -37,7 +34,6 @@ export default function BackgroundLines() {
                    />
                  </svg>
    
-                 {/* Linha 4 */}
                  <svg className="absolute w-full h-full" preserveAspectRatio="none">
                    <path
                      d="M0,500 C500,450 900,550 1920,500"
@@ -47,7 +43,6 @@ export default function BackgroundLines() {
                    />
                  </svg>
    
-                 {/* Linha 5 - mais brilhante */}
                  <svg className="absolute w-full h-full" preserveAspectRatio="none">
                    <path
                      d="M0,650 C300,700 1200,600 1920,680"
@@ -57,7 +52,6 @@ export default function BackgroundLines() {
                    />
                  </svg>
    
-                 {/* Linha 6 */}
                  <svg className="absolute w-full h-full" preserveAspectRatio="none">
                    <path
                      d="M0,800 C400,750 1000,850 1920,800"
@@ -66,7 +60,7 @@ export default function BackgroundLines() {
                      strokeWidth="1.5"
                    />
                  </svg>
-               </div>
+               </div> */}
    
                {/* Partículas brilhantes */}
                <div className="absolute inset-0">
