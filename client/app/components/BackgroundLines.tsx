@@ -3,7 +3,7 @@ import React from "react";
 export default function BackgroundLines() {
     return (
              <div className="fixed inset-0 z-1">
-               <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#0d0d20]"></div>
+               <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#0d0d2b]"></div>
    
                Linhas
                {/* <div className="absolute inset-0 overflow-hidden">

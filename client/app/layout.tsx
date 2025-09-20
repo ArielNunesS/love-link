@@ -1,5 +1,5 @@
 import React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fira_Sans, Dancing_Script } from "next/font/google";
 import { ModalProvider } from "./contexts/ModalContext";
 import "./globals.css";
@@ -21,9 +21,11 @@ const dancingScript = Dancing_Script({
 export const metadata: Metadata = {
   title: "LoveLink - Site para seu Amor",
   description: "Eternize cada momento do seu amor com um card virtual personalizado e contador de tempo de relacionamento",
-  themeColor: "#09091d",
-  
 };
+
+export const viewport: Viewport = {
+  themeColor: "#09091d",
+}
 
 export default function RootLayout({
   children, }: {

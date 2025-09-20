@@ -252,7 +252,7 @@ export default function CreatePage() {
     
     return (
     <>
-    <main className="w-screen min-h-screen flex xm:justify-end items-center z-20 px-5 bg-gradient-to-b from-[#0a0a20] via-[#101030] to-[#09091d]
+    <main className="w-screen min-h-screen flex xm:justify-end items-center z-20 px-5 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#0d0d2b]
     l:max-xl:px-20 max-xm:items-start max-xm:flex-col max-xm:px-3 max-xm:overflow-hidden">
         <Navbar/>
         <div className="absolute p-0 top-20 select-none
@@ -524,7 +524,7 @@ export default function CreatePage() {
                 width={120}
                 height={120}
                 alt=""
-                className={`absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 m:max-xm:ml-37 max-m:ml-16 pointer-events-none select-none
+                className={`absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 m:max-xm:ml-37 max-m:ml-16 max-p:ml-14 max-pp:ml-12 pointer-events-none select-none
                     ${isOpen ? "hidden" : "opacity-100"}`}
             />
             <Image

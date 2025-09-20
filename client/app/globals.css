@@ -97,7 +97,7 @@ body {
 }
 
 .custom-scroll::-webkit-scrollbar-track {
-  background: linear-gradient(to bottom, #0a0a20, #141432, #020203);
+  background: linear-gradient(to bottom, #0d0d2b, #141432, #020203);
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {

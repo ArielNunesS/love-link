@@ -1,14 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import { Heart } from "lucide-react";
 import Image from "next/image";
 import CardPreview from "./CardPreview";
 
 export default function HomePage() {
 
     return (
-    <main className="min-h-screen z-10 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#020203]">
-        <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0a0a20] via-[#141432] to-[#020203]">
+    <main className="min-h-screen z-10 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#020203]">
+        <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#020203]">
         <section className="relative flex items-center justify-center overflow-x-clip">
             <div className="relative z-10 container mx-auto px-4 top flex flex-col items-center justify-between gap-8 xm:flex-row">
                 <div className="text-left max-m:ml-0 max-l:ml-7 l:mx-10 ll:ml-10 lll:ml-65">
@@ -63,58 +62,63 @@ export default function HomePage() {
 
             </section>
 
-        <section id="como-fazer" className="relative w-full py-50 z-30">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-15">
-              <h2 className="text-4xl font-bold text-white mb-3">Como Fazer?</h2>
+        <section id="como-fazer" className="relative w-full py-50 z-30 l:px-100 select-none">
+            <div className="relative text-center mb-15">
+              <h2 className="text-[42px] font-bold text-white mb-3">Como Fazer?</h2>
             </div>
+          <div className="container grid l:grid-cols-4 gap-6 mx-auto px-6 m:max-xm:w-7/10">
 
-            <div className="grid grid-cols-1 m:grid-cols-2 gap-8 w-5/7 h-120 mx-auto max-m:w-full">
-
-              <div className="rounded-2xl shadow-lg p-5 text-center flex flex-col items-center">
-                <p className="text-lg font-semibold text-white mb-5">1. Preencha os Dados</p>
-                <Image 
-                  src="https://i.postimg.cc/9Xs88gxK/love-link-form.png"
+              <div className="rounded-2xl bg-[#18183c] shadow-2xl h-100 p-5 text-center flex flex-col items-center
+              max-xm:mx-auto m:max-xm:w-6/10 m:max-xm:h-100 max-m:w-7/10 max-m:h-90">
+                <p className="text-2xl font-bold text-white"><span className="text-3xl text-rose-400">1. </span> Preencha os Dados</p>
+                <Image
+                  src="https://i.postimg.cc/FRWf3LR0/love-link-form.png"
                   alt=""
                   width={300}
                   height={300}
-                  className="mb-4 rounded-4xl"
+                  className="mt-5 rounded-2xl"
                 />
+                <p className="text-sm text-white mt-5">Coloque fotos, música e escreva uma mensagem personalizada para quem ama</p>
               </div>
 
-              <div className="rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
-                <p className="text-lg font-semibold text-white">2. Faça o Pagamento</p>
-                <Image 
+              <div className="rounded-2xl bg-[#18183c] shadow-2xl h-100 p-5 text-center flex flex-col items-center
+              max-xm:mx-auto m:max-xm:w-6/10 max-m:w-7/10 max-m:h-70">
+                <p className="text-2xl font-bold text-white"><span className="text-3xl text-rose-400 text-left">2. </span> Faça o Pagamento</p>
+                <Image
                   src="https://i.postimg.cc/FHpx4TZ9/love-link-payment.png"
                   alt=""
-                  width={250}
-                  height={250}
-                  className=""
+                  width={170}
+                  height={170}
+                  className="mt-1 rounded-2xl"
                 />
+                <p className="text-sm text-white mt-5.5">Faça seu pagamento de forma totalmente segura na página de pagamento PagBank<br/>Aceitamos <span className="text-green-500"><strong>PIX ou Cartão</strong></span></p>
               </div>
 
-              <div className="rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
-                <p className="text-lg font-semibold text-white">3. Receba o seu Site <br/>+<br/>QR Code no e-mail</p>
-                <Image 
-                  src="https://i.postimg.cc/1XgjWjJf/love-link-email.png"
+              <div className="rounded-2xl bg-[#18183c] shadow-2xl h-100 p-5 text-center flex flex-col items-center
+              max-xm:mx-auto m:max-xm:w-6/10 max-m:w-7/10 max-m:h-65">
+                <p className="text-2xl font-bold text-white"><span className="text-3xl text-rose-400">3. </span> Receba o seu acesso no Email</p>
+                <Image
+                  src="https://i.postimg.cc/tJ9jqSy5/love-link-email.png"
                   alt=""
-                  width={300}
-                  height={300}
-                  className="mb-4"
+                  width={200}
+                  height={200}
+                  className="mt-5 rounded-3xl"
                 />
+                <p className="text-sm text-white mt-9">Um email com o acesso à página <span className="text-rose-400">+ QR Code personalizado</span> será enviado após o pagamento ser confirmado</p>
               </div>
 
-              <div className="rounded-2xl shadow-lg p-6 text-center flex flex-col items-center">
-                <p className="text-lg font-semibold text-white">4. Surpreenda seu amor</p>
-                <Image 
-                  src="https://i.postimg.cc/vZJb5CL2/love-link-couple-page.png"
+              <div className="rounded-2xl bg-[#18183c] shadow-2xl h-160 p-5 text-center flex flex-col items-center
+                max-xm:mx-auto m:max-xm:w-6/10 max-m:w-7/10 max-m:h-112">
+                <p className="text-2xl font-bold text-white"><span className="text-3xl text-rose-400">4. </span> Surpreenda seu Amor</p>
+                <Image
+                  src="https://i.postimg.cc/X7q3G5KV/love-link-couple-page.png"
                   alt=""
-                  width={250}
-                  height={250}
-                  className="mb-4 mt-5"
+                  width={180}
+                  height={180}
+                  className="mt-5 rounded-2xl"
                 />
+                <p className="text-sm text-white mt-5">Agora é só compartilhar com seu amor e fazer deste presente um grande momento</p><p className="text-base text-rose-400 font-bold mt-4 px-3">Imprima o QR Code para surpreender ainda mais a pessoa que ama</p>
               </div>
-            </div>
           </div>
       </section>
 
@@ -125,10 +129,10 @@ export default function HomePage() {
             </div>
 
             <div className=" w-5/7 mx-auto max-m:w-full">
-                <p className="text-3xl mt-5 font-semibold text-white">1. Preencha os Dados</p>
-                <p className="text-3xl mt-5 font-semibold text-white">2. Faça o Pagamento</p>
-                <p className="text-3xl mt-5 font-semibold text-white">3. Receba o seu Site QR Code no e-mail</p>
-                <p className="text-3xl mt-5 font-semibold text-white">4. Surpreenda seu amor</p>
+                <p className="text-3xl mt-5 font-bold text-white">1. Preencha os Dados</p>
+                <p className="text-3xl mt-5 font-bold text-white">2. Faça o Pagamento</p>
+                <p className="text-3xl mt-5 font-bold text-white">3. Receba o seu Site QR Code no e-mail</p>
+                <p className="text-3xl mt-5 font-bold text-white">4. Surpreenda seu amor</p>
             </div>
           </div>
       </section> */}
