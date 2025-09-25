@@ -21,11 +21,8 @@ const dancingScript = Dancing_Script({
 export const metadata: Metadata = {
   title: "LoveLink - Site para seu Amor",
   description: "Eternize cada momento do seu amor com um card virtual personalizado e contador de tempo de relacionamento",
+  themeColor: "09091d",
 };
-
-export const viewport: Viewport = {
-  themeColor: "#09091d",
-}
 
 export default function RootLayout({
   children, }: {
@@ -38,6 +35,9 @@ export default function RootLayout({
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="theme-color" content="#0d0d2b" />
+          <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0d2b" />
+          <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0d0d2b" />
           <link rel="manifest" href="/manifest.json" />
         </head>
 
