@@ -21,7 +21,7 @@ const dancingScript = Dancing_Script({
 export const metadata: Metadata = {
   title: "LoveLink - Site para seu Amor",
   description: "Eternize cada momento do seu amor com um card virtual personalizado e contador de tempo de relacionamento",
-  themeColor: "09091d",
+  themeColor: "#0d0d2b",
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
     return (
       <html lang="pt-BR" className={`${firaSans.variable} antialiased ${dancingScript.variable} antialiased custom-scroll`}>
         <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+          <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, viewport-fit=cover" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <meta name="mobile-web-app-capable" content="yes" />

@@ -17,7 +17,6 @@ export default function Home() {
 
   return (
     <div>
-      <BackgroundLines/>
       <Navbar/>
       <HomePage/>
     </div>

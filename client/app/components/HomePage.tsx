@@ -6,12 +6,12 @@ import CardPreview from "./CardPreview";
 export default function HomePage() {
 
     return (
-    <main className="min-h-screen z-10 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#020203]">
-        <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#020203]">
+    <main className="min-h-screen z-10">
+        <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#0d0d2b]">
         <section className="relative flex items-center justify-center overflow-x-clip">
             <div className="relative z-10 container mx-auto px-4 top flex flex-col items-center justify-between gap-8 xm:flex-row">
                 <div className="text-left lll:ml-65 ll:ml-10 l:mx-10 max-l:ml-7 max-m:ml-0">
-                  <h1 className="text-6xl font-bold mb-5 -mt-15 max-xm:text-6xl max-xm:mt-18 max-m:text-[52px] max-m:mt-15 max-p:text-[46px] max-pp:text-[42px]max-xpp:text-4xl">
+                  <h1 className="text-6xl text-white font-bold mb-5 -mt-15 max-xm:text-6xl max-xm:mt-18 max-m:text-[52px] max-m:mt-15 max-p:text-[46px] max-pp:text-[42px]max-xpp:text-4xl">
                       <span className="text-rose-600">
                             Eternize </span>
                             cada momento do seu

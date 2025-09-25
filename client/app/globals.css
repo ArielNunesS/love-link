@@ -32,25 +32,28 @@
 }
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 10, 10, 32;
-  --background-end-rgb: 10, 10, 32;
+  background-color: #0d0d2b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0d0d2b;
     --foreground: rgb(209, 73, 73);
-    --back2: #ff637e;
   }
 }
 
+html {
+  background-color: #0d0d2b;
+  min-height: 100%;
+  height: -webkit-fill-available;
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+  color: #0d0d2b;
+  background-color: #0d0d2b;
+  min-height: 100%;
+  height: -webkit-fill-available;
   font-family: var(--font-fira-sans);
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .body-lock {
@@ -101,12 +104,12 @@ body {
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #140c1f00, #ffffff6d, #140c1f00);
+  background: #ffffff4b;
   border-radius: 9999px;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #140c1f00, #ffffffbd, #140c1f00);
+  background: #ffffff86;
 }
 
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {

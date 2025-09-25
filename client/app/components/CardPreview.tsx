@@ -93,14 +93,14 @@ export default function CardPreview(props: CardPreviewProps){
                 <div className="p-0.5 bg-pink-700/30 rounded-full">
                   <div className="w-16 h-16 rounded-full bg-pink-700 flex items-center justify-center animate-bounce">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
-                      <MailOpen/>
+                      <MailOpen className="text-white"/>
                     </button>
                   </div>
                 </div>
-                  <p className="text-xl font-semibold wrap-anywhere select-none" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
+                  <p className="text-xl text-white font-semibold wrap-anywhere select-none" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
               </div>
                 <div className="max-w-xs">
-                  <p className="text-xs px-1 font-normal wrap-break-word whitespace-pre-wrap select-none">{props.message}</p>
+                  <p className="text-xs text-white px-1 font-normal wrap-break-word whitespace-pre-wrap select-none">{props.message}</p>
                 </div>
           </>
         ) : (
@@ -110,7 +110,7 @@ export default function CardPreview(props: CardPreviewProps){
                 <div className="p-0.5 bg-pink-700/30 rounded-full">
                   <div className="w-16 h-16 rounded-full bg-pink-700 flex items-center justify-center animate-bounce">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
-                      <Mail/>
+                      <Mail className="text-white"/>
                     </button>
                   </div>
                 </div>

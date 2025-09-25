@@ -252,7 +252,7 @@ export default function CreatePage() {
     
     return (
     <>
-    <main className="w-screen min-h-screen flex xm:justify-end items-center z-20 px-5 bg-gradient-to-b from-[#0a0a20] via-[#101030] to-[#09091d]
+    <main className="w-screen min-h-screen flex text-white xm:justify-end items-center z-20 px-5 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#0d0d2b]
     l:max-xl:px-20 max-xm:items-start max-xm:flex-col max-xm:px-3 max-xm:overflow-hidden">
         <Navbar/>
         <div className="absolute p-0 top-20 select-none
