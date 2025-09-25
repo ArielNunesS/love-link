@@ -63,14 +63,21 @@ export default function BackgroundLines() {
                </div> */}
    
                {/* Partículas brilhantes */}
-               <div className="absolute inset-0">
-                 <div className="absolute top-1/4 left-1/5 w-1 h-1 rounded-full bg-pink-400 opacity-70"></div>
+               <div className="absolute inset-0 animate-pulse">
+                 {/* <div className="absolute top-1/4 left-1/5 w-1 h-1 rounded-full bg-pink-400 opacity-70"></div>
                  <div className="absolute top-1/3 left-2/3 w-1.5 h-1.5 rounded-full bg-pink-300 opacity-80"></div>
-                 <div className="absolute top-2/3 left-1/4 w-1 h-1 rounded-full bg-pink-400 opacity-60"></div>
                  <div className="absolute top-5/7 left-5/11 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-70"></div>
                  <div className="absolute top-7/9 left-1/3 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-70"></div>
-                 <div className="absolute top-1/5 left-2/4 w-2 h-2 rounded-full bg-pink-400 opacity-65"></div>
+                 <div className="absolute top-5/9 left-1/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-70"></div>
+                 <div className="absolute top-1/7 left-2/5 w-2 h-2 rounded-full bg-pink-400 opacity-65"></div>
+                 <div className="absolute top-2/18 left-2/7 w-2 h-2 rounded-full bg-pink-400 opacity-65"></div>
                  <div className="absolute top-1/5 left-1/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
+                 <div className="absolute top-1/5 left-1/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
+                 <div className="absolute top-1/10 left-7/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
+                 <div className="absolute top-2/5 left-9/11 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
+                 <div className="absolute top-2/9 left-10/11 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
+                 <div className="absolute top-4/7 left-9/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
+                 <div className="absolute top-6/7 left-17/20 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div> */}
                </div>
              </div>
 )

@@ -64,7 +64,7 @@ export default function CardPreview(props: CardPreviewProps){
       <div className={`max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10
       ${isOpen ? "opacity-50" : "opacity-100"}`}>
       <div className="relative mx-auto">
-          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden shadow-2xl border-6 border-gray-800">
+          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] overflow-hidden border-6 border-gray-800">
             {/* Notch */}
             <div className={"absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"}></div>
             
@@ -81,7 +81,7 @@ export default function CardPreview(props: CardPreviewProps){
               
               {/* URL */}
               <div className="mx-4 mt-2 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 flex items-center">
-                  <div className="w-1 h-1 rounded-full bg-rose-400 mr-2"></div>
+                  <div className="w-1 h-1 rounded-full bg-rose-500 mr-2"></div>
                   <p className="text-white/80 text-xs text-nowrap overflow-hidden select-none">love-link-app.com.br/{props.name}</p>
               </div>
 

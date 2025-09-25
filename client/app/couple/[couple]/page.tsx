@@ -35,7 +35,7 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
     const startDate = new Date(coupleData.startDate);
 
     return ( <>
-    <main className="w-full min-h-screen z-30 items-center bg-gradient-to-br from-purple-900/80 via-[#270a35] to-rose-900/50 overflow-hidden ">
+    <main className="w-full min-h-screen z-30 items-center bg-gradient-to-br from-purple-900/80 via-[#300d42] to-rose-900/80 overflow-hidden ">
         <div className="min-h-screen flex items-center justify-center p-4 text-white z-30">
         <div className="mt-7">
         <Image

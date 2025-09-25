@@ -147,7 +147,7 @@ export default function CardFinal(props: CardFinalProps){
             />
           </div>
           <div className="relative bottom-220 left-70 w-16 h-16 text-rose-500/50">
-            <Heart className="w-full h-full animate-ping fill-rose-500/35
+            <Heart className="w-full h-full animate-ping fill-rose-500/35 mt-20
               max-p:size-14 max-p:mt-15 max-p:ml-6
               max-pp:size-12 max-pp:mt-9 max-pp:ml-7
               max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
