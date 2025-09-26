@@ -19,7 +19,7 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "LoveLink - Site para seu Amor",
+  title: "LoveLink | Site para seu Amor",
   description: "Eternize cada momento do seu amor com um card virtual personalizado e contador de tempo de relacionamento",
   themeColor: "#0d0d2b",
 };

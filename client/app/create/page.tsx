@@ -255,7 +255,7 @@ export default function CreatePage() {
     <main className="w-screen min-h-screen flex text-white xm:justify-end items-center z-20 px-5 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#0d0d2b]
     l:max-xl:px-20 max-xm:items-start max-xm:flex-col max-xm:px-3 max-xm:overflow-hidden">
         <Navbar/>
-        <div className="absolute p-0 top-20 select-none
+        <div className="absolute p-0 top-20
             xl:left-2/7
             max-xl:top-25
             ll:max-xl:left-65
@@ -539,7 +539,7 @@ export default function CreatePage() {
         
 
 
-        <div className="m:max-xm:ml-20 select-none">
+        <div className="m:max-xm:ml-20 select-none max-[300px]:scale-90">
             <CardPreview
                 name={name}
                 email={""}
@@ -547,7 +547,7 @@ export default function CreatePage() {
                 message={message}
                 startDate={startDate}
                 image={imagePreviewUrl}
-                background={background || "rose"}
+                background={background}
             />
         </div>
 
