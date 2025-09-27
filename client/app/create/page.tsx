@@ -14,7 +14,8 @@ import "dotenv/config";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 const MAX_FILE_SIZE = 5000000;
-const MAX_LINES = 20;
+const MAX_IMAGE_COUNT = 5;
+const MAX_LINES = 40;
 
 const today = new Date();
 
@@ -26,17 +27,17 @@ const cardSchema = z.object({
     startDate: z.date({ invalid_type_error: "Informe uma data válida" }).min(new Date("1900-01-01"), "Informe uma data válida").max(today, {
         message: "A data não pode ser uma data futura",
     }),
-    image: z.any()
-    .refine((files) => files?.length > 0, "Uma imagem é obrigatória")
-    .refine((files) => {
-            const file = files?.[0];
-            return ACCEPTED_IMAGE_TYPES.includes(file?.type)
-        }, "Somente formatos .jpg, .jpeg, .png e .webp são aceitos.")
-    .refine((files) => {
-            const file = files?.[0];
-            if(!files || files.length === 0) return true;
-            return file?.size <= MAX_FILE_SIZE;
-        }, "O tamanho máximo da imagem é de 5 MB"),
+    images: z.any()
+        .transform((files) => {
+        if (files && typeof files === 'object' && 'length' in files) {
+            return Array.from(files);
+        }
+        return files;
+    })
+    .refine((files) => files?.length > 0, "Pelo menos uma imagem é obrigatória.")
+    .refine((files) => files?.length <= MAX_IMAGE_COUNT, `O máximo de imagens permitidas é ${MAX_IMAGE_COUNT}.`)
+    .refine((files) => files?.every((file: File) => ACCEPTED_IMAGE_TYPES.includes(file?.type)), "Somente formatos .jpg, .jpeg, .png e .webp são aceitos.")
+    .refine((files) => files?.every((file: File) => file?.size <= MAX_FILE_SIZE), "O tamanho máximo de cada imagem é de 5 MB"),
     background: z.enum(["rose", "red", "purple", "blackPurple"]),
 });
 
@@ -60,7 +61,7 @@ export default function CreatePage() {
             title: "",
             message: "",
             startDate: new Date(),
-            image: null,
+            images: null as any,
             background: "rose"
         }
     });
@@ -70,7 +71,7 @@ export default function CreatePage() {
     const title = watch("title");
     const message = watch("message");
     const startDate = watch("startDate");
-    const image = watch("image");
+    const images = watch("images");
     const background = watch("background");
 
     const [ nameIsFocused, setNameIsFocused ] = useState(false);
@@ -78,22 +79,26 @@ export default function CreatePage() {
     const [ messageIsFocused, setMessageIsFocused ] = useState(false);
     const [ dateIsFocused, setDateIsFocused ] = useState(false);
     const [ isHovering, setIsHovering ] = useState(false);
-    const [ imagePreviewUrl, setImagePreviewUrl ] = useState<string | null>(null);
+    const [ imagePreviewUrls, setImagePreviewUrls ] = useState<string[] | null>(null);
     const { isOpen, openModal, closeModal } = useModal();
 
     useEffect(() => {
-        if(image && image.length > 0) {
-            const file = image[0];
-            const url = URL.createObjectURL(file);
-            setImagePreviewUrl(url);
+    if (images && images.length > 0) {
+        const validFiles = Array.from(images).filter((file: File) => 
+            file && file.size > 0 && file.type.startsWith('image/')
+        );
+        
+        const urls = validFiles.map((file: File) => URL.createObjectURL(file));
+        setImagePreviewUrls(urls);
 
-            return () => {
-                URL.revokeObjectURL(url);
-            };
-        } else {
-            setImagePreviewUrl(null);
-        }
-    }, [image]);
+        return () => {
+            urls.forEach(url => URL.revokeObjectURL(url));
+        };
+    } else {
+        setImagePreviewUrls([]);
+    }
+}, [images]);
+
 
     const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.target.value;
@@ -119,8 +124,12 @@ export default function CreatePage() {
         formData.append("title", data.title);
         formData.append("message", data.message);
         formData.append("startDate", dtFormated);
-        formData.append("image", data.image[0]);
         formData.append("background", data.background);
+
+        data.images.forEach((file: File) => {
+            formData.append("images", file); 
+        });
+
     try {
 
         const backendAPIURL = "http://localhost:10000"
@@ -382,22 +391,24 @@ export default function CreatePage() {
 
                     <input 
                         type="file"
+                        name="images"
+                        multiple
                         accept="image/jpeg,image/jpg,image/png,image/webp"
                         className="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer bg-[#09091d] rounded-lg outline-none"
-                        {...register("image", {
+                        {...register("images", {
                             required: true,
                         })}
                     
                     />
-                    {image && image.length > 0 &&(
-                        <p className="text-sm text-white mt-2 ml-3 select-none">
-                            Arquivo: <span className="text-white/70">{image[0].name}</span>
-                        </p>
-                    )}
+                    {images && images.length > 0 &&(
+                    <p className="text-sm text-white/80 mt-2 ml-2 select-none">
+                        Arquivos selecionados: <span className="text-white/80">{images.length}</span>
+                    </p>
+                )}
 
                 </div>
-                    {errors.image && (
-                        <p className="text-red-500 text-left text-sm pr-32 mt-1 rounded-lg">{errors.image.message.toString()}</p>
+                    {errors.images && (
+                        <p className="text-red-500 text-left text-sm mx-auto mt-1 rounded-lg">{errors.images.message.toString()}</p>
                     )}
 
                 <div className="mx-auto">
@@ -546,7 +557,7 @@ export default function CreatePage() {
                 title={title}
                 message={message}
                 startDate={startDate}
-                image={imagePreviewUrl}
+                images={imagePreviewUrls}
                 background={background}
             />
         </div>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useModal } from "../contexts/ModalContext";
 import { Calendar, Heart, Music, Camera, Mail, MailOpen } from "lucide-react";
+import { GoDotFill } from "react-icons/go";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";
@@ -16,7 +17,7 @@ interface CardPreviewProps {
   title: string,
   message: string,
   startDate: Date,
-  image: string | null,
+  images: string[] | null,
   background: "rose" | "red" | "purple" | "blackPurple";
 }
 
@@ -24,6 +25,7 @@ interface CardPreviewProps {
 export default function CardPreview(props: CardPreviewProps){
   const [ showMessage, setShowMessage ] = useState<boolean>(false);
   const [ secondsPassed, setSecondsPassed ] = useState<number>(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const { isOpen } = useModal()
 
   const backgroundClasses: Record<CardPreviewProps["background"], string> = {
@@ -32,6 +34,23 @@ export default function CardPreview(props: CardPreviewProps){
     red: "bg-gradient-to-b from-purple-900/80 via-[#350a2c] to-red-800/80",
     blackPurple: "bg-gradient-to-b from-[#0a0a20] via-[#422575] to-[#0a0a20]",
   };
+
+  useEffect(() => {
+      if (props.images && props.images.length > 1) {
+        const imageInterval = setInterval(() => {
+          setCurrentImageIndex((prevIndex) => 
+            prevIndex === props.images!.length - 1 ? 0 : prevIndex + 1
+          );
+        }, 3000);
+
+        return () => clearInterval(imageInterval);
+      }
+    }, [props.images, currentImageIndex]);
+
+  useEffect(() => {
+      setCurrentImageIndex(0);
+    }, [props.images]);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -143,13 +162,18 @@ export default function CardPreview(props: CardPreviewProps){
                 <p className="text-white/70 text-xs text-center mt-3 p-0">{`${displayHours.toString().padStart(2, "0")} h ${displayMinutes.toString().padStart(2, "0")} m ${displaySeconds.toString().padStart(2, "0")} s`}</p>
               </div>
               
-              {props.image ? (
+              {props.images && Array.isArray(props.images) && props.images.length > 0 ? (
+                <>
+                <div>
                 <Image
-                src={props.image}
+                src={props.images[currentImageIndex]}
                 alt="image"
                 width={310}
                 height={310}
-                className="object-cover border-3 rounded-2xl mx-auto"/>
+                className="object-cover border-3 rounded-2xl mx-auto transform transition-shadow duration-500"/>
+
+                </div>
+                </>
               ) :
                 <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
                   <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-79 h-50 p-5 flex items-center gap-2

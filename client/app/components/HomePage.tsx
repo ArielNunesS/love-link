@@ -58,7 +58,7 @@ export default function HomePage() {
                           title="Feliz 6 Meses Amor"
                           message="Aqui um texto para que nunca se esqueça do quanto eu te amo..."
                           startDate={new Date("2022-04-03")}
-                          image={null}
+                          images={null}
                           background="rose"
                         />
                 </div>
@@ -156,7 +156,7 @@ export default function HomePage() {
           </div>
       </section>
 
-      <section id="oque-Oferecemos" className="relative w-full mt-50 z-30 l:px-110 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#440f28] to-[#0d0d2b] m:max-xm:px-15">
+      <section id="oque-oferecemos" className="relative w-full mt-50 z-30 l:px-110 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#440f28] to-[#0d0d2b] m:max-xm:px-15">
             <div className="relative text-center">
               <h2 className="text-[42px] text-center font-bold text-white mb-5 max-m:text-4xl">Oque Oferecemos?</h2>
               <div className="grid grid-cols-3 gap-5 p-5 text-white text-center items-center mx-auto m:max-xm:grid-cols-2 max-m:grid-cols-1">
@@ -176,7 +176,7 @@ export default function HomePage() {
                 <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
                     <div className="relative text-rose-500 mx-auto"><IoImagesOutline className="mt-5 w-10 h-10" /></div>
                     <p className="text-xl mt-3 justify-center px-7 font-bold">Imagens</p>
-                    <span className="text-sm mt-3 px-5 text-wrap wrap-anywhere">Guarde os momentos e memórias inesquecíveis ao lado de quem ama enviando até <strong>5 fotos!</strong></span>
+                    <span className="text-sm mt-3 px-5 text-wrap wrap-anywhere">Guarde os momentos e memórias inesquecíveis ao lado de quem ama enviando até <strong>5 fotos</strong></span>
                 </div>
 
                 <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
