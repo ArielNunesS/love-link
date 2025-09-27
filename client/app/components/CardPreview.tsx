@@ -21,13 +21,13 @@ interface CardPreviewProps {
   background: "rose" | "red" | "purple" | "blackPurple";
 }
 
-
 export default function CardPreview(props: CardPreviewProps){
+  const [isClient, setIsClient] = useState<boolean>(false)
   const [ showMessage, setShowMessage ] = useState<boolean>(false);
   const [ secondsPassed, setSecondsPassed ] = useState<number>(0);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const { isOpen } = useModal()
-
+  
   const backgroundClasses: Record<CardPreviewProps["background"], string> = {
     rose: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/80",
     purple: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-purple-900/60",
@@ -69,7 +69,7 @@ export default function CardPreview(props: CardPreviewProps){
   const days = Math.floor(diff.days ?? 0);
   const hours = Math.floor(diff.hours ?? 0);
   const minutes = Math.floor(diff.minutes ?? 0);
-  const seconds = Math.floor(diff.seconds ?? 0); + secondsPassed;
+  const seconds = Math.floor(diff.seconds ?? 0); + (isClient ? secondsPassed : 0);
 
   let displaySeconds = seconds % 60;
   let displayMinutes = minutes + Math.floor(seconds / 60);
@@ -159,7 +159,7 @@ export default function CardPreview(props: CardPreviewProps){
                     <p className="text-white/70 text-xs">dias</p>
                   </div>
                 </div>
-                <p className="text-white/70 text-xs text-center mt-3 p-0">{`${displayHours.toString().padStart(2, "0")} h ${displayMinutes.toString().padStart(2, "0")} m ${displaySeconds.toString().padStart(2, "0")} s`}</p>
+                <p className="text-white/70 text-xs text-center mt-3 p-0" suppressHydrationWarning>{`${displayHours.toString().padStart(2, "0")} h ${displayMinutes.toString().padStart(2, "0")} m ${displaySeconds.toString().padStart(2, "0")} s`}</p>
               </div>
               
               {props.images && Array.isArray(props.images) && props.images.length > 0 ? (

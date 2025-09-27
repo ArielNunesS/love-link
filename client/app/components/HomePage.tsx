@@ -60,6 +60,7 @@ export default function HomePage() {
                           startDate={new Date("2022-04-03")}
                           images={null}
                           background="rose"
+                          
                         />
                 </div>
               </div>

@@ -3,7 +3,7 @@ import { Router } from "express";
 import Couple from "../models/Couple";
 import multer from "multer";
 import upload from "../middlewares/multer";
-import { v2 as cloudinary } from "cloudinary";
+import cloudinary from "../utils/cloudinary";
 import crypto from "crypto";
 import fs from 'fs/promises';
 
@@ -31,6 +31,7 @@ export default function coupleRoutes() {
     });
 
     router.post("/create", upload.array("images", 5), async(req, res) => {
+
         try {
         
         const files = req.files as Express.Multer.File[] | undefined;
@@ -57,6 +58,7 @@ export default function coupleRoutes() {
 
             const { name, email, title, message, startDate } = req.body;
 
+
             const newCouple = new Couple({
                 name: name,
                 email: email,
@@ -80,7 +82,6 @@ export default function coupleRoutes() {
 
             const cleanupPromises = files.map(file => fs.unlink(file.path));
             await Promise.all(cleanupPromises);
-        
             const coupleUrl = `https://love-link-app.com.br/couple/${coupleCard.slug}`;
 
             res.status(201).json({
