@@ -3,8 +3,9 @@ import { Router } from "express";
 import Couple from "../models/Couple";
 import multer from "multer";
 import upload from "../middlewares/multer";
-import cloudinary from "../utils/cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 import crypto from "crypto";
+import fs from 'fs/promises';
 
 export default function coupleRoutes() {
     const router = Router();
@@ -29,22 +30,30 @@ export default function coupleRoutes() {
         }
     });
 
-    router.post("/create", upload.single('image'), async(req, res) => {
+    router.post("/create", upload.array("images", 5), async(req, res) => {
         try {
+        
+        const files = req.files as Express.Multer.File[] | undefined;
 
-            if(!req.file){
-                return res.status(400).json({ message: "No image file provided" });
-            }
+        if(!files || files.length === 0){
+            return res.status(400).json({ message: "No image file provided" });
+        }
 
-            const cloudinaryUploadResult = await cloudinary.uploader.upload(
-                req.file.path, { folder: "love-link_images"
+        const uploadPromises = files.map(file => {
+            return cloudinary.uploader.upload(file.path, { 
+                folder: "love-link_images"
             });
+        });
+        
+       const cloudinaryResults = await Promise.all(uploadPromises);
 
-            const imageUrl = cloudinaryUploadResult?.secure_url || cloudinaryUploadResult?.url;
-            
-            if(!imageUrl) {
-                return res.status(500).json({ message: "Failed to get image URL from Cloudinary"})
-            }
+        const imageUrls = cloudinaryResults
+            .map((result: { secure_url: any; url: any; }) => result?.secure_url || result?.url)
+            .filter((url: any) => url);
+
+        if(imageUrls.length === 0) {
+            return res.status(500).json({ message: "Error searching for images URL"})
+        }
 
             const { name, email, title, message, startDate } = req.body;
 
@@ -54,7 +63,7 @@ export default function coupleRoutes() {
                 title: title,
                 message: message,
                 startDate: startDate,
-                image: imageUrl,
+                images: imageUrls,
             });
 
             const coupleCard = await newCouple.save()
@@ -69,6 +78,9 @@ export default function coupleRoutes() {
                 await coupleCard.save();
             };
 
+            const cleanupPromises = files.map(file => fs.unlink(file.path));
+            await Promise.all(cleanupPromises);
+        
             const coupleUrl = `https://love-link-app.com.br/couple/${coupleCard.slug}`;
 
             res.status(201).json({
