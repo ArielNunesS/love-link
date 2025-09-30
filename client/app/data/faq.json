@@ -1,0 +1,44 @@
+{
+  "faqItems": [
+    {
+      "id": 1,
+      "question": "O que é a Lovelink?",
+      "answer": "A LoveLink é uma plataforma que permite criar páginas personalizadas com QR Code para casais. Você pode compartilhar sua história de amor, fotos especiais e momentos únicos em um site exclusivo que pode ser acessado facilmente através de um QR Code."
+    },
+    {
+      "id": 2,
+      "question": "Como posso criar uma página personalizada na LoveLink?",
+      "answer": "Para criar sua página personalizada, basta acessar nosso site, preencher o formulário com suas informações (nome do casal, data de início do relacionamento, mensagem especial e fotos), realizar o pagamento e pronto! Seu site estará disponível em poucos minutos."
+    },
+    {
+      "id": 3,
+      "question": "O que está incluído na minha página personalizada?",
+      "answer": "Sua página personalizada inclui: contador de tempo do relacionamento, galeria de fotos (até 5 imagens), QR Code único para compartilhamento fácil, mensagem personalizada, design elegante e responsivo, e hospedagem vitalícia do seu LoveLink."
+    },
+    {
+      "id": 4,
+      "question": "Como recebo minha página personalizada após o pagamento?",
+      "answer": "Imediatamente após a confirmação do pagamento, você receberá um e-mail com o link da sua página personalizada e o QR Code para compartilhar. O processo é automático e totalmente seguro."
+    },
+    {
+      "id": 5,
+      "question": "A página personalizada tem validade?",
+      "answer": "Não! Sua página LoveLink é vitalícia e ficará disponível para sempre sem custos adicionais. Você pode acessar e compartilhar quando quiser."
+    },
+    {
+      "id": 6,
+      "question": "Quanto tempo leva para receber o QR Code por email?",
+      "answer": "O QR Code e o link da sua página são enviados por e-mail assim que o pagamento é confirmado."
+    },
+    {
+      "id": 7,
+      "question": "Quais são as formas de pagamento aceitas?",
+      "answer": "Aceitamos cartão de crédito (todas as bandeiras) e PIX. O pagamento é processado de forma segura através de um gateway de pagamento."
+    },
+    {
+      "id": 8,
+      "question": "Como posso entrar em contato com o suporte ao cliente?",
+      "answer": "Você pode entrar em contato conosco através do email lovelinkapp00@gmail.com.br ou pelo email pessoal do criador ari3lnds@gmail.com. Estou disponível para ajudar com qualquer dúvida ou problema."
+    }
+  ]
+}

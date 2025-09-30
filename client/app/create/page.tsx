@@ -1,5 +1,7 @@
 "use client"
 
+import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Form, useForm } from "react-hook-form";
 import { date, number, z } from "zod";
@@ -8,8 +10,7 @@ import { DateTime } from "luxon";
 import { X } from "lucide-react";
 import { useModal } from "../contexts/ModalContext";
 import CardPreview from "../components/CardPreview";
-import Navbar from "../components/Navbar";
-import Image from "next/image";
+
 import "dotenv/config";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
@@ -263,7 +264,31 @@ export default function CreatePage() {
     <>
     <main className="w-screen min-h-screen flex text-white xm:justify-end items-center z-20 px-5 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#0d0d2b]
     l:max-xl:px-20 max-xm:items-start max-xm:flex-col max-xm:px-3 max-xm:overflow-hidden">
-        <Navbar/>
+        
+    <header className={`absolute top-0 left-0 right-0 z-20
+        xl:left-65 xl:right-60
+        lll:left-25 lll:right-25
+        ll:left-20 ll:right-20
+        l:left-15 l:right-15
+        ${isOpen ? "opacity-50 pointer-events-none" : "opacity-100"}`}>
+          <nav className="flex items-center px-5 py-3 justify-between 
+            l:mx-15 xm:mx-8 max-m:flex-col max-m:items-start max-m:px-4">
+            
+        <Link href="/" className="flex items-center gap-2">
+        <Image
+        src="https://i.postimg.cc/fbwy95Ww/heart-icon.png"
+        alt=""
+        width={60}
+        height={60}
+        className="w-15 max-xm:w-13 max-m:w-12 max-pp:w-10 select-none"
+        />
+
+        <span className="text-3xl font-bold text-white max-xm:text-2xl max-pp:text-xl select-none">
+          LoveLink
+        </span>
+        </Link>
+      </nav>
+    </header>
         <div className="absolute p-0 top-20
             xl:left-2/7
             max-xl:top-25

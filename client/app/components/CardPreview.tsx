@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useModal } from "../contexts/ModalContext";
 import { Calendar, Heart, Music, Camera, Mail, MailOpen } from "lucide-react";
+import { FaEnvelope } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -83,7 +84,7 @@ export default function CardPreview(props: CardPreviewProps){
       <div className={`max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10
       ${isOpen ? "opacity-50" : "opacity-100"}`}>
       <div className="relative mx-auto">
-          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[40px] overflow-hidden border-6 border-gray-800">
+          <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[40px] shadow-xl overflow-hidden border-6 border-gray-800">
             {/* Notch */}
             <div className={"absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"}></div>
             

@@ -2,12 +2,14 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import CardPreview from "./CardPreview";
+import FAQItem from "./FaqItem";
 import { GiLoveLetter } from "react-icons/gi";
 import { IoImagesOutline } from "react-icons/io5";
 import { PiClockCountdownFill } from "react-icons/pi";
 import { RiQrCodeFill } from "react-icons/ri";
 import { FaLink } from "react-icons/fa6";
 import { IoIosColorPalette } from "react-icons/io";
+import faqData from "../data/faq.json"
 
 export default function HomePage() {
     return (
@@ -157,7 +159,7 @@ export default function HomePage() {
           </div>
       </section>
 
-      <section id="oque-oferecemos" className="relative w-full mt-50 z-30 l:px-110 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#440f28] to-[#0d0d2b] m:max-xm:px-15">
+      <section id="oque-oferecemos" className="relative w-full mt-50 z-30 l:px-110 bg-gradient-to-b from-[#0d0d2b] via-[#440f28] to-[#0d0d2b] m:max-xm:px-15">
             <div className="relative text-center">
               <h2 className="text-[42px] text-center font-bold text-white mb-5 max-m:text-4xl">Oque Oferecemos?</h2>
               <div className="grid grid-cols-3 gap-5 p-5 text-white text-center items-center mx-auto m:max-xm:grid-cols-2 max-m:grid-cols-1">
@@ -200,19 +202,37 @@ export default function HomePage() {
             </div>
       </section>
 
-        <section className="relative w-full py-50 z-30 pb-200">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-15">
-              <h2 className="text-4xl font-bold text-white mb-3">Perguntas Frequentes</h2>
-            </div>
+      <section id="faq" className="relative w-full mt-50 z-30 l:px-110 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#1d1d3a] to-[#2b2b57] m:max-xm:px-15">
+        <div className="container mx-auto px-6 text-center">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white">Perguntas Frequentes</h2>
+          </div>
+          <div className="flex flex-col w-full mx-auto max-m:w-full">
+            <div className="flex flex-col w-6/9 mx-auto justify-between">
+              <div className="bg-[#0d0d2b] rounded-4xl mb-3">
+                {faqData.faqItems.map((item) => (
+                <FAQItem
+                  key={item.id}
+                  question={item.question}
+                  answer={item.answer}
+                  />
+                ))}
+              </div>
+              {/* 
+              <div className="bg-[#0d0d2b] rounded-4xl mb-3">
+                <FAQItem
+                  question="1231askd"
+                  answer="1231aksldka"/>
+              </div>
 
-            <div className=" w-5/7 mx-auto max-m:w-full">
-                <p className="text-3xl mt-5 font-bold text-white">1. Preencha os Dados</p>
-                <p className="text-3xl mt-5 font-bold text-white">2. Faça o Pagamento</p>
-                <p className="text-3xl mt-5 font-bold text-white">3. Receba o seu Site QR Code no e-mail</p>
-                <p className="text-3xl mt-5 font-bold text-white">4. Surpreenda seu amor</p>
+              <div className="bg-[#0d0d2b] rounded-4xl mb-3">
+                <FAQItem
+                  question="Quais são as formas de pagamento? Tem como parcelar?"
+                  answer="Aceitamos pagamento por Pix ou Cartão de Crédito, em até 3x sem juros, ou 10x com juros"/>
+              </div> */}
             </div>
           </div>
+        </div>
       </section>
 
         </div>
