@@ -20,11 +20,11 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         onClick={() => setIsOpen(!isOpen)}
       >
     <div className="flex flex-row w-full mx-auto justify-between">
-        <p className="text-lg font-semibold text-white px-5">{question}</p>
+        <p className="text-lg font-semibold text-white px-5 max-m:text-base max-p:text-sm max-m:px-2">{question}</p>
         {isOpen ? (
-          <MdOutlineKeyboardArrowUp className="flex mx-7 text-rose-500 transition-transform" size={27} />
+          <MdOutlineKeyboardArrowUp className="flex mx-7 text-rose-500 transition-transform" size={25} />
         ) : (
-          <MdOutlineKeyboardArrowDown className="flex mx-7 text-rose-500 transition-transform" size={27} />
+          <MdOutlineKeyboardArrowDown className="flex mx-7 text-rose-500 transition-transform" size={25} />
         )}
         </div>
       </button>

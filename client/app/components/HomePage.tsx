@@ -159,15 +159,15 @@ export default function HomePage() {
           </div>
       </section>
 
-      <section id="oque-oferecemos" className="relative w-full mt-50 z-30 l:px-110 bg-gradient-to-b from-[#0d0d2b] via-[#440f28] to-[#0d0d2b] m:max-xm:px-15">
-            <div className="relative text-center">
+      <section id="oque-oferecemos" className="relative w-full mt-50 z-30 bg-gradient-to-b from-[#0d0d2b] via-[#440f28] to-[#0d0d2b] xl:px-110 l:px-50 xm:max-l:px-40 m:max-xm:px-15">
+            <div className="relative text-center">y
               <h2 className="text-[42px] text-center font-bold text-white mb-5 max-m:text-4xl">Oque Oferecemos?</h2>
-              <div className="grid grid-cols-3 gap-5 p-5 text-white text-center items-center mx-auto m:max-xm:grid-cols-2 max-m:grid-cols-1">
+              <div className="grid grid-cols-3 gap-5 p-5 text-white text-center items-center mx-auto m:max-l:grid-cols-2 max-m:grid-cols-1">
 
                 <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
                     <div className="relative text-rose-500 mx-auto"><PiClockCountdownFill className="mt-5 w-9 h-9" /></div>
                     <p className="text-xl mt-3 justify-center px-7 font-bold">Contador de Tempo</p>
-                    <span className="text-sm mt-3 px-5 text-wrap wrap-anywhere">Acompanhe cada momento especial da sua história de amor com um contador personalizado</span>
+                    <span className="text-sm mt-3 px-5 text-wrap wrap-anwhere">Acompanhe cada momento especial da sua história de amor com um contador personalizado</span>
                 </div>
 
                 <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
@@ -202,13 +202,13 @@ export default function HomePage() {
             </div>
       </section>
 
-      <section id="faq" className="relative w-full mt-50 z-30 l:px-110 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#1d1d3a] to-[#2b2b57] m:max-xm:px-15">
+      <section id="faq" className="relative w-full mt-50 z-30 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#1d1d3a] to-[#2b2b57] ll:px-45 m:max-ll:px-15">
         <div className="container mx-auto px-6 text-center">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white">Perguntas Frequentes</h2>
           </div>
           <div className="flex flex-col w-full mx-auto max-m:w-full">
-            <div className="flex flex-col w-6/9 mx-auto justify-between">
+            <div className="flex flex-col w-6/9 max-xm:w-8/9 max-p:w-full mx-auto justify-between">
               <div className="bg-[#0d0d2b] rounded-4xl mb-3">
                 {faqData.faqItems.map((item) => (
                 <FAQItem
