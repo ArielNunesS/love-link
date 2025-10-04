@@ -60,7 +60,7 @@ export default function paymentRoutes() {
         payment_notification_urls: [ `${process.env.NEXT_PUBLIC_BACKEND_URL}/payment/webhook?secret=${process.env.PAGBANK_WEBHOOK_SECRET}` ]
     }
 
-    const response = await fetch("https://sandbox.api.pagseguro.com/checkouts", {
+    const response = await fetch("https://api.pagseguro.com/checkouts", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export default function paymentRoutes() {
 
     const { orderId } = req.params;
 
-    const response = await fetch(`https://sandbox.api.pagseguro.com/orders/${orderId}`, {
+    const response = await fetch(`https://api.pagseguro.com/orders/${orderId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
