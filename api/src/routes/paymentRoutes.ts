@@ -53,7 +53,7 @@ export default function paymentRoutes() {
             }
         },
 
-        soft_descriptor: "Página + QR Code",
+        soft_descriptor: "LoveLink - Página Personalizada",
         redirect_url: "https://love-link-app.com.br/success/",
         return_url: "https://love-link-app.com.br/",
         notification_urls: [ `${process.env.NEXT_PUBLIC_BACKEND_URL}/payment/webhook?secret=${process.env.PAGBANK_WEBHOOK_SECRET}` ],

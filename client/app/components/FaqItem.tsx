@@ -22,9 +22,13 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
     <div className="flex flex-row w-full mx-auto justify-between">
         <p className="text-lg font-semibold text-white px-5 max-m:text-base max-p:text-sm max-m:px-2">{question}</p>
         {isOpen ? (
-          <MdOutlineKeyboardArrowUp className="flex mx-7 text-rose-500 transition-transform" size={25} />
+          <div>
+          <MdOutlineKeyboardArrowUp className="flex mx-7 text-rose-500 transition-transform" size={18} />
+          </div>
         ) : (
-          <MdOutlineKeyboardArrowDown className="flex mx-7 text-rose-500 transition-transform" size={25} />
+          <div>
+          <MdOutlineKeyboardArrowDown className="flex mx-7 text-rose-500 transition-transform" size={18} />
+          </div>
         )}
         </div>
       </button>

@@ -79,15 +79,16 @@ export default function HomePage() {
             l:max-lll:w-9/10
             xm:w-7/10 xm:max-l:gap-8
             m:max-xm:px-15 m:max-xm:w-7/10
-            max-m:w-8/10">
+            max-m:w-9/10">
               
               <div className="rounded-2xl bg-gradient-to-b from-[#2d2d6b] to-[#18183c] shadow-2xl h-100 p-5 text-center flex flex-col items-center
                 ll:h-105
                 l:h-105
                 xm:h-105
                 max-xm:mx-auto max-xm:h-98 max-xm:w-full
-                max-m:w-8/10 max-m:h-95
-                max-p:h-96">
+                max-m:h-95
+                p:max-m:w-8/10
+                max-p:h-92">
                 <p className="text-[26px] font-bold text-white max-xm:text-2xl"><span className="text-3xl text-rose-400">1. </span> Preencha os Dados</p>
                 <Image
                   src="https://i.postimg.cc/FRWf3LR0/love-link-form.png"
@@ -104,9 +105,10 @@ export default function HomePage() {
                 l:h-105
                 xm:max-l:h-105
                 max-xm:mx-auto max-xm:h-85 max-xm:w-full
-                max-m:w-8/10 max-m:h-95
-                max-p:h-105
-                max-pp:h-105">
+                max-m:h-95
+                p:max-m:w-8/10
+                max-p:h-90
+                max-pp:h-100">
                 <p className="text-[26px] font-bold text-white max-xm:text-2xl"><span className="text-3xl text-rose-400 text-left">2. </span> Faça o Pagamento</p>
                 <Image
                   src="https://i.postimg.cc/FHpx4TZ9/love-link-payment.png"
@@ -123,9 +125,10 @@ export default function HomePage() {
                 l:h-100
                 xm:h-104
                 max-xm:mx-auto max-xm:h-90 max-xm:w-full
-                max-m:w-8/10 max-m:h-95
-                max-p:h-107
-                max-pp:h-112">
+                max-m:h-95
+                p:max-m:w-8/10
+                max-p:h-95
+                max-pp:h-105">
                 <p className="text-[26px] font-bold text-white max-xm:text-2xl"><span className="text-3xl text-rose-400">3. </span> Receba o seu acesso no Email</p>
                 <Image
                   src="https://i.postimg.cc/tJ9jqSy5/love-link-email.png"
@@ -143,9 +146,10 @@ export default function HomePage() {
                 l:h-165
                 xm:h-165
                 max-xm:mx-auto max-xm:h-148 max-xm:w-full
-                max-m:w-8/10 max-m:h-160
-                max-p:h-180
-                max-pp:h-185">
+                max-m:h-160
+                p:max-m:w-8/10
+                max-p:h-160
+                max-pp:h-160">
                 <p className="text-[26px] font-bold text-white max-xm:text-2xl"><span className="text-3xl text-rose-400">4. </span> Surpreenda quem você Ama</p>
                 <Image
                   src="https://i.postimg.cc/X7q3G5KV/love-link-couple-page.png"
@@ -160,40 +164,40 @@ export default function HomePage() {
       </section>
 
       <section id="oque-oferecemos" className="relative w-full mt-50 z-30 bg-gradient-to-b from-[#0d0d2b] via-[#440f28] to-[#0d0d2b] xl:px-110 l:px-50 xm:max-l:px-40 m:max-xm:px-15">
-            <div className="relative text-center">y
+            <div className="relative text-center">
               <h2 className="text-[42px] text-center font-bold text-white mb-5 max-m:text-4xl">Oque Oferecemos?</h2>
               <div className="grid grid-cols-3 gap-5 p-5 text-white text-center items-center mx-auto m:max-l:grid-cols-2 max-m:grid-cols-1">
 
-                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
+                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-l:max-w-90 max-m:max-w-80">
                     <div className="relative text-rose-500 mx-auto"><PiClockCountdownFill className="mt-5 w-9 h-9" /></div>
                     <p className="text-xl mt-3 justify-center px-7 font-bold">Contador de Tempo</p>
                     <span className="text-sm mt-3 px-5 text-wrap wrap-anwhere">Acompanhe cada momento especial da sua história de amor com um contador personalizado</span>
                 </div>
 
-                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
+                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-l:max-w-90 max-m:max-w-80">
                     <div className="relative text-rose-500 mx-auto"><GiLoveLetter className="mt-5 w-10 h-10" /></div>
                       <p className="text-xl mt-3 justify-center px-7 font-bold">Carta de Amor</p>
                       <span className="text-sm mt-3 px-5 text-wrap wrap-anywhere">Demonstre seu amor com uma carta digital que ficará guardada eternamente</span>
                 </div>
 
-                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
+                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-l:max-w-90 max-m:max-w-80">
                     <div className="relative text-rose-500 mx-auto"><IoImagesOutline className="mt-5 w-10 h-10" /></div>
                     <p className="text-xl mt-3 justify-center px-7 font-bold">Imagens</p>
                     <span className="text-sm mt-3 px-5 text-wrap wrap-anywhere">Guarde os momentos e memórias inesquecíveis ao lado de quem ama enviando até <strong>5 fotos</strong></span>
                 </div>
 
-                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
+                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-l:max-w-90 max-m:max-w-80">
                     <div className="relative text-rose-500 mx-auto"><RiQrCodeFill  className="mt-5 w-10 h-10" /></div>
                     <p className="text-xl mt-3 justify-center px-7 font-bold">QR Code</p>
                     <span className="text-sm mt-3 px-5 text-wrap wrap-anywhere">Entregue amor em forma de QR Code: um presente moderno e eterno</span>
                 </div>
-                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
+                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-l:max-w-90 max-m:max-w-80">
                     <div className="relative text-rose-500 mx-auto"><FaLink className="mt-5 w-10 h-10" /></div>
                     <p className="text-xl mt-3 justify-center px-7 font-bold">URL Personalizada</p>
                     <span className="text-sm mt-3 px-5 text-wrap wrap-anywhere">Deixe sua história acessível em um endereço único e inesquecível</span>
                 </div>
                 
-                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-xm:max-w-90 max-m:max-w-80">
+                <div className="flex flex-col rounded-2xl bg-gradient-to-b from-[#18183c] to-[#55122e] shadow-2xl w-fit max-w-70 h-50 mx-auto m:max-l:max-w-90 max-m:max-w-80">
                     <div className="relative text-rose-500 mx-auto"><IoIosColorPalette className="mt-5 w-10 h-10" /></div>
                     <p className="text-xl mt-3 justify-center px-7 font-bold">Escolha de Cores</p>
                     <span className="text-sm mt-3 px-5 text-wrap wrap-anywhere">Personalize as cores e o estilo do amor de vocês</span>
