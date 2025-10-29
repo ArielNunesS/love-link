@@ -31,7 +31,7 @@ export default function CardPreview(props: CardPreviewProps){
   
   const backgroundClasses: Record<CardPreviewProps["background"], string> = {
     rose: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-rose-900/80",
-    purple: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-purple-900/60",
+    purple: "bg-gradient-to-b from-purple-900/80 via-[#270a35] to-purple-900/80",
     red: "bg-gradient-to-b from-purple-900/80 via-[#350a2c] to-red-800/80",
     blackPurple: "bg-gradient-to-b from-[#0a0a20] via-[#422575] to-[#0a0a20]",
   };
@@ -111,16 +111,16 @@ export default function CardPreview(props: CardPreviewProps){
               {/* Mail Button */}
               <div className="flex items-center gap-3 mb-5">
                 <div className="p-0.5 bg-pink-700/30 rounded-full">
-                  <div className="w-16 h-16 rounded-full bg-pink-700 flex items-center justify-center animate-bounce">
+                  <div className="w-16 h-16 rounded-full bg-rose-700 flex items-center justify-center">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
                       <MailOpen className="text-white"/>
                     </button>
                   </div>
                 </div>
-                  <p className="text-xl text-white font-semibold wrap-anywhere select-none" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
+                  <p className="text-3xl text-white font-normal wrap-anywhere select-none" style={{ fontFamily: "var(--font-birthstone)" }}>{props.title}</p>
               </div>
                 <div className="max-w-xs">
-                  <p className="text-xs text-white px-1 font-normal wrap-break-word whitespace-pre-wrap select-none">{props.message}</p>
+                  <p className="px-1 text-xs text-white font-normal wrap-break-word whitespace-pre-wrap select-none" style={{ fontFamily: "var(--font-special-elite)" }}>{props.message}</p>
                 </div>
           </>
         ) : (
@@ -128,7 +128,7 @@ export default function CardPreview(props: CardPreviewProps){
               {/* Mail Button */}
               <div className="flex items-center gap-3 mb-3 wrap-break-word">
                 <div className="p-0.5 bg-pink-700/30 rounded-full">
-                  <div className="w-16 h-16 rounded-full bg-pink-700 flex items-center justify-center animate-bounce">
+                  <div className="w-16 h-16 rounded-full bg-rose-700 flex items-center justify-center">
                     <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
                       <Mail className="text-white"/>
                     </button>
@@ -140,11 +140,11 @@ export default function CardPreview(props: CardPreviewProps){
               </div>
 
               {/* Counter */}
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 mb-3 cursor-default select-none">
-                <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-4 h-4 text-rose-400"/>
-                  <h4 className="text-white font-medium text-base max-xpp:text-sm">Tempo Juntos</h4>
-                </div>
+            <div className="bg-white/10 font-normal backdrop-blur-lg rounded-2xl p-4 mb-3 cursor-default select-none">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Calendar className="w-4 h-4 text-rose-400"/>
+                <h4 className="text-rose-400 text-3xl font max-xpp:text-lg" style={{ fontFamily: "var(--font-birthstone)" }}>Tempo Juntos</h4>
+              </div>
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="bg-white/5 rounded-lg p-2">
                     <p className="text-rose-400 font-bold text-xl">{years}</p>
@@ -160,21 +160,22 @@ export default function CardPreview(props: CardPreviewProps){
                     <p className="text-white/70 text-xs">dias</p>
                   </div>
                 </div>
-                <p className="text-white/70 text-xs text-center mt-3 p-0" suppressHydrationWarning>{`${displayHours.toString().padStart(2, "0")} h ${displayMinutes.toString().padStart(2, "0")} m ${displaySeconds.toString().padStart(2, "0")} s`}</p>
+                <p className="text-white/70 text-xs text-center mt-3 p-0" suppressHydrationWarning>{`${displayHours.toString().padStart(2, "0")}h ${displayMinutes.toString().padStart(2, "0")}m ${displaySeconds.toString().padStart(2, "0")}s`}</p>
               </div>
               
+              <h3 className="text-4xl text-center text-red-600 select-none" style={{ fontFamily: "var(--font-birthstone)" }}>Nossas Memórias</h3>
+              
               {props.images && Array.isArray(props.images) && props.images.length > 0 ? (
-                <>
-                <div>
+              <>
+              <div>
                 <Image
                 src={props.images[currentImageIndex]}
                 alt="image"
                 width={310}
                 height={310}
                 className="object-cover border-3 rounded-2xl mx-auto transform transition-shadow duration-500"/>
-
-                </div>
-                </>
+              </div>
+              </>
               ) :
                 <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
                   <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-79 h-50 p-5 flex items-center gap-2

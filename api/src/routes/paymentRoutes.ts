@@ -3,6 +3,7 @@ import { Router } from "express";
 import { v4 as uuidv4 } from "uuid";
 import Order from "../models/Order";
 
+
 export default function paymentRoutes() {
     const router = Router();
 
@@ -10,6 +11,19 @@ export default function paymentRoutes() {
         const referenceId = uuidv4();
 
     try {
+        const { coupleId } = req.body;
+
+        if(!coupleId) {
+            return res.status(400).json({ error: "Couple ID is required" });
+        };
+
+        await Order.create({
+            reference_id: referenceId,
+            couple: coupleId,
+            status: "WAITING",
+            createdAt: new Date(),
+        });
+
         const body = {
         reference_id: referenceId,
         customer_modifiable: true,
@@ -19,7 +33,7 @@ export default function paymentRoutes() {
                 name: "Love Link - Página Personalizada",
                 description: "Uma página única para presentear seu amor, com um QR Code exclusivo!",
                 quantity: 1,
-                unit_amount: 1999,
+                unit_amount: 1,
                 image_url: "https://i.postimg.cc/fbwy95Ww/heart-icon.png"
             }
         ],
@@ -34,7 +48,7 @@ export default function paymentRoutes() {
                 config_options: [
                     {
                         option: "INSTALLMENTS_LIMIT",
-                        value: "10"
+                        value: "3"
                     }
                 ]
             }
@@ -82,6 +96,11 @@ export default function paymentRoutes() {
     }
 });
 
+    router.get("/orders/all", async(req, res) => {
+        const orders = await Order.find().populate("couple");
+        res.json(orders);
+    });
+
     router.get("/:orderId", async(req, res) => {
 
     const { orderId } = req.params;
@@ -109,6 +128,7 @@ export default function paymentRoutes() {
     });
 
     router.post("/webhook", async(req, res) => {
+
     try {
         const secret = req.query.secret;
 
@@ -131,13 +151,8 @@ export default function paymentRoutes() {
                 status,
                 amount,
                 paymentMethod,
-                createdAt: new Date(event.createdAt),
                 updatedAt: new Date(),
             },
-            // coupleData: {
-            //     name
-            //     email
-            // }
             { upsert: true, new: true}
         );
 

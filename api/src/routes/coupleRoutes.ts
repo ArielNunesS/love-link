@@ -16,7 +16,7 @@ export default function coupleRoutes() {
     });
 
     router.get("/:slug", async (req, res) => {
-        try{
+        try {
             const { slug } = req.params;
             const coupleCard = await Couple.findOne({slug: slug});
 
@@ -30,8 +30,22 @@ export default function coupleRoutes() {
         }
     });
 
-    router.post("/create", upload.array("images", 5), async(req, res) => {
+    router.get("/id/:id", async(req, res) => {
+        try {
+            const { id } = req.params;
+            const coupleCard = await Couple.findById(id);
 
+            if(!coupleCard) {
+                return res.status(404).json({ error: "Couple not found" });
+            }
+
+            res.json(coupleCard);
+        } catch(err) {
+
+        }
+    });
+
+    router.post("/create", upload.array("images", 5), async(req, res) => {
         try {
         
         const files = req.files as Express.Multer.File[] | undefined;
@@ -56,7 +70,7 @@ export default function coupleRoutes() {
             return res.status(500).json({ message: "Error searching for images URL"})
         }
 
-            const { name, email, title, message, startDate } = req.body;
+            const { name, email, title, message, startDate, background } = req.body;
 
 
             const newCouple = new Couple({
@@ -66,6 +80,7 @@ export default function coupleRoutes() {
                 message: message,
                 startDate: startDate,
                 images: imageUrls,
+                background: background,
             });
 
             const coupleCard = await newCouple.save()
@@ -85,12 +100,14 @@ export default function coupleRoutes() {
             const coupleUrl = `https://love-link-app.com.br/couple/${coupleCard.slug}`;
 
             res.status(201).json({
+                message: "Couple created successfully",
+                coupleId: coupleCard._id,
                 coupleUrl,
             });
 
         } catch(err) {
             console.error(err);
-            res.status(400).json(err);
+            res.status(400).json({ error: "Error creating couple" });
         }
     });
 

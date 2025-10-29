@@ -1,84 +1,150 @@
-import React from "react";
+"use client";
 
-export default function BackgroundLines() {
-    return (
-             <div className="fixed inset-0 z-1">
-               <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d2b] via-[#141432] to-[#0d0d2b]"></div>
-   
-               Linhas
-               {/* <div className="absolute inset-0 overflow-hidden">
-                 <svg className="absolute w-full h-full" preserveAspectRatio="none">
-                   <path
-                     d="M0,100 C300,150 500,50 1920,100"
-                     fill="none"
-                     stroke="rgba(244, 114, 182, 0.1)"
-                     strokeWidth="2"
-                   />
-                 </svg>
-   
-                 <svg className="absolute w-full h-full" preserveAspectRatio="none">
-                   <path
-                     d="M0,200 C400,300 800,150 1920,250"
-                     fill="none"
-                     stroke="rgba(244, 114, 182, 0.15)"
-                     strokeWidth="1.5"
-                   />
-                 </svg>
-   
-                 <svg className="absolute w-full h-full" preserveAspectRatio="none">
-                   <path
-                     d="M0,350 C600,280 1200,400 1920,320"
-                     fill="none"
-                     stroke="rgba(244, 114, 182, 0.25)"
-                     strokeWidth="1.5"
-                   />
-                 </svg>
-   
-                 <svg className="absolute w-full h-full" preserveAspectRatio="none">
-                   <path
-                     d="M0,500 C500,450 900,550 1920,500"
-                     fill="none"
-                     stroke="rgba(244, 114, 182, 0.08)"
-                     strokeWidth="1.5"
-                   />
-                 </svg>
-   
-                 <svg className="absolute w-full h-full" preserveAspectRatio="none">
-                   <path
-                     d="M0,650 C300,700 1200,600 1920,680"
-                     fill="none"
-                     stroke="rgba(236, 72, 153, 0.3)"
-                     strokeWidth="2"
-                   />
-                 </svg>
-   
-                 <svg className="absolute w-full h-full" preserveAspectRatio="none">
-                   <path
-                     d="M0,800 C400,750 1000,850 1920,800"
-                     fill="none"
-                     stroke="rgba(244, 114, 182, 0.12)"
-                     strokeWidth="1.5"
-                   />
-                 </svg>
-               </div> */}
-   
-               {/* Partículas brilhantes */}
-               <div className="absolute inset-0 animate-pulse">
-                 {/* <div className="absolute top-1/4 left-1/5 w-1 h-1 rounded-full bg-pink-400 opacity-70"></div>
-                 <div className="absolute top-1/3 left-2/3 w-1.5 h-1.5 rounded-full bg-pink-300 opacity-80"></div>
-                 <div className="absolute top-5/7 left-5/11 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-70"></div>
-                 <div className="absolute top-7/9 left-1/3 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-70"></div>
-                 <div className="absolute top-5/9 left-1/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-70"></div>
-                 <div className="absolute top-1/7 left-2/5 w-2 h-2 rounded-full bg-pink-400 opacity-65"></div>
-                 <div className="absolute top-2/18 left-2/7 w-2 h-2 rounded-full bg-pink-400 opacity-65"></div>
-                 <div className="absolute top-1/5 left-1/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
-                 <div className="absolute top-1/5 left-1/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
-                 <div className="absolute top-1/10 left-7/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
-                 <div className="absolute top-2/5 left-9/11 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
-                 <div className="absolute top-2/9 left-10/11 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
-                 <div className="absolute top-4/7 left-9/10 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div>
-                 <div className="absolute top-6/7 left-17/20 w-1.5 h-1.5 rounded-full bg-pink-400 opacity-60"></div> */}
-               </div>
-             </div>
-)
+import React, { useMemo } from "react";
+
+const generateStarShadows = (count: number, opacity: number) => {
+  let shadows = "";
+  for (let i = 0; i < count; i++) {
+    shadows += `${Math.random() * 4000}px ${Math.random() * 4000}px rgba(255,255,255,${opacity}),`;
+  }
+  return shadows.slice(0, -1);
+};
+
+export default function StarryBackground() {
+  const starShadows = useMemo(
+    () => ({
+      stars_sm: generateStarShadows(700, 0.8),
+      stars_md: generateStarShadows(200, 0.9),
+      stars_lg: generateStarShadows(50, 1),
+    }),
+    []
+  );
+
+  return (
+    <>
+      <style>{`
+        /* fundo e estrelas base (mantive seu original) */
+        @keyframes star-move {
+          0% { transform: translate(0, 0); }
+          100% { transform: translate(-2000px, 1000px); }
+        }
+        @keyframes star-blink {
+          0%,100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+
+        .star-field-full {
+          position: fixed;
+          inset: 0;
+          overflow: hidden;
+          z-index: 1;
+          background: #000;
+        }
+        .star-field-full::before {
+          content: "";
+          position: absolute;
+          top: -1000px;
+          left: -1000px;
+          width: 2px;
+          height: 2px;
+          box-shadow: ${starShadows.stars_sm};
+          animation: star-move 600s linear infinite, star-blink 3s ease-in-out infinite alternate;
+        }
+        .star-field-full::after {
+          content: "";
+          position: absolute;
+          top: -1000px;
+          left: -1000px;
+          width: 3px;
+          height: 3px;
+          box-shadow: ${starShadows.stars_md};
+          animation: star-move 400s linear infinite reverse, star-blink 4s ease-in-out infinite alternate;
+        }
+
+        /* ---------- Meteoros robustos ---------- */
+        @keyframes shoot {
+          0% {
+            opacity: 0;
+            transform: translate(var(--sx), var(--sy)) rotate(var(--angle)) translateX(0);
+          }
+          7% { opacity: 1; } /* aparece rápido */
+          100% {
+            opacity: 0;
+            transform: translate(var(--sx), var(--sy)) rotate(var(--angle)) translateX(var(--travel));
+          }
+        }
+
+        .shooting-stars {
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+          z-index: 5;
+        }
+
+        /* cada meteoro é um elemento longo (rastro + ponta) */
+        .shooting-star {
+          --length: 14vw;     /* comprimento do rastro (ajustável por estrela) */
+          --thickness: 0.5px;   /* espessura */
+          --angle: -30deg;    /* ângulo de queda */
+          --sx: 10vw;         /* start X (vai ser sobrescrito inline) */
+          --sy: 10vh;         /* start Y (vai ser sobrescrito inline) */
+          --travel: -120vw;    /* quanto ele percorre ao longo do eixo X local (positivo/negativo conforme rotação) */
+          --duration: 2.5s;
+          --delay: 0s;
+
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: var(--length);
+          height: var(--thickness);
+          transform-origin: left center;
+          background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0.05));
+          filter: blur(0.3px);
+          border-radius: 50px;
+          box-shadow: 0 0 4px 2px rgba(255,255,255,0.65);
+          opacity: 0;
+          will-change: transform, opacity;
+          transform: translate(var(--sx), var(--sy)) rotate(var(--angle)) translateX(0);
+          animation: shoot var(--duration) linear var(--delay) infinite;
+        }
+
+        /* ponta mais brilhante (opcional) */
+        
+      `}</style>
+
+      <div className="star-field-full" />
+      <div className="shooting-stars">
+        {Array.from({ length: 10 }).map((_, i) => {
+          // variação por meteoro
+          const startX = Math.random() * 50; // % da viewport (0..100)
+          const startY = Math.random() * 20;  // limitar ao topo para parecer cair
+          const angle = -120 - Math.random() * 25; // -25..-50 deg
+          const length = 2 + Math.random() * 2; // vw
+          const travel = -60 - Math.random() * 30; // vw (quanto vai se deslocar)
+          const duration = 1.2 + Math.random() * 2.2; // s
+          const delay = Math.random() * 8; // s
+
+          return (
+            <div
+              key={i}
+              className="shooting-star"
+              style={
+                {
+                  // usamos unidades relativas (vw/vh) para consistência com viewport
+                  "--sx": `${startX}vw`,
+                  "--sy": `${startY}vh`,
+                  "--angle": `${angle}deg`,
+                  "--length": `${length}vw`,
+                  "--travel": `${travel}vw`,
+                  "--duration": `${duration}s`,
+                  "--delay": `${delay}s`,
+                } as React.CSSProperties
+              }
+            />
+          );
+        })}
+      </div>
+
+    </>
+  );
 }

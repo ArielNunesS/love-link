@@ -12,41 +12,41 @@ import { IoIosColorPalette } from "react-icons/io";
 import faqData from "../data/faq.json"
 
 export default function HomePage() {
-    return (
-    <main className="min-h-screen z-10">
-        <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0d0d2b] via-[#3a001d] to-[#0d0d2b]">
-        <section className="relative flex items-center justify-center overflow-x-clip">
-            <div className="relative z-10 container mx-auto px-4 top flex flex-col items-center justify-between gap-8 xm:flex-row">
-                <div className="text-left lll:ml-65 ll:ml-10 l:mx-10 max-l:ml-7 max-m:ml-0">
-                  <h1 className="text-6xl text-white font-bold mb-5 -mt-15 max-xm:text-6xl max-xm:mt-18 max-m:text-[52px] max-m:mt-15 max-p:text-[46px] max-pp:text-[42px]max-xpp:text-4xl">
-                      <span className="text-rose-600">
-                            Eternize </span>
-                            cada momento do seu
-                      <span className="text-rose-500 animate-pulse"> AMOR </span>
-                  </h1>
-                    <p className="text-xl text-white/90 mb-8
-                      max-m:text-lg
-                      max-p:text-lg
-                      max-pp:text-[17px]
-                      max-xpp:text-[15.4px]"
-                      >
-                      Crie um site personalizado com contador de tempo do seu relacionamento e compartilhe memórias especiais
-                      com seu parceiro em um <span className="text-rose-400">presente único.</span><br/>
-                      <span className="font-bold text-xl text-rose-400 max-xpp:text-xl max-pp:text-[21px] max-p:text-[22px] max-m:text-2xl max-xm:text-2xl">Leva menos de 5 minutos!</span>
-                    </p>
-                  
-                  <Link href="/create" className="inline-block mx-auto rounded-full bg-rose-700 text-white font-medium select-none
-                    px-10 py-5 text-2xl shadow-lg shadow-rose-500/40 hover:bg-rose-600
-                    transition-all duration-150 hover:shadow-rose-500/70
-                    max-xm:text-2xl max-xm:w-9/11 max-xm:text-center max-xm:items-center max-xm:block max-xm:m-auto
-                    max-m:text-2xl
-                    max-p:text-[22px] max-p:w-10/10
-                    max-pp:text-[21px]
-                    max-xpp:py-4 max-xpp:text-xl
-                    ">
-                    Criar meu LoveLink
-                  </Link>
-                </div>
+  return (
+  <main className="min-h-screen z-10">
+    <div className="absolute mt-15 inset-0 bg-gradient-to-b from-[#0d0d2b] via-[#3a001d] to-[#0d0d2b]">
+      <section className="relative flex items-center justify-center overflow-x-clip">
+          <div className="relative z-10 container mx-auto px-4 top flex flex-col items-center justify-between gap-8 xm:flex-row">
+              <div className="text-left lll:ml-65 ll:ml-10 l:mx-10 max-l:ml-7 max-m:ml-0">
+                <h1 className="text-6xl text-white font-bold mb-5 -mt-15 max-xm:text-6xl max-xm:mt-18 max-m:text-[52px] max-m:mt-15 max-p:text-[46px] max-pp:text-[42px]max-xpp:text-4xl">
+                    <span className="text-rose-600">
+                          Eternize </span>
+                          cada momento do seu
+                    <span className="text-rose-500 animate-pulse"> AMOR </span>
+                </h1>
+                  <p className="text-xl text-white/90 mb-8
+                    max-m:text-lg
+                    max-p:text-lg
+                    max-pp:text-[17px]
+                    max-xpp:text-[15.4px]"
+                    >
+                    Crie um site personalizado com contador de tempo do seu relacionamento e compartilhe memórias especiais
+                    com seu parceiro em um <span className="text-rose-400">presente único.</span><br/>
+                    <span className="font-bold text-xl text-rose-400 max-xpp:text-xl max-pp:text-[21px] max-p:text-[22px] max-m:text-2xl max-xm:text-2xl">Leva menos de 5 minutos!</span>
+                  </p>
+                
+                <Link href="/create" className="inline-block mx-auto rounded-full bg-rose-700 text-white font-medium select-none
+                  px-10 py-5 text-2xl shadow-lg shadow-rose-500/40 hover:bg-rose-600
+                  transition-all duration-150 hover:shadow-rose-500/70
+                  max-xm:text-2xl max-xm:w-9/11 max-xm:text-center max-xm:items-center max-xm:block max-xm:m-auto
+                  max-m:text-2xl
+                  max-p:text-[22px] max-p:w-10/10
+                  max-pp:text-[21px]
+                  max-xpp:py-4 max-xpp:text-xl
+                  ">
+                  Criar meu LoveLink
+                </Link>
+              </div>
 
                 {/* Right side - Preview*/}
               <div className="w-full flex flex-col items-center justify-center mt-12
@@ -206,6 +206,17 @@ export default function HomePage() {
             </div>
       </section>
 
+      <section id="examples" className="relative w-full mt-50 z-30 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#282863] to-[#0d0d2b] ll:px-45 m:max-ll:px-15">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-[42px] text-center font-bold text-white mb-5 max-m:text-4xl">Exemplos</h2>
+
+          
+
+
+        </div>
+      
+      </section>
+
       <section id="faq" className="relative w-full mt-50 z-30 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#1d1d3a] to-[#2b2b57] ll:px-45 m:max-ll:px-15">
         <div className="container mx-auto px-6 text-center">
           <div className="text-center mb-12">
@@ -222,24 +233,12 @@ export default function HomePage() {
                   />
                 ))}
               </div>
-              {/* 
-              <div className="bg-[#0d0d2b] rounded-4xl mb-3">
-                <FAQItem
-                  question="1231askd"
-                  answer="1231aksldka"/>
-              </div>
-
-              <div className="bg-[#0d0d2b] rounded-4xl mb-3">
-                <FAQItem
-                  question="Quais são as formas de pagamento? Tem como parcelar?"
-                  answer="Aceitamos pagamento por Pix ou Cartão de Crédito, em até 3x sem juros, ou 10x com juros"/>
-              </div> */}
             </div>
           </div>
         </div>
       </section>
 
-        </div>
-    </main>
-    )
+    </div>
+  </main>
+  )
 }

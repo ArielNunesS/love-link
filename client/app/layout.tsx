@@ -1,6 +1,6 @@
 import React from "react";
-import type { Metadata, Viewport } from "next";
-import { Fira_Sans, Dancing_Script } from "next/font/google";
+import type { Metadata } from "next";
+import { Fira_Sans, Dancing_Script, Birthstone, Special_Elite } from "next/font/google";
 import { ModalProvider } from "./contexts/ModalContext";
 import "./globals.css";
 
@@ -18,8 +18,22 @@ const dancingScript = Dancing_Script({
   display: "swap",
 });
 
+const birthstone = Birthstone({
+  variable: "--font-birthstone",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const specialElite = Special_Elite({
+  variable: "--font-special-elite",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "LoveLink | Site para seu Amor",
+  title: "LoveLink | Surpreenda seu Amor",
   description: "Eternize cada momento do seu amor com um card virtual personalizado e contador de tempo de relacionamento",
 };
 
@@ -28,7 +42,7 @@ export default function RootLayout({
     children: React.ReactNode
   }) {
     return (
-      <html lang="pt-BR" className={`${firaSans.variable} antialiased ${dancingScript.variable} antialiased custom-scroll`}>
+      <html lang="pt-BR" className={`${firaSans.variable} antialiased ${dancingScript.variable} ${birthstone.variable} ${specialElite.variable} antialiased custom-scroll`}>
         <head>
           <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, viewport-fit=cover" />
           <meta name="apple-mobile-web-app-capable" content="yes" />

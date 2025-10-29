@@ -133,18 +133,23 @@ export default function CreatePage() {
 
     try {
 
-        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL
+        const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL;
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
             credentials: "include",
         });
 
+        const coupleData = await response.json();
+
         if(response.ok) {
             reset();
 
             const paymentRes = await fetch(`${backendAPIURL}/payment`, {
                     method: "POST",
+                    body: JSON.stringify({
+                        coupleId: coupleData._id,
+                    })
                 });
 
             const paymentData = await paymentRes.json()
@@ -442,6 +447,7 @@ export default function CreatePage() {
                           <input
                             type="radio"
                             value="rose"
+                            name="background"
                             {...register("background", { required: true })}
                             className="hidden"
                           />
@@ -453,6 +459,7 @@ export default function CreatePage() {
                           <input
                             type="radio"
                             value="purple"
+                            name="background"
                             {...register("background", { required: true })}
                             className="hidden"
                           />
@@ -464,6 +471,7 @@ export default function CreatePage() {
                           <input
                             type="radio"
                             value="red"
+                            name="background"
                             {...register("background", { required: true })}
                             className="hidden rounded-xl"
                           />
@@ -475,6 +483,7 @@ export default function CreatePage() {
                             <input
                               type="radio"
                               value="blackPurple"
+                              name="background"
                               {...register("background", { required: true })}
                               className="hidden rounded-xl"
                             />

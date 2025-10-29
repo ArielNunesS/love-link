@@ -3,6 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { Calendar, Heart, Clock, Music, Camera, Mail, MailOpen } from "lucide-react";
+import { TbHandFinger, TbHandClick } from "react-icons/tb";
+import { PiCursorClick } from "react-icons/pi";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";
@@ -15,13 +17,41 @@ interface CardFinalProps {
   title: string,
   message: string,
   startDate: Date,
-  image: string | null,
+  images: string[] | null,
+  background: "rose" | "red" | "purple" | "blackPurple";
 }
 
 export default function CardFinal(props: CardFinalProps){
   const [ showMessage, setShowMessage ] = useState<boolean>(false);
   const [ secondsPassed, setSecondsPassed ] = useState<number>(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   
+const backgroundClasses: Record<
+      "rose" | "red" | "purple" | "blackPurple",
+      string
+    > = {
+      rose: "bg-gradient-to-b from-purple-900 via-[#270a35] to-rose-900",
+      purple: "bg-gradient-to-b from-purple-900 via-[#270a35] to-purple-800",
+      red: "bg-gradient-to-b from-purple-900 via-[#350a2c] to-red-800",
+      blackPurple: "bg-gradient-to-b from-[#0a0a20] via-[#422575] to-[#0a0a20]",
+    };
+
+  useEffect(() => {
+      if (props.images && props.images.length > 1) {
+        const imageInterval = setInterval(() => {
+          setCurrentImageIndex((prevIndex) => 
+            prevIndex === props.images!.length - 1 ? 0 : prevIndex + 1
+          );
+        }, 3000);
+
+        return () => clearInterval(imageInterval);
+      }
+    }, [props.images, currentImageIndex]);
+
+  useEffect(() => {
+      setCurrentImageIndex(0);
+    }, [props.images]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setSecondsPassed(prevSeconds => prevSeconds + 1);
@@ -50,25 +80,27 @@ export default function CardFinal(props: CardFinalProps){
   
   return (
     <>
-        <div className="max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10">
+        <div className="max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10 z-50">
         <div className="relative mx-auto">
               {/* Screen */}
-                <div className="px-4 mt-5">
+              <div className="relative rounded-[40px] shadow-xl overflow-hidden">
+                <div className={`relative pt-5 pb-5 px-7 h-170 overflow-y-scroll card-scroll rounded-[32px] z-50 ${backgroundClasses[props.background]}`}>
           {showMessage ? (
             <>
                 {/* Mail Button */}
                 <div className="flex items-center gap-3 mb-5">
                   <div className="p-0.5 bg-pink-600/30 rounded-full">
-                    <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
+                    <div className="w-16 h-16 rounded-full bg-rose-700 flex items-center justify-center">
                       <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
                         <MailOpen/>
                       </button>
+                      {/* <PiCursorClick className="w-5 h-5 fill-white absolute z-10 -ml-12 mb-3 rotate-90 xm:max-ll:mt-35 m:max-xm:mt-35 m:max-xm:ml-12 max-m:mt-12 max-p:-ml-3 max-pp:-ml-0 pointer-events-none select-none"/> */}
                     </div>
                   </div>
-                    <p className="text-xl font-semibold wrap-anywhere select-none" style={{ fontFamily: "var(--font-dancing-script)" }}>{props.title}</p>
+                    <p className="text-3xl text-white font-normal wrap-anywhere select-none" style={{ fontFamily: "var(--font-birthstone)" }}>{props.title}</p>
                 </div>
                   <div className="max-w-xs">
-                    <p className="text-xs px-1 font-normal wrap-break-word whitespace-pre-wrap select-none">{props.message}</p>
+                    <p className="px-1 text-xs text-white font-normal wrap-break-word whitespace-pre-wrap select-none" style={{ fontFamily: "var(--font-special-elite)" }}>{props.message}</p>
                   </div>
             </>
           ) : (
@@ -76,10 +108,11 @@ export default function CardFinal(props: CardFinalProps){
                 {/* Mail Button */}
                 <div className="flex items-center gap-3 mb-3 wrap-break-word">
                   <div className="p-0.5 bg-pink-600/30 rounded-full">
-                    <div className="w-16 h-16 rounded-full bg-pink-600 flex items-center justify-center animate-bounce">
+                    <div className="w-16 h-16 rounded-full bg-rose-700 flex items-center justify-center">
                       <button onClick={() => setShowMessage(!showMessage)} className="w-full h-full rounded-full flex items-center justify-center cursor-pointer">
                         <Mail/>
                       </button>
+                      {/* <PiCursorClick className="w-5 h-5 fill-white absolute z-10 -ml-12 mb-3 rotate-90 xm:max-ll:mt-35 m:max-xm:mt-35 m:max-xm:ml-12 max-m:mt-12 max-p:-ml-3 max-pp:-ml-0 pointer-events-none select-none"/> */}
                     </div>
                   </div>
                     <div>
@@ -88,10 +121,10 @@ export default function CardFinal(props: CardFinalProps){
                 </div>
   
                 {/* Counter */}
-                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 mb-3 cursor-default select-none">
-                  <div className="flex items-center gap-2 mb-2">
+                <div className="bg-white/7 backdrop-blur-lg rounded-2xl p-3 mb-3 cursor-default select-none" >
+                  <div className="flex items-center justify-center gap-2 mb-2">
                     <Calendar className="w-4 h-4 text-rose-400"/>
-                    <h4 className="text-white font-medium text-base max-xpp:text-sm">Tempo Juntos</h4>
+                    <h4 className="text-rose-400 text-3xl font max-xpp:text-lg" style={{ fontFamily: "var(--font-birthstone)" }}>Tempo Juntos</h4>
                   </div>
                   <div className="grid grid-cols-3 gap-2 text-center">
                     <div className="bg-white/5 rounded-lg p-2">
@@ -108,24 +141,30 @@ export default function CardFinal(props: CardFinalProps){
                       <p className="text-white/70 text-xs">dias</p>
                     </div>
                   </div>
-                        <p className="text-white/70 text-xs text-center mt-3 p-0">{`${displayHours.toString().padStart(2, "0")} h ${displayMinutes.toString().padStart(2, "0")} m ${displaySeconds.toString().padStart(2, "0")} s`}</p>
+                  <p className="text-white/70 text-xs text-center mt-3 p-0">{`${displayHours.toString().padStart(2, "0")}h ${displayMinutes.toString().padStart(2, "0")}m ${displaySeconds.toString().padStart(2, "0")}s`}</p>
                 </div>
   
-                {/* Image and Music */}
-                {props.image ? (
-                  <Image
-                  src={props.image}
-                  alt="image"
-                  width={310}
-                  height={310}
-                  className="object-cover border-3 rounded-2xl mx-auto"/>
+              <h3 className="text-4xl text-center text-red-600 select-none" style={{ fontFamily: "var(--font-birthstone)" }}>Nossas Memórias</h3>
+
+              {/* Image and Music */}
+              {props.images && Array.isArray(props.images) && props.images.length > 0 ? (
+              <>
+              <div>
+                <Image
+                src={props.images[currentImageIndex]}
+                alt="image"
+                width={310}
+                height={310}
+                className="object-cover border-3 rounded-2xl mx-auto transform transition-shadow duration-500"/>
+              </div>
+              </>
                 ) :
                   <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
-                    <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-79 h-50 p-5 flex items-center gap-2
-                      max-xpp:w-61 max-pp:w-69 max-p:w-74">
-                        <Camera className="w-15 h-15 text-rose-400 max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
-                        <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
-                    </div>
+                  <div className="bg-white/7 backdrop-blur-lg justify-center rounded-2xl w-77 h-50 p-5 flex items-center gap-2
+                    max-xpp:w-61 max-pp:w-69 max-p:w-74">
+                      <Camera className="w-15 h-15 text-rose-400 max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
+                      <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
+                  </div>
                   </div>
                 }
   
@@ -137,9 +176,10 @@ export default function CardFinal(props: CardFinalProps){
             </>
           )}
             </div>
+          </div>
         </div>
           
-          <div className="relative bottom-12 right-17 w-24 h-24 text-rose-500/40 animate-pulse">
+          {/* <div className="relative bottom-12 right-17 w-24 h-24 text-rose-500/40 animate-pulse">
             <Heart className="w-full h-full fill-rose-500/30
               max-p:size-20 max-p:mt-3 max-p:ml-0
               max-pp:size-17 max-pp:mt-5
@@ -152,7 +192,7 @@ export default function CardFinal(props: CardFinalProps){
               max-pp:size-12 max-pp:mt-9 max-pp:ml-7
               max-xpp:size-10 max-xpp:mt-9 max-xpp:ml-7"
             />
-          </div>
+          </div> */}
         </div>
         </>
     )
