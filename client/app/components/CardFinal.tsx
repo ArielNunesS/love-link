@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { Calendar, Heart, Clock, Music, Camera, Mail, MailOpen } from "lucide-react";
 import { TbHandFinger, TbHandClick } from "react-icons/tb";
-import { PiCursorClick } from "react-icons/pi";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";

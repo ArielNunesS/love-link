@@ -8,6 +8,7 @@ import { date, number, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DateTime } from "luxon";
 import { X } from "lucide-react";
+import { PiCursorClick } from "react-icons/pi";
 import { useModal } from "../contexts/ModalContext";
 import CardPreview from "../components/CardPreview";
 
@@ -140,19 +141,21 @@ export default function CreatePage() {
             credentials: "include",
         });
 
-        const coupleData = await response.json();
+        const result = await response.json();
+        const coupleData = result;
 
         if(response.ok) {
             reset();
 
             const paymentRes = await fetch(`${backendAPIURL}/payment`, {
                     method: "POST",
+                    headers: { "Content-Type": "application/json"},
                     body: JSON.stringify({
                         coupleId: coupleData._id,
                     })
                 });
 
-            const paymentData = await paymentRes.json()
+            const paymentData = await paymentRes.json();
             
             if(paymentData) {
                 setTimeout(() => {
@@ -164,7 +167,6 @@ export default function CreatePage() {
                 }, 3000);
             };
 
-            const result = await response.json();
             const { coupleUrl } = result;
             
             if(paymentRes) {
@@ -252,7 +254,7 @@ export default function CreatePage() {
                 </body>
                 </html>`
                     })
-                })
+                });
             }
 
         } else {
@@ -561,8 +563,10 @@ export default function CreatePage() {
         <div className="mr-40 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-15 m:max-xm:mt-50 max-m:mt-50"> 
         <span className={`absolute z-10 text-white text-sm font-normal xl:ml-4 ll:ml-7 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-30 m:max-xm:ml-47 pp:max-xm:text-2xl max-xm:text-lg max-xm:font-bold max-m:ml-26 max-p:ml-23 max-pp:ml-26 max-xpp:ml-22 pointer-events-none select-none
             ${isOpen ? "hidden" : "opacity-100"}`}>Como vai ficar</span>
-        <span className={`absolute z-10 text-white/90 text-xs max-p:text-[8px] font-normal mt-52 -ml-12 text-center xm:max-ll:mt-42 max-xm:mt-42 m:max-xm:ml-8 max-p:-ml-4 max-pp:-ml-2 pointer-events-none select-none
-            ${isOpen ? "hidden" : "opacity-100"}`}>Clique<br/>na carta</span>
+        <span className={`absolute z-10 text-white/90 text-xs max-p:text-[10px] font-normal mt-45 -ml-12 text-center xm:max-ll:mt-35 max-xm:mt-35 m:max-xm:ml-8 max-p:-ml-7 max-pp:-ml-2 max-pp:mt-40 pointer-events-none select-none
+            ${isOpen ? "hidden" : "opacity-100"}`}>
+            <PiCursorClick width={10} height={10} className="w-5 h-5 ml-4 max-p:ml-2.5 text-rose-400 rotate-90"/>
+            Clique<br/>na carta</span>
 
             <Image
                 src="https://i.postimg.cc/3RmxkV42/rose-arrow.png"
@@ -572,16 +576,6 @@ export default function CreatePage() {
                 className={`absolute z-10 rotate-12 xm:max-ll:ml-17 w-auto h-auto ll:-mt-10 ll:ml-16 xm:max-ll:-mt-20 max-xm:-mt-20 m:max-xm:ml-37 max-m:ml-16 pointer-events-none select-none
                     ${isOpen ? "hidden" : "opacity-100"}`}
             />
-            <Image
-                src="https://i.postimg.cc/q7rJwH17/icons8-click-66.png"
-                alt=""
-                width={25}
-                height={25}
-                className={`absolute z-10 mt-45 -ml-8 rotate-90 xm:max-ll:mt-35 m:max-xm:mt-35 m:max-xm:ml-12 max-m:mt-35 max-p:-ml-2 max-pp:-ml-0 pointer-events-none select-none
-                    ${isOpen ? "hidden" : "opacity-100"}`}
-            />
-        
-
 
         <div className="m:max-xm:ml-20 select-none max-[300px]:scale-90">
             <CardPreview
