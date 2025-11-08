@@ -7,7 +7,7 @@ import paymentRoutes from "./routes/paymentRoutes";
 const app = express();
 
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: [
         'https://love-link-app.com.br',
