@@ -3,7 +3,6 @@ import { Router } from "express";
 import { v4 as uuidv4 } from "uuid";
 import Order from "../models/Order";
 
-
 export default function paymentRoutes() {
     const router = Router();
 
@@ -11,10 +10,10 @@ export default function paymentRoutes() {
         const referenceId = uuidv4();
 
     try {
-        const { coupleId } = req.body;
+        const { coupleId } = req.body.coupleId;
 
         if(!coupleId) {
-            return res.status(400).json({ error: "Couple ID is required" });
+            return res.status(400).json({ error: "Couple ID is required" }); // ESTA CAINDO NESSE ERRO
         };
 
         await Order.create({

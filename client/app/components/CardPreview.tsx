@@ -81,7 +81,7 @@ export default function CardPreview(props: CardPreviewProps){
 
     return (
 
-      <div className={`max-xpp:w-[290px] max-pp:w-[320px] max-p:w-[340px] w-[360px] ll:mt-10
+      <div className={`max-[300px]:scale-65 max-xpp:scale-75 max-pp:scale-80 max-p:scale-90 w-[360px] ll:mt-10
       ${isOpen ? "opacity-50" : "opacity-100"}`}>
       <div className="relative mx-auto">
           <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[40px] shadow-xl overflow-hidden border-6 border-gray-800">
@@ -177,9 +177,8 @@ export default function CardPreview(props: CardPreviewProps){
               </div>
               </>
               ) :
-                <div className="grid grid-cols-2 gap-3 mb-4 cursor-default select-none">
-                  <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-79 h-50 p-5 flex items-center gap-2
-                    max-xpp:w-61 max-pp:w-69 max-p:w-74">
+                <div className="flex items-center gap-3 mb-4 cursor-default select-none">
+                  <div className="bg-white/10 backdrop-blur-lg justify-center rounded-2xl w-full h-50 p-5 flex items-center gap-2">
                       <Camera className="w-15 h-15 text-rose-400 max-xpp:w-10 max-xpp:h-10 max-pp:w-14 max-pp:h-14"/>
                       <span className="text-white ml-2 font-medium text-lg max-xpp:text-base max-xm:text-xl">Sua Foto Aqui</span>
                   </div>
