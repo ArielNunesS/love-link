@@ -135,7 +135,7 @@ export default function CreatePage() {
     try {
 
         const backendAPIURL = process.env.NEXT_PUBLIC_BACKEND_URL;
-        // "http://localhost:10000"     
+        //  http://localhost:10000
         const response = await fetch(`${backendAPIURL}/couples/create`, {
             method: "POST",
             body: formData,
@@ -148,25 +148,25 @@ export default function CreatePage() {
             reset();
 
             console.log(coupleData);
-
+        
             const paymentRes = await fetch(`${backendAPIURL}/payment`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json"},
                     body: JSON.stringify({
-                        coupleId: coupleData._id,
+                        coupleId: coupleData.coupleDataId,
                     })
                 });
 
             const paymentData = await paymentRes.json();
             
             if(paymentData) {
-                // setTimeout(() => {
-                //     const newTab = window.open(paymentData.checkoutUrl, "_blank");
+                setTimeout(() => {
+                    const newTab = window.open(paymentData.checkoutUrl, "_blank");
 
-                //     if (!newTab) {
-                //         window.location.href = paymentData.checkoutUrl;
-                // }
-                // }, 3000);
+                    if (!newTab) {
+                        window.location.href = paymentData.checkoutUrl;
+                }
+                }, 3000);
             };
 
             const { coupleUrl } = coupleData;

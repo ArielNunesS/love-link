@@ -9,14 +9,11 @@ export default function paymentRoutes() {
     router.post("/", async(req,res) => {
         const referenceId = uuidv4();
 
-        console.log("Headers recebidos:", req.headers['content-type']);
-        console.log("Corpo da requisição (req.body):", req.body);
-
     try {
-        const { coupleId } = req.body.coupleId;
+        const { coupleId } = req.body;
 
         if(!coupleId) {
-            return res.status(400).json({ error: "Couple ID is required" }); // ESTA CAINDO NESSE ERRO
+            return res.status(400).json({ error: "Couple ID is required" });
         };
 
         await Order.create({

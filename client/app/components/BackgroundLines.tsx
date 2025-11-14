@@ -22,7 +22,7 @@ export default function StarryBackground() {
 
   return (
     <>
-      <style>{`
+      <style jsx global>{`
         /* fundo e estrelas base (mantive seu original) */
         @keyframes star-move {
           0% { transform: translate(0, 0); }

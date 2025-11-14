@@ -101,7 +101,7 @@ export default function coupleRoutes() {
 
             res.status(201).json({
                 message: "Couple created successfully",
-                coupleId: coupleCard._id,
+                coupleDataId: coupleCard._id,
                 coupleUrl,
             });
 
