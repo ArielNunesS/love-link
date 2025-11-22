@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { DateTime } from "luxon";
 import { watch } from "fs";
 import CardFinal from "../../components/CardFinal";
-import Image from "next/image";
-import "dotenv/config";
 import StarryBackground from "../../components/BackgroundLines";
+import { PiCursorClick } from "react-icons/pi";
+import "dotenv/config";
+
 
 export default async function CouplePage({ params }: { params: Promise<{ couple: string }> }) {
     const resolvedParams = await params;
@@ -48,12 +50,12 @@ export default async function CouplePage({ params }: { params: Promise<{ couple:
     return ( <>
     <main className=" w-full min-h-screen items-center overflow-hidden bg-black/30 custom-scroll">
         <StarryBackground />
+        
         <h2 className="text-5xl text-center mt-15 text-rose-400 z-50 relative" style={{ fontFamily: "var(--font-birthstone)" }}>Clique na Carta !</h2>
-
         <div className="min-h-screen flex items-center justify-center p-4 text-white">
         <div className="mb-50">
 
-
+        
         <CardFinal
             name={coupleData.name}
             email={coupleData.email}

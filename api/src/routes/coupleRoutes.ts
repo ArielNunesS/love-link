@@ -72,7 +72,6 @@ export default function coupleRoutes() {
 
             const { name, email, title, message, startDate, background } = req.body;
 
-
             const newCouple = new Couple({
                 name: name,
                 email: email,
@@ -97,12 +96,10 @@ export default function coupleRoutes() {
 
             const cleanupPromises = files.map(file => fs.unlink(file.path));
             await Promise.all(cleanupPromises);
-            const coupleUrl = `https://love-link-app.com.br/couple/${coupleCard.slug}`;
 
             res.status(201).json({
-                message: "Couple created successfully",
+                message: "Release the payment to get access",
                 coupleDataId: coupleCard._id,
-                coupleUrl,
             });
 
         } catch(err) {
