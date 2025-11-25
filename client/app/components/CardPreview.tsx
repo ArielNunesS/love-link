@@ -81,7 +81,7 @@ export default function CardPreview(props: CardPreviewProps){
 
     return (
 
-      <div className={`max-[300px]:scale-65 max-xpp:scale-75 max-pp:scale-80 max-p:scale-90 w-[360px] ll:mt-10
+      <div className={`max-[300px]:scale-60 max-xpp:scale-75 max-pp:scale-80 max-p:scale-90 w-[360px] ll:mt-10
       ${isOpen ? "opacity-50" : "opacity-100"}`}>
       <div className="relative mx-auto">
           <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[40px] shadow-xl overflow-hidden border-6 border-gray-800">

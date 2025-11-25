@@ -559,16 +559,16 @@ export default function CreatePage() {
             
         </div>
         <div className="mr-45 z-10 l:w-1/4 xl:mt-14 ll:max-xl:mt-30 xm:max-xl:w-1/6 xm:max-ll:mt-35 xm:max-l:mr-50 l:max-xl:mr-20 max-xm:mx-auto max-xm:mt-50"> 
-        <span className={`absolute z-10 text-white text-sm font-normal xl:ml-4 ll:ml-7 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-30 m:max-xm:ml-47 pp:max-xm:text-2xl max-xm:text-lg max-xm:font-bold max-m:ml-26 max-p:ml-23 max-pp:ml-24 max-xpp:ml-22 pointer-events-none select-none
+        <span className={`absolute z-10 text-white text-sm font-normal xl:ml-4 ll:ml-7 xm:max-ll:ml-7 xm:max-ll:-mt-10 max-xm:-mt-30 m:max-xm:ml-45 pp:max-xm:text-2xl max-xm:text-lg max-xm:font-bold max-m:ml-25 max-pp:ml-25 max-pp:-mt-35 max-xpp:-mt-38 max-xpp:ml-22 max-[300px]:text-base max-[300px]:ml-21 max-[300px]:-mt-35 pointer-events-none select-none
             ${isOpen ? "hidden" : "opacity-100"}`}>Como vai ficar</span>
-            <PiArrowArcRightBold className="absolute w-16 h-16 ml-33 -mt-7 mx-auto z-10 rotate-45 text-rose-400 pointer-events-none select-none xm:max-ll:-mt-17 max-xm:-mt-20 m:max-xm:ml-53.5"/>
+            <PiArrowArcRightBold className={`absolute w-16 h-16 ml-33 -mt-7 mx-auto z-10 rotate-45 text-rose-400 pointer-events-none select-none xm:max-ll:-mt-17 max-xm:-mt-20 m:max-xm:ml-53.5 max-m:ml-33.5 max-p:-mt-23 max-pp:ml-30 max-pp:-mt-29 max-pp:w-13 max-pp:h-13 max-xpp:ml-28.5 max-xpp:-mt-32 max-xpp:w-12 max-xpp:h-12 max-[300px]:w-11 max-[300px]:h-11 max-[300px]:ml-27 max-[300px]:-mt-29 ${isOpen ? "hidden" : "opacity-100"}`}/>
 
         <span className={`absolute z-10 text-white/90 text-xs font-normal mt-45 -ml-12 text-center xm:max-ll:mt-35 max-xm:mt-35 m:max-xm:ml-8 max-p:text-[10px] max-p:-ml-2 max-p:mt-40 max-pp:-ml-2 max-pp:mt-45 max-xpp:mt-47 max-[300px]:mt-52 max-[300px]:text-[8px] pointer-events-none select-none
             ${isOpen ? "hidden" : "opacity-100"}`}>
-            <PiCursorClick className="w-5 h-5 ml-4 max-p:ml-2.5 text-rose-400 rotate-90 max-[300px]:w-4"/>
+            <PiCursorClick className="w-5 h-5 ml-4 max-p:ml-2.5 text-rose-400 rotate-90 max-p:-mt-10 max-pp:-mt-30 max-xpp:-mt-37 max-[300px]:w-4 max-[300px]:-mt-47"/>
             Clique<br/>na carta</span>
 
-        <div className="m:max-xm:ml-20 max-pp:-mx-5.5 max-xpp:-mx-7 max-[300px]:-mx-10.5 select-none">
+        <div className="m:max-xm:ml-20 max-p:-mt-10 max-pp:-mt-30 max-pp:-mx-5.5 max-xpp:-mx-7.5 max-xpp:-mt-37 max-[300px]:-mx-10.5 max-[300px]:-mt-50 select-none">
             <CardPreview
                 name={name}
                 email={""}
@@ -580,7 +580,7 @@ export default function CreatePage() {
             />
         </div>
 
-        <div className="flex p-1 mx-auto w-full rounded-lg mt-12 cursor-pointer font-bold m:max-xm:w-130 max-p:w-9/10
+        <div className="flex p-1 mx-auto w-full rounded-lg mt-12 cursor-pointer font-bold m:max-xm:w-130 max-p:w-9/10 max-p:mt-3 max-pp:-mt-10 max-[300px]:-mt-25
             bg-gradient-to-r from-rose-600 to-rose-900 hover:from-rose-400 hover:to-rose-600 shadow-lg shadow-rose-500/40 xm:hidden">
                 <button
                     onClick={() => openModal()}
