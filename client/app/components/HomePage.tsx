@@ -210,11 +210,9 @@ export default function HomePage() {
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-[42px] text-center font-bold text-white mb-5 max-m:text-4xl">Exemplos</h2>
 
-          
 
 
         </div>
-      
       </section>
 
       <section id="faq" className="relative w-full mt-50 z-30 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#1d1d3a] to-[#2b2b57] ll:px-45 m:max-ll:px-15">
