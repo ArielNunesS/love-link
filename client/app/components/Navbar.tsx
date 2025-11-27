@@ -32,17 +32,31 @@ export default function Navbar() {
 
         <div className="flex items-center gap-8 max-xm:w-full max-xm:hidden">
           <Link
+            href="#como-fazer"
+            className="text-lg text-white/90 hover:text-white max-m:hidden"
+          >
+            Como Fazer
+          </Link>
+
+          <Link
             href="#exemplos"
-            className="text-xl font-bold text-white/80 hover:text-white max-m:hidden"
+            className="text-lg text-white/80 hover:text-white max-m:hidden"
           >
             Exemplos
           </Link>
 
           <Link
-            href="#como-fazer"
-            className="text-xl font-bold text-white/80 hover:text-white max-m:hidden"
+            href="#preços"
+            className="text-lg text-white/80 hover:text-white max-m:hidden"
           >
-            Como Fazer
+            Preços
+          </Link>
+
+          <Link
+            href="#faq"
+            className="text-lg text-white/80 hover:text-white max-m:hidden"
+          >
+            Perguntas Frequentes
           </Link>
         </div>
       </nav>

@@ -7,6 +7,7 @@ import { GiLoveLetter } from "react-icons/gi";
 import { IoImagesOutline } from "react-icons/io5";
 import { PiClockCountdownFill } from "react-icons/pi";
 import { RiQrCodeFill } from "react-icons/ri";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaLink } from "react-icons/fa6";
 import { IoIosColorPalette } from "react-icons/io";
 import faqData from "../data/faq.json"
@@ -76,86 +77,85 @@ export default function HomePage() {
             </div>
           <div className="container grid xm:grid-cols-2 gap-6 mx-auto px-6
             lll:w-6/10
-            l:max-lll:w-9/10
+            l:max-lll:w-full
             xm:w-7/10 xm:max-l:gap-8
             m:max-xm:px-15 m:max-xm:w-7/10
             max-m:w-9/10">
               
               <div className="rounded-2xl bg-gradient-to-b from-[#2d2d6b] to-[#18183c] shadow-2xl h-100 p-5 text-center flex flex-col items-center
-                ll:h-105
-                l:h-105
-                xm:h-105
-                max-xm:mx-auto max-xm:h-98 max-xm:w-full
-                max-m:h-95
+                ll:h-85
+                l:h-90
+                xm:h-95
+                max-xm:mx-auto max-xm:h-80 max-xm:w-full
+                max-m:h-80
                 p:max-m:w-8/10
                 max-p:h-92">
-                <p className="text-[26px] font-bold text-white max-xm:text-2xl"><span className="text-3xl text-rose-400">1. </span> Preencha os Dados</p>
+                <p className="text-2xl font-bold text-white max-xm:text-2xl"><span className="text-2xl text-rose-400">1. </span> Preencha os Dados</p>
                 <Image
                   src="https://i.postimg.cc/FRWf3LR0/love-link-form.png"
                   alt=""
-                  width={300}
-                  height={300}
+                  width={220}
+                  height={220}
                   className="mt-5 rounded-4xl select-none"
                 />
                 <p className="text-sm text-white mt-5 l:max-ll:mt-10 xm:max-l:text-base xm:max-l:px-10">Coloque fotos, música e escreva uma mensagem personalizada para quem ama</p>
               </div>
 
               <div className="rounded-2xl bg-gradient-to-b from-[#2d2d6b] to-[#18183c] shadow-2xl h-100 p-5 text-center flex flex-col items-center
-                ll:h-105
-                l:h-105
-                xm:max-l:h-105
-                max-xm:mx-auto max-xm:h-85 max-xm:w-full
-                max-m:h-95
+                ll:h-85
+                l:h-90
+                xm:h-95
+                max-xm:mx-auto max-xm:h-75 max-xm:w-full
+                max-m:h-75
                 p:max-m:w-8/10
                 max-p:h-90
                 max-pp:h-100">
-                <p className="text-[26px] font-bold text-white max-xm:text-2xl"><span className="text-3xl text-rose-400 text-left">2. </span> Faça o Pagamento</p>
+                <p className="text-2xl font-bold text-white max-xm:text-2xl"><span className="text-2xl text-rose-400 text-left">2. </span> Faça o Pagamento</p>
                 <Image
                   src="https://i.postimg.cc/FHpx4TZ9/love-link-payment.png"
                   alt=""
-                  width={170}
-                  height={170}
+                  width={130}
+                  height={130}
                   className="mt-1 rounded-4xl xm:mt-10 select-none"
                 />
-                <p className="text-sm text-white mt-7 ll:mt-12.5 xm:max-l:text-base xm:max-l:px-10">Faça seu pagamento de forma totalmente segura na página de pagamento PagBank<br/>Aceitamos <span className="text-green-500"><strong>PIX ou Cartão</strong></span></p>
+                <p className="text-sm text-white mt-7 ll:mt-8 xm:max-l:text-base xm:max-l:px-10">Faça seu pagamento de forma totalmente segura na página de pagamento PagBank<br/>Aceitamos <span className="text-green-500"><strong>PIX ou Cartão</strong></span></p>
               </div>
 
               <div className="rounded-2xl bg-gradient-to-b from-[#2d2d6b] to-[#18183c] shadow-2xl h-100 p-5 text-center flex flex-col items-center
-                ll:h-100
-                l:h-100
-                xm:h-104
-                max-xm:mx-auto max-xm:h-90 max-xm:w-full
-                max-m:h-95
+                ll:h-90
+                l:h-90
+                xm:h-95
+                max-xm:mx-auto max-xm:h-85 max-xm:w-full
+                max-m:h-85
                 p:max-m:w-8/10
                 max-p:h-95
                 max-pp:h-105">
-                <p className="text-[26px] font-bold text-white max-xm:text-2xl"><span className="text-3xl text-rose-400">3. </span> Receba o seu acesso no Email</p>
+                <p className="text-2xl font-bold text-white max-xm:text-2xl"><span className="text-2xl text-rose-400">3. </span> Receba o seu acesso no Email</p>
                 <Image
                   src="https://i.postimg.cc/tJ9jqSy5/love-link-email.png"
                   alt=""
-                  width={200}
-                  height={200}
+                  width={180}
+                  height={180}
                   className="mt-5 rounded-4xl select-none"
                 />
-                <p className="text-sm text-white mt-9 xm:max-l:text-base xm:max-l:px-10">Um email com o acesso à página <span className="text-rose-400">+ QR Code personalizado</span> será enviado após o pagamento ser confirmado</p>
+                <p className="text-sm text-white mt-7 xm:max-l:text-base xm:max-l:px-10">Um email com o acesso à página <span className="text-rose-400">+ QR Code personalizado</span> será enviado após o pagamento ser confirmado</p>
               </div>
 
               <div className="rounded-2xl bg-gradient-to-b from-[#2d2d6b] to-[#18183c] shadow-2xl h-160 p-5 text-center flex flex-col items-center
-                lll:h-160
-                ll:h-150
-                l:h-165
-                xm:h-165
-                max-xm:mx-auto max-xm:h-148 max-xm:w-full
-                max-m:h-160
+                lll:h-115
+                l:h-130
+                xm:h-140
+                max-xm:mx-auto max-xm:h-120 max-xm:w-full
+                max-m:h-130
                 p:max-m:w-8/10
                 max-p:h-160
                 max-pp:h-160">
-                <p className="text-[26px] font-bold text-white max-xm:text-2xl"><span className="text-3xl text-rose-400">4. </span> Surpreenda quem você Ama</p>
+                <p className="text-2xl font-bold text-white max-xm:text-2xl"><span className="text-2xl text-rose-400">4. </span> Surpreenda quem você Ama</p>
                 <Image
                   src="https://i.postimg.cc/X7q3G5KV/love-link-couple-page.png"
                   alt=""
-                  width={180}
-                  height={180}
+                  width={130}
+                  height={130}
                   className="mt-5 rounded-4xl select-none"
                 />
                 <p className="text-sm text-white mt-5 xm:max-l:text-base xm:max-l:px-10">Agora é só compartilhar com seu amor e fazer deste presente um grande momento</p><p className="text-base text-rose-400 font-bold mt-4 px-3 xm:max-l:text-base xm:max-l:px-10">Imprima o QR Code para entregar pessoalmente para a pessoa que ama</p>
@@ -236,7 +236,57 @@ export default function HomePage() {
         </div>
       </section>
 
+    <footer className="relative w-full bg-[#0d0d2b] h-70 ">
+      <div className="h-[1px] shadow-lg bg-rose-400"></div>
+    <div className="flex flex-row gap-50 px-100 justify-center py-10 max-xm:px-30 max-xm:gap-5 max-xm:flex-col max-m:px-20 max-pp:py-7 max-pp:px-5 max-[300px]:px-3">
+      <div className="gap-7 text-white h-full">
+        <div className="mb-3 pr-40 inline-flex gap-1.5 max-p:pr-5 max-xm:flex max-xm:px-0 max-xm:justify-center max-pp:mb-2">
+          <Image
+            src="https://i.postimg.cc/fbwy95Ww/heart-icon.png"
+            alt=""
+            width={45}
+            height={0}
+            className="w-11 max-p:w-9 -mt-1 select-none "/>
+            
+          <span className="text-3xl font-bold max-pp:text-xl">LoveLink</span>
+            
+          </div>
+          <p className="text-white/80 text-sm mb-2 ll:w-8/10 max-xm:text-center mm:max-xm:w-8/10 mm:max-xm:mx-auto max-pp:text-xs">Plataforma onde você cria um site personalizado
+          do seu  relacionamento e guarda memórias especiais em um presente único.
+          <br/><span className="font-bold text-white/90 max-pp:text-xs"> Feito por @arielnuness</span><br/>
+          </p>
+            <div className="flex flex-row gap-2 mb-7 text-sm text-white/80 max-xm:justify-center max-xm:mb-5 max-pp:text-xs">
+              Me siga em:
+              <Link href={"https://www.linkedin.com/in/ariel-nunes-da-silva-2a1ba924b/"} className="text-white">
+                <FaLinkedin className="w-5 h-5 hover:fill-rose-400 transition-all duration-150 "/>
+              </Link>
+              
+              <Link href={"https://github.com/ArielNunesS/"} className="text-white">
+                <FaGithub className="w-5 h-5 hover:fill-rose-400 transition-all duration-150"/>
+              </Link>
+            </div>
+          <p className="text-white/80 text-sm max-xm:text-center max-pp:text-xs">© 2025 - Todos os direitos reservados.</p>
+      </div>
+
+      <div className="flex flex-col text-white h-full max-xm:text-center text-nowrap">
+        <h2 className="font-bold text-2xl mb-3 max-xm:mb-1 max-pp:text-xl">Contato</h2>
+        <div className="flex flex-col gap-1.5 text-white/80 text-base max-xm:gap-0 max-pp:text-sm">
+          <Link className="cursor-pointer hover:text-white transition-all duration-150" href={"https://www.tiktok.com/@lovelink"}>TikTok</Link>
+          <Link className="cursor-pointer hover:text-white transition-all duration-150" href={"https://www.instagram.com/lovelink"}>Instagram</Link>
+          <Link className="cursor-pointer hover:text-white transition-all duration-150" href={"mailto:lovelinkapp00@gmail.com"}>Email</Link>
+        </div>
+      </div>
+
+      <div className="flex flex-col text-white h-full max-xm:text-center text-nowrap">
+        <h2 className="font-bold text-2xl mb-3 max-xm:mb-1 max-pp:text-xl">Legal</h2>
+        <div className="flex flex-col gap-1.5 text-white/80 text-base max-xm:gap-0 max-pp:text-sm">
+          <Link className="cursor-pointer hover:text-white transition-all duration-150" href={"/terms"}>Termos de Uso</Link>
+          <Link className="cursor-pointer hover:text-white transition-all duration-150" href={"/policy"}>Política de Privacidade</Link>
+        </div>
+      </div>
+    </div>
+    </footer>
     </div>
   </main>
-  )
-}
+  );
+};
