@@ -34,7 +34,7 @@ export default function paymentRoutes() {
                 name: "Love Link - Página Personalizada",
                 description: "Uma página única para presentear seu amor, com um QR Code exclusivo!",
                 quantity: 1,
-                unit_amount: 150,
+                unit_amount: 1999,
                 image_url: "https://i.postimg.cc/fbwy95Ww/heart-icon.png"
             }
         ],
