@@ -3,7 +3,7 @@ import Image from "next/image";
 import { DateTime } from "luxon";
 import { watch } from "fs";
 import CardFinal from "../../components/CardFinal";
-import StarryBackground from "../../components/BackgroundLines";
+import StarryBackground from "../../components/StarryBackground";
 import { PiCursorClick } from "react-icons/pi";
 import "dotenv/config";
 

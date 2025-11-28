@@ -206,7 +206,7 @@ export default function HomePage() {
             </div>
       </section>
 
-      <section id="examples" className="relative w-full mt-50 z-30 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#282863] to-[#0d0d2b] ll:px-45 m:max-ll:px-15">
+      <section id="exemplos" className="relative w-full mt-50 z-30 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#282863] to-[#0d0d2b] ll:px-45 m:max-ll:px-15">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-[42px] text-center font-bold text-white mb-5 max-m:text-4xl">Exemplos</h2>
 
@@ -215,7 +215,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="faq" className="relative w-full mt-50 z-30 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#1d1d3a] to-[#2b2b57] ll:px-45 m:max-ll:px-15">
+      <section id="preços" className="relative w-full mt-50 z-30 pb-100 bg-gradient-to-b from-[#0d0d2b] via-[#382863] to-[#0d0d2b] ll:px-45 m:max-ll:px-15">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-[42px] text-center font-bold text-white mb-5 max-m:text-4xl">Preços</h2>
+
+
+
+        </div>
+      </section>
+
+
+      <section id="faq" className="relative w-full mt-50 z-30 pb-50 bg-gradient-to-b from-[#0d0d2b] via-[#1d1d3a] to-[#2b2b57] ll:px-45 m:max-ll:px-15">
         <div className="container mx-auto px-6 text-center">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white">Perguntas Frequentes</h2>

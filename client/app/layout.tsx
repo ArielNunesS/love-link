@@ -44,6 +44,7 @@ export default function RootLayout({
     return (
       <html lang="pt-BR" className={`${firaSans.variable} antialiased ${dancingScript.variable} ${birthstone.variable} ${specialElite.variable} antialiased custom-scroll`}>
         <head>
+        
           <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, viewport-fit=cover" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
