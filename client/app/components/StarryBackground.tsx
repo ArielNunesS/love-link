@@ -22,7 +22,7 @@ export default function StarryBackground() {
 
   return (
     <>
-      <style>{`
+      <style jsx global>{`
         /* fundo e estrelas base (mantive seu original) */
         @keyframes star-move {
           0% { transform: translate(0, 0); }
@@ -83,14 +83,14 @@ export default function StarryBackground() {
 
         /* cada meteoro é um elemento longo (rastro + ponta) */
         .shooting-star {
-          --length: 14vw;     /* comprimento do rastro (ajustável por estrela) */
-          --thickness: 0.5px;   /* espessura */
+          --length: 1px;     /* comprimento do rastro (ajustável por estrela) */
+          --thickness: 2px;   /* espessura */
           --angle: -30deg;    /* ângulo de queda */
-          --sx: 10vw;         /* start X (vai ser sobrescrito inline) */
-          --sy: 10vh;         /* start Y (vai ser sobrescrito inline) */
-          --travel: -120vw;    /* quanto ele percorre ao longo do eixo X local (positivo/negativo conforme rotação) */
+          --sx: 1vw;         /* start X (vai ser sobrescrito inline) */
+          --sy: 1vh;         /* start Y (vai ser sobrescrito inline) */
+          --travel: -150vw;    /* quanto ele percorre ao longo do eixo X local (positivo/negativo conforme rotação) */
           --duration: 2.5s;
-          --delay: 0s;
+          --delay: 1s;
 
           position: absolute;
           left: 0;
@@ -99,28 +99,26 @@ export default function StarryBackground() {
           height: var(--thickness);
           transform-origin: left center;
           background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0.05));
-          filter: blur(0.3px);
+          filter: blur(0.5px);
           border-radius: 50px;
-          box-shadow: 0 0 4px 2px rgba(255,255,255,0.65);
+          box-shadow: 0 0 10px 1px rgba(255,255,255,0.65);
           opacity: 0;
           will-change: transform, opacity;
           transform: translate(var(--sx), var(--sy)) rotate(var(--angle)) translateX(0);
           animation: shoot var(--duration) linear var(--delay) infinite;
         }
 
-        /* ponta mais brilhante (opcional) */
-        
       `}</style>
 
       <div className="star-field-full" />
       <div className="shooting-stars">
-        {Array.from({ length: 10 }).map((_, i) => {
+        {Array.from({ length: 5 }).map((_, i) => {
           // variação por meteoro
           const startX = Math.random() * 50; // % da viewport (0..100)
-          const startY = Math.random() * 20;  // limitar ao topo para parecer cair
+          const startY = Math.random() * 5;  // limitar ao topo para parecer cair
           const angle = -120 - Math.random() * 25; // -25..-50 deg
-          const length = 2 + Math.random() * 2; // vw
-          const travel = -60 - Math.random() * 30; // vw (quanto vai se deslocar)
+          const length = 0.5 + Math.random() * 2; // vw
+          const travel = -70 - Math.random() * 30; // vw (quanto vai se deslocar)
           const duration = 1.2 + Math.random() * 2.2; // s
           const delay = Math.random() * 8; // s
 

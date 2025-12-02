@@ -3,17 +3,17 @@
     {
       "id": 1,
       "question": "O que é a Lovelink?",
-      "answer": "A LoveLink é uma plataforma que permite criar páginas personalizadas com QR Code para casais. Você pode compartilhar sua história de amor, fotos especiais e momentos únicos em um site exclusivo que pode ser acessado facilmente através de um QR Code."
+      "answer": "A LoveLink é um serviço que permite aos casais criarem de forma simples uma página exclusiva e customizada, que vai ser acessível via QR Code. Nela, vocês podem contar a sua história, exibir fotos memoráveis e registrar seus momentos especiais."
     },
     {
       "id": 2,
       "question": "Como posso criar uma página personalizada na LoveLink?",
-      "answer": "Para criar sua página personalizada, basta acessar nosso site, preencher o formulário com suas informações (nome do casal, data de início do relacionamento, mensagem especial e fotos), realizar o pagamento e pronto! Seu site estará disponível em poucos minutos."
+      "answer": "Para montar sua página, é só ir ao nosso site, inserir os dados do casal (nomes, data de início do namoro, uma mensagem romântica e fotos), e realizar o pagamento. Em poucos minutos, seu site estará pronto para ser acessado."
     },
     {
       "id": 3,
-      "question": "O que está incluído na minha página personalizada?",
-      "answer": "Sua página personalizada inclui: contador de tempo do relacionamento, galeria de fotos (até 5 imagens), QR Code único para compartilhamento fácil, mensagem personalizada, design elegante e responsivo, e hospedagem vitalícia do seu LoveLink."
+      "question": "O que está incluído na minha página LoveLink?",
+      "answer": "O pacote inclui: um contador de tempo de relacionamento, uma galeria de fotos (limite de 5), um QR Code exclusivo para fácil compartilhamento, uma mensagem personalizada, um design atraente e adaptável a qualquer tela, e o acesso vitalício do seu LoveLink."
     },
     {
       "id": 4,
@@ -23,7 +23,7 @@
     {
       "id": 5,
       "question": "A página personalizada tem validade?",
-      "answer": "Não! Sua página LoveLink é vitalícia e ficará disponível para sempre sem custos adicionais. Você pode acessar e compartilhar quando quiser."
+      "answer": "Não! Sua LoveLink tem duração ilimitada e permanecerá disponível para acesso e compartilhamento para sempre, sem exigir custos adicionais."
     },
     {
       "id": 6,
@@ -33,7 +33,7 @@
     {
       "id": 7,
       "question": "Quais são as formas de pagamento aceitas?",
-      "answer": "Aceitamos cartão de crédito (todas as bandeiras) e PIX. O pagamento é processado de forma segura através de um gateway de pagamento."
+      "answer": "Aceitamos cartão de crédito (todas as bandeiras) e PIX. O pagamento é processado de maneira segura por meio de uma plataforma de pagamento confiável."
     },
     {
       "id": 8,

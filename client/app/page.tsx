@@ -9,7 +9,7 @@ import { ModalProvider } from "./contexts/ModalContext";
 import HomePage from "./components/HomePage";
 import Navbar from "./components/Navbar";
 import AnimatedBackground from "./components/AnimatedBackground";
-import BackgroundLines from "./components/BackgroundLines";
+import BackgroundLines from "./components/StarryBackground";
 import CreatePage from "./create/page";
 
 export default function Home() {
