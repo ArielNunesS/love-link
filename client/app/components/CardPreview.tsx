@@ -5,8 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useModal } from "../contexts/ModalContext";
 import { Calendar, Heart, Music, Camera, Mail, MailOpen } from "lucide-react";
-import { FaEnvelope } from "react-icons/fa";
-import { GoDotFill } from "react-icons/go";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DateTime } from "luxon";
